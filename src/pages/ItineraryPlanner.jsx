@@ -32,7 +32,7 @@ const ItineraryPlanner = () => {
   };
 
   return (
-    <div 
+    <div
       className="min-h-screen relative overflow-hidden"
       style={{
         backgroundImage: `url(${heroBgImage})`,
@@ -62,7 +62,7 @@ const ItineraryPlanner = () => {
           >
             <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-4 py-2 mb-6">
               <Sparkles size={18} className="text-yellow-300" />
-              <span className="text-sm font-semibold text-white">AI-Powered Planning</span>
+              <span className="text-sm font-semibold text-white">Safar360 Travel Support (AI)</span>
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-heritage font-bold mb-4 text-white drop-shadow-[0_10px_40px_rgba(0,0,0,0.9)]">

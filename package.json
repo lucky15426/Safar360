@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "safar360",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
- "dependencies": {
+  "dependencies": {
     "@clerk/clerk-react": "^5.55.0",
     "@google/generative-ai": "^0.24.1",
     "@gradio/client": "^2.0.0",

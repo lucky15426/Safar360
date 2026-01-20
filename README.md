@@ -1,6 +1,6 @@
-# BharatVerse – Discover India’s Heritage & Hidden Gems
+# Safar360 – Discover India’s Heritage & Hidden Gems
 
-BharatVerse is a React-based web app that showcases India’s temples, heritage sites, and hidden gems on an interactive map with route planning, storytelling, and curated recommendations.
+Safar360 is a React-based web app that showcases India’s temples, heritage sites, and hidden gems on an interactive map with route planning, storytelling, and curated recommendations.
 
 > Note: Edit any sections (features, scripts, tech stack) to match your final implementation.
 

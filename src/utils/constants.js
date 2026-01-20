@@ -134,7 +134,7 @@ export const USER_ROLES = {
 
 // Application Settings
 export const APP_CONFIG = {
-  NAME: "BharatVerse",
+  NAME: "Safar360",
   VERSION: "1.0.0",
   DESCRIPTION: "Digital Heritage & Culture Portal of India",
   KEYWORDS: ["heritage", "culture", "india", "monuments", "festivals", "arts"],
@@ -161,11 +161,11 @@ export const COLORS = {
 
 // Social Media Links
 export const SOCIAL_LINKS = {
-  FACEBOOK: "https://facebook.com/bharatverse",
-  TWITTER: "https://twitter.com/bharatverse",
-  INSTAGRAM: "https://instagram.com/bharatverse",
-  YOUTUBE: "https://youtube.com/bharatverse",
-  LINKEDIN: "https://linkedin.com/company/bharatverse",
+  FACEBOOK: "https://facebook.com/safar360",
+  TWITTER: "https://twitter.com/safar360",
+  INSTAGRAM: "https://instagram.com/safar360",
+  YOUTUBE: "https://youtube.com/safar360",
+  LINKEDIN: "https://linkedin.com/company/safar360",
 };
 
 // External API Keys (Use environment variables in production)

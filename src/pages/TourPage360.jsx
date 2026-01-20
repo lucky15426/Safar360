@@ -199,7 +199,7 @@ const TourPage360 = ({ onPageChange }) => {
             <div className="flex items-center justify-center mb-8">
               <RotateCcw className="mr-4 animate-spin-slow" size={60} />
               <h1 className="text-6xl md:text-8xl font-heritage font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-                360° Virtual Tours
+                Safar360 VR Tours
               </h1>
             </div>
 
@@ -270,11 +270,10 @@ const TourPage360 = ({ onPageChange }) => {
                   <button
                     key={location.id}
                     onClick={() => setActiveLocation(index)}
-                    className={`flex items-center space-x-2 px-4 py-2 rounded-full font-medium transition-all duration-300 whitespace-nowrap ${
-                      activeLocation === index
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-full font-medium transition-all duration-300 whitespace-nowrap ${activeLocation === index
                         ? `bg-gradient-to-r ${location.color} text-white shadow-lg scale-105`
                         : "text-gray-600 hover:text-gray-800 hover:bg-gray-100"
-                    }`}
+                      }`}
                   >
                     <IconComponent size={16} />
                     <span className="text-sm">{location.name}</span>

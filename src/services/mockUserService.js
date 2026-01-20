@@ -12,7 +12,7 @@ const getMockUser = () => {
 
   // Check if mock user already exists in session storage
   if (typeof window !== "undefined") {
-    const stored = sessionStorage.getItem("bharatverse_mock_user");
+    const stored = sessionStorage.getItem("safar360_mock_user");
     if (stored) {
       try {
         mockUser = JSON.parse(stored);
@@ -36,7 +36,7 @@ const getMockUser = () => {
 
     // Store in session storage
     if (typeof window !== "undefined") {
-      sessionStorage.setItem("bharatverse_mock_user", JSON.stringify(mockUser));
+      sessionStorage.setItem("safar360_mock_user", JSON.stringify(mockUser));
     }
   }
 

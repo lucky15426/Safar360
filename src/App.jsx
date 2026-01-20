@@ -13,8 +13,7 @@ import Footer from "./components/Footer";
 import LoadingSpinner from "./components/LoadingSpinner";
 import GlobalMusicPlayer from "./components/GlobalMusicPlayer";
 
-//changes
-import FloatingMenu from "./components/FloatingMenu";
+// Components
 
 // Pages
 import HomePage from "./pages/HomePage";
@@ -31,11 +30,7 @@ import AccountPage from "./pages/AccountPage";
 import UploadPage from "./pages/UploadPage";
 import TourPage360 from "./pages/TourPage360";
 import RecommendationsPage from "./pages/RecommendationsPage";
-import StoryTellingPage from "./pages/StoryTellingPage";
 import ItineraryPlanner from "./pages/ItineraryPlanner";
-
-//changes
-import RitualExplorerPage from "./pages/RitualExplorerPage";
 
 import { createOrUpdateUser } from "./services/userService";
 
@@ -105,21 +100,15 @@ function App() {
         return <HomePage {...pageProps} />;
       case "360tour":
         return <TourPage360 {...pageProps} onPageChange={handlePageChange} />;
-      case "states":
-        return <StatesPage {...pageProps} />;
-      case "heritage":
-        return selectedItem ? (
-          <HeritageDetailPage {...pageProps} item={selectedItem} />
-        ) : (
-          <HeritagePage {...pageProps} />
-        );
-      case "festivals":
-        return <FestivalsPage {...pageProps} />;
-      case "arts":
-        return <ArtsPage {...pageProps} />;
+      case "itinerary":
+        return <ItineraryPlanner {...pageProps} />;
       case "gems":
         return <HiddenGemsPage {...pageProps} />;
-      case "quiz":
+      case "chat":
+        return <ChatPage {...pageProps} />;
+      case "map":
+        return <MapPage {...pageProps} />;
+      case "account":
         if (!isLoaded) {
           return (
             <div className="flex justify-center items-center h-64">
@@ -219,37 +208,11 @@ function App() {
           );
         }
         return <QuizPage {...pageProps} />;
-      case "itinerary":
-        return <ItineraryPlanner {...pageProps} />;
-      case "chat":
-        return <ChatPage {...pageProps} />;
-      case "map":
-        return <MapPage {...pageProps} />;
-      case "account":
-        if (!isLoaded) {
-          return <LoadingSpinner size="lg" />;
-        }
-        return <AccountPage {...pageProps} />;
-
-      // ✅ FIXED: UploadPage works for EVERYONE (anonymous)
       case "upload":
         return <UploadPage {...pageProps} />;
 
       case "salahkar":
         return <RecommendationsPage onBack={() => handlePageChange("home")} />;
-
-      //changes
-
-      case "riti-riwaj":
-        return <RitualExplorerPage {...pageProps} />;
-      case "storytelling":
-        return (
-          <StoryTellingPage
-            {...pageProps}
-            onBack={() => handlePageChange("home")}
-          />
-        );
-      // YHA TK
 
       default:
         return <HomePage {...pageProps} />;
@@ -307,11 +270,11 @@ function App() {
         )}
 
         {/* ✨ DIVINE AMBER SALAHKAR BUTTON - The Click Magnet ✨ */}
-        {currentPage !== "salahkar" && currentPage !== "storytelling" && (
+        {currentPage !== "salahkar" && (
           <button
             onClick={() => handlePageChange("salahkar")}
             className="salahkar-trigger group"
-            title="Ask Salahkar - AI Heritage Guide"
+            title="Ask Salahkar - AI Travel Consultant"
           >
             {/* Contextual Glow */}
             <div className="absolute inset-0 rounded-full bg-orange-500 blur-[50px] opacity-20 group-hover:opacity-40 transition-opacity duration-1000 animate-pulse-slow"></div>
@@ -353,10 +316,18 @@ function App() {
           </button>
         )}
 
-        <div className="fixed bottom-6 left-6 z-50">
-          <FloatingMenu onPageChange={handlePageChange} />
-        </div>
-        {/* 🎨 Advanced CSS for the Button */}
+        {/* Floating Support Button */}
+        {currentPage !== "chat" && currentPage !== "home" && (
+          <button
+            onClick={() => handlePageChange("chat")}
+            className="fixed bottom-32 right-10 z-[1000] p-4 bg-blue-600 text-white rounded-full shadow-2xl hover:bg-blue-700 transition-all duration-300 transform hover:scale-110 flex items-center space-x-2"
+            title="Real-time Support"
+          >
+            <div className="w-6 h-6 rounded-full bg-white/20 animate-pulse"></div>
+            <span className="font-bold text-xs">SUPPORT</span>
+          </button>
+        )}
+
         <style>{`
           .font-cinzel { font-family: 'Cinzel', serif; }
           

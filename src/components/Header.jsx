@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, User, Crown, MapPin } from "lucide-react";
+import { Menu, X, User, Compass, MapPin } from "lucide-react";
 import {
   useUser,
   SignInButton,
@@ -20,15 +20,11 @@ const Header = ({ currentPage, onPageChange, searchQuery, onSearchChange }) => {
 
   const navLinks = [
     { id: "home", label: "Home" },
-    { id: "states", label: "States" },
-    { id: "heritage", label: "Heritage" },
-    { id: "festivals", label: "Festivals" },
-    { id: "arts", label: "Arts" },
+    { id: "360tour", label: "VR Previews" },
+    { id: "itinerary", label: "Trip Planning", icon: "MapPin" },
     { id: "gems", label: "Hidden Gems" },
-    { id: "quiz", label: "Quiz" },
-    { id: "chat", label: "AI Guide" },
-    { id: "map", label: "Map" },
-    { id: "itinerary", label: "Plan Itinerary", icon: "MapPin" },
+    { id: "chat", label: "Real-time Support" },
+    { id: "map", label: "Local Insights" },
   ];
 
   return (
@@ -47,15 +43,15 @@ const Header = ({ currentPage, onPageChange, searchQuery, onSearchChange }) => {
                 setIsMenuOpen(false);
               }}
               className="flex items-center space-x-2 group focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 rounded-xl"
-              aria-label="Bharatverse Home"
+              aria-label="Safar360 Home"
             >
-              <Crown className="w-6 h-6 text-amber-700 group-hover:text-amber-800 transition-colors duration-300" />
-              <div className="flex flex-col items-start">
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-amber-700 via-orange-600 to-red-600 bg-clip-text text-transparent tracking-wide group-hover:from-amber-800 group-hover:via-orange-700 group-hover:to-red-700 transition-all duration-300">
-                  BharatVerse
+              <Compass className="w-8 h-8 text-amber-700 group-hover:text-amber-800 transition-all duration-300 group-hover:rotate-45" />
+              <div className="flex flex-col items-start pt-1">
+                <h1 className="text-3xl font-heritage font-bold bg-gradient-to-r from-amber-700 via-orange-600 to-red-600 bg-clip-text text-transparent tracking-wide group-hover:from-amber-800 group-hover:via-orange-700 group-hover:to-red-700 transition-all duration-300 drop-shadow-sm">
+                  Safar360
                 </h1>
-                <p className="text-xs text-amber-700 font-semibold tracking-wide -mt-1 opacity-90">
-                  Discover India's Heritage
+                <p className="text-[10px] text-amber-700 font-bold tracking-[0.2em] -mt-1 opacity-90 uppercase">
+                  Beyond Booking
                 </p>
               </div>
             </button>
@@ -70,11 +66,10 @@ const Header = ({ currentPage, onPageChange, searchQuery, onSearchChange }) => {
                     onPageChange(link.id);
                     setIsMenuOpen(false);
                   }}
-                  className={`px-5 py-3 rounded-xl text-sm font-bold transition-all duration-300 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-1 border ${
-                    currentPage === link.id
-                      ? "bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white shadow-lg transform scale-105 border-amber-300"
-                      : "text-amber-800 hover:text-amber-900 hover:bg-gradient-to-r hover:from-amber-100 hover:to-orange-100 hover:shadow-md border-transparent hover:border-amber-200 hover:scale-102"
-                  }`}
+                  className={`px-5 py-3 rounded-xl text-sm font-bold transition-all duration-300 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-1 border ${currentPage === link.id
+                    ? "bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white shadow-lg transform scale-105 border-amber-300"
+                    : "text-amber-800 hover:text-amber-900 hover:bg-gradient-to-r hover:from-amber-100 hover:to-orange-100 hover:shadow-md border-transparent hover:border-amber-200 hover:scale-102"
+                    }`}
                   aria-current={currentPage === link.id ? "page" : undefined}
                 >
                   {link.label}
@@ -142,11 +137,10 @@ const Header = ({ currentPage, onPageChange, searchQuery, onSearchChange }) => {
                       onPageChange(link.id);
                       setIsMenuOpen(false);
                     }}
-                    className={`px-3 py-3 rounded-xl text-sm font-bold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-1 border ${
-                      currentPage === link.id
-                        ? "bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white shadow-lg border-amber-300"
-                        : "text-amber-800 hover:text-amber-900 hover:bg-gradient-to-r hover:from-amber-100 hover:to-orange-100 border-amber-200 hover:border-amber-300 hover:shadow-md"
-                    }`}
+                    className={`px-3 py-3 rounded-xl text-sm font-bold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-1 border ${currentPage === link.id
+                      ? "bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white shadow-lg border-amber-300"
+                      : "text-amber-800 hover:text-amber-900 hover:bg-gradient-to-r hover:from-amber-100 hover:to-orange-100 border-amber-200 hover:border-amber-300 hover:shadow-md"
+                      }`}
                     aria-current={currentPage === link.id ? "page" : undefined}
                   >
                     {link.icon === "MapPin" && <MapPin size={14} />}

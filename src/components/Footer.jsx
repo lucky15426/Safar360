@@ -65,7 +65,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Social & branding */}
           <div>
-            <h1 className="text-3xl font-extrabold mb-4">BharatVerse</h1>
+            <h1 className="text-3xl font-heritage font-extrabold mb-4 uppercase tracking-wider">
+              Safar360
+            </h1>
             <p className="text-white/85 mb-6">
               Discover India's incredible cultural heritage through immersive
               experiences and interactive storytelling.
@@ -128,7 +130,7 @@ const Footer = () => {
             <a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a> |{" "}
             <a href="#">Contact Us</a>
           </span>
-          <span>©️ 2025 BharatVerse. Made with ❤️ by Netaji Ninjas.</span>
+          <span>©️ 2026 Safar360. Made with ❤️ by Netaji Ninjas.</span>
         </div>
       </div>
       {/* <WhatsAppButton /> */}

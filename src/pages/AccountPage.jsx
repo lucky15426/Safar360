@@ -160,7 +160,7 @@ const AccountPage = () => {
     const dataUri =
       "data:application/json;charset=utf-8," + encodeURIComponent(dataStr);
 
-    const exportFileDefaultName = `bharatverse-data-${profileData.full_name
+    const exportFileDefaultName = `safar360-data-${profileData.full_name
       .replace(/\s+/g, "-")
       .toLowerCase()}.json`;
 
@@ -352,11 +352,10 @@ const AccountPage = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`py-4 px-4 border-b-2 font-medium text-sm transition-colors flex items-center space-x-2 whitespace-nowrap ${
-                    activeTab === tab.id
+                  className={`py-4 px-4 border-b-2 font-medium text-sm transition-colors flex items-center space-x-2 whitespace-nowrap ${activeTab === tab.id
                       ? "border-orange-500 text-orange-600"
                       : "border-transparent text-gray-500 hover:text-gray-700"
-                  }`}
+                    }`}
                 >
                   <tab.icon size={18} />
                   <span>{tab.label}</span>
@@ -559,13 +558,12 @@ const AccountPage = () => {
                         </div>
                         <div className="text-right">
                           <div
-                            className={`text-lg font-bold ${
-                              quiz.percentage >= 80
+                            className={`text-lg font-bold ${quiz.percentage >= 80
                                 ? "text-green-600"
                                 : quiz.percentage >= 60
-                                ? "text-yellow-600"
-                                : "text-red-600"
-                            }`}
+                                  ? "text-yellow-600"
+                                  : "text-red-600"
+                              }`}
                           >
                             {Math.round(quiz.percentage)}%
                           </div>

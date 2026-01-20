@@ -271,7 +271,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src={heroBgVideo} type="video/mp4" />
+          <source src="https://res.cloudinary.com/bharatverse/video/upload/v1768904085/homepage_n7cuif.mp4" type="video/mp4" />
         </video>
 
         {/* Dark overlay for text readability */}
@@ -279,38 +279,30 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
         <div className="relative z-10 max-w-6xl mx-auto h-full flex flex-col justify-center px-4">
           <div className="flex flex-col items-center text-center space-y-6">
             <h1 className="text-white text-6xl md:text-8xl font-heritage font-bold heritage-text-glow leading-tight">
-              BharatVerse
+              Safar360
             </h1>
             <p className="text-white text-xl md:text-2xl max-w-4xl opacity-90 leading-relaxed">
-              Discover India's incredible cultural heritage through immersive
-              360° experiences, AI-powered guides, and interactive storytelling
+              Confidence in every step of your journey. Re-imagining the end-to-end traveler experience with immersive tech and real-time support.
             </p>
 
             <p className="text-yellow-300 text-lg md:text-xl font-medium mt-6">
-              Where Ancient Wisdom Meets Modern Technology
+              Plan with Certainty, Travel with Confidence, Explore with Support
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-6 w-full max-w-4xl mx-auto pt-5">
               <button
-                onClick={() => onPageChange("360tour")} // <-- Updated
+                onClick={() => onPageChange("360tour")}
                 className="btn-heritage text-lg px-8 py-4 flex items-center space-x-3 hover:scale-105 transition-transform duration-300 w-full sm:w-auto justify-center"
               >
                 <Play size={24} />
-                <span>Start 360° Heritage Tour</span>
+                <span>Experience Destination Previews</span>
               </button>
 
               <button
                 onClick={() => onPageChange("chat")}
                 className="bg-white/20 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition-all duration-300 flex items-center space-x-3 w-full sm:w-auto justify-center"
               >
-                Ask Heritage AI Guide
-              </button>
-
-              <button
-                onClick={() => onPageChange("quiz")}
-                className="bg-gold-500/20 backdrop-blur-sm border-2 border-gold-400/40 text-yellow-200 px-8 py-4 rounded-xl font-semibold hover:bg-gold-500/30 transition-all duration-300 flex items-center space-x-3 w-full sm:w-auto justify-center"
-              >
-                Test Your Knowledge
+                Ask AI Travel Copilot
               </button>
             </div>
 
@@ -318,26 +310,26 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
               {[
                 {
                   number: stats.sites,
-                  label: "Heritage Sites",
+                  label: "Destinations",
                   icon: Landmark,
                   suffix: "+",
                 },
                 {
                   number: stats.festivals,
-                  label: "Festivals",
-                  icon: Calendar,
+                  label: "Local Guides",
+                  icon: Users,
                   suffix: "+",
                 },
                 {
-                  number: stats.arts,
-                  label: "Art Forms",
-                  icon: Music,
-                  suffix: "+",
+                  number: "24/7",
+                  label: "Support",
+                  icon: Shield,
+                  suffix: "",
                 },
                 {
                   number: (stats.users / 1000).toFixed(0),
-                  label: "Explorers",
-                  icon: Users,
+                  label: "Happy Travelers",
+                  icon: Globe,
                   suffix: "K+",
                 },
               ].map((stat, idx) => {
@@ -653,11 +645,10 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-heritage font-bold heritage-text-gradient mb-6">
-              Experience Heritage Like Never Before
+              Travel Confidence Redefined
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Cutting-edge technology meets ancient wisdom in our immersive
-              cultural platform
+              Our travelers' experience goes beyond booking. We provide meaningful support before, during, and at the destination.
             </p>
           </div>
 
@@ -665,39 +656,39 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
             {[
               {
                 icon: Globe,
-                title: "360° Virtual Tours",
+                title: "Immersive Previews",
                 description:
-                  "Immerse yourself in breathtaking panoramic views of sacred sites with interactive hotspots and guided narration.",
+                  "Reduce uncertainty by exploring destinations in high-fidelity 360° VR before you even book your stay.",
                 features: [
-                  "Interactive Hotspots",
-                  "Audio Narration",
-                  "Historical Context",
+                  "High-Res Panoramas",
+                  "Virtual Walkthroughs",
+                  "Real-scene Audio",
                 ],
                 color: "text-blue-600",
               },
               {
                 icon: Cpu,
-                title: "AI Heritage Guide",
+                title: "Personalized Guidance",
                 description:
-                  "Get instant answers about history, architecture, and cultural significance from our intelligent multilingual guide.",
+                  "Navigate destinations with AI-powered smart itineraries and local insights tailored to your travel style.",
                 features: [
-                  "Voice Recognition",
-                  "Cultural Insights",
-                  "Multilingual Support",
+                  "Smart Itineraries",
+                  "Route Optimization",
+                  "Hidden Gem Discovery",
                 ],
                 color: "text-purple-600",
               },
               {
-                icon: Trophy,
-                title: "Interactive Quizzes",
+                icon: Shield,
+                title: "Real-time Support",
                 description:
-                  "Test your knowledge with engaging quizzes and earn badges for your cultural expertise and achievements.",
+                  "Travel with peace of mind. Our AI Copilot provides 24/7 on-ground assistance and instant local answers.",
                 features: [
-                  "Adaptive Difficulty",
-                  "Achievement System",
-                  "Leaderboards",
+                  "24/7 AI Assistance",
+                  "Live Local Insights",
+                  "Emergency Guidance",
                 ],
-                color: "text-green-600",
+                color: "text-red-600",
               },
             ].map((feature, index) => {
               const IconComponent = feature.icon;
@@ -795,7 +786,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
           </div>
 
           <blockquote className="max-w-3xl mx-auto italic opacity-90 mb-4 text-lg">
-            "BharatVerse opened my eyes to the incredible depth of Indian
+            "Safar360 opened my eyes to the incredible depth of Indian
             culture. The 360° tours made me feel like I was actually walking
             through the Taj Mahal!"
           </blockquote>

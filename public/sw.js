@@ -1,4 +1,4 @@
-const CACHE_NAME = "bharatverse-v1";
+const CACHE_NAME = "safar360-v1";
 const urlsToCache = [
   "/",
   "/static/css/main.css",

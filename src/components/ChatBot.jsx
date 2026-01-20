@@ -7,7 +7,7 @@ const ChatBot = ({ isOpen, onClose }) => {
     {
       id: 1,
       sender: "bot",
-      text: "Namaste! Welcome to BharatVerse! I'm your AI heritage guide. Ask me about Indian monuments, festivals, culture, or anything related to our incredible heritage!",
+      text: "Namaste! Welcome to Safar360! I'm your AI heritage guide. Ask me about Indian monuments, festivals, culture, or anything related to our incredible heritage!",
       timestamp: new Date().toISOString(),
     },
   ]);
@@ -28,7 +28,7 @@ const ChatBot = ({ isOpen, onClose }) => {
     const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
 
-    const prompt = `You are BharatVerse AI Heritage Guide, an expert on Indian culture, heritage, monuments, festivals, arts, history, and traditions. 
+    const prompt = `You are Safar360 AI Heritage Guide, an expert on Indian culture, heritage, monuments, festivals, arts, history, and traditions. 
 
 User question: ${message}
 
@@ -171,7 +171,7 @@ If the question is not related to Indian heritage, politely redirect to Indian c
               <Bot className="text-white" size={24} />
             </div>
             <div>
-              <h3 className="font-bold text-lg">BharatVerse AI Guide</h3>
+              <h3 className="font-bold text-lg">Safar360 AI Guide</h3>
               <p className="text-sm text-white/80">Your heritage companion</p>
             </div>
           </div>
@@ -189,23 +189,20 @@ If the question is not related to Indian heritage, politely redirect to Indian c
           {messages.map((message) => (
             <div
               key={message.id}
-              className={`flex ${
-                message.sender === "user" ? "justify-end" : "justify-start"
-              }`}
+              className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"
+                }`}
             >
               <div
-                className={`flex items-start space-x-2 max-w-[80%] ${
-                  message.sender === "user"
-                    ? "flex-row-reverse space-x-reverse"
-                    : "flex-row"
-                }`}
+                className={`flex items-start space-x-2 max-w-[80%] ${message.sender === "user"
+                  ? "flex-row-reverse space-x-reverse"
+                  : "flex-row"
+                  }`}
               >
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                    message.sender === "user"
-                      ? "bg-saffron-500 text-white"
-                      : "bg-gray-300 text-gray-600"
-                  }`}
+                  className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${message.sender === "user"
+                    ? "bg-saffron-500 text-white"
+                    : "bg-gray-300 text-gray-600"
+                    }`}
                 >
                   {message.sender === "user" ? (
                     <User size={16} />
@@ -246,11 +243,10 @@ If the question is not related to Indian heritage, politely redirect to Indian c
             <button
               onClick={startVoiceInput}
               disabled={isListening || isLoading}
-              className={`p-2 rounded-lg transition-colors ${
-                isListening
-                  ? "bg-red-100 text-red-600"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-              } disabled:opacity-50`}
+              className={`p-2 rounded-lg transition-colors ${isListening
+                ? "bg-red-100 text-red-600"
+                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                } disabled:opacity-50`}
             >
               <Mic size={20} />
             </button>

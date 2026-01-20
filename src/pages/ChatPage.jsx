@@ -30,7 +30,7 @@ const ChatPage = ({ user }) => {
     {
       id: 1,
       sender: "bot",
-      text: "Namaste! Welcome to BharatVerse AI Heritage Guide! I'm here to help you discover India's incredible cultural heritage. Ask me about monuments, festivals, traditions, history, or anything related to Indian culture!",
+      text: "Namaste! Welcome to Safar360 AI Heritage Guide! I'm here to help you discover India's incredible cultural heritage. Ask me about monuments, festivals, traditions, history, or anything related to Indian culture!",
       timestamp: new Date().toISOString(),
       type: "greeting",
     },
@@ -164,7 +164,7 @@ const ChatPage = ({ user }) => {
     const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
 
-    const prompt = `You are BharatVerse AI Heritage Guide, an expert on Indian culture, heritage, monuments, festivals, arts, history, and traditions. 
+    const prompt = `You are Safar360 AI Heritage Guide, an expert on Indian culture, heritage, monuments, festivals, arts, history, and traditions. 
 
 User question: ${message}
 
@@ -438,9 +438,8 @@ If the question is not related to Indian heritage, politely redirect the convers
                 }}
                 className="absolute w-2 h-2 rounded-full bg-gradient-to-r from-orange-400 via-pink-400 to-red-400"
                 style={{
-                  boxShadow: `0 0 ${
-                    Math.random() * 10 + 5
-                  }px rgba(255, 152, 0, 0.6)`,
+                  boxShadow: `0 0 ${Math.random() * 10 + 5
+                    }px rgba(255, 152, 0, 0.6)`,
                   filter: "blur(0.5px)",
                 }}
               />
@@ -515,34 +514,30 @@ If the question is not related to Indian heritage, politely redirect the convers
                   key={message.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className={`flex  ${
-                    message.sender === "user" ? "justify-end" : "justify-start"
-                  } relative z-30`}
+                  className={`flex  ${message.sender === "user" ? "justify-end" : "justify-start"
+                    } relative z-30`}
                 >
                   <div
-                    className={`flex items-start space-x-3 max-w-[80%] ${
-                      message.sender === "user"
-                        ? "flex-row-reverse space-x-reverse"
-                        : "flex-row"
-                    }`}
+                    className={`flex items-start space-x-3 max-w-[80%] ${message.sender === "user"
+                      ? "flex-row-reverse space-x-reverse"
+                      : "flex-row"
+                      }`}
                   >
                     <div
-                      className={`px-6 py-4 max-w-md rounded-3xl shadow-lg ${
-                        message.sender === "user"
-                          ? "bg-gradient-to-r from-saffron-500 to-orange-500 text-white rounded-tr-none"
-                          : "bg-white/90 backdrop-blur-md text-gray-800 border border-gray-200 rounded-tl-none"
-                      }`}
+                      className={`px-6 py-4 max-w-md rounded-3xl shadow-lg ${message.sender === "user"
+                        ? "bg-gradient-to-r from-saffron-500 to-orange-500 text-white rounded-tr-none"
+                        : "bg-white/90 backdrop-blur-md text-gray-800 border border-gray-200 rounded-tl-none"
+                        }`}
                     >
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         whileHover={{ rotate: 360 }}
                         transition={{ type: "spring" }}
-                        className={`w-12 h-12 rounded-full flex items-center justify-center shadow-lg ${
-                          message.sender === "user"
-                            ? "bg-gradient-to-br from-orange-500 to-pink-500"
-                            : "bg-gradient-to-br from-blue-500 to-purple-600"
-                        }`}
+                        className={`w-12 h-12 rounded-full flex items-center justify-center shadow-lg ${message.sender === "user"
+                          ? "bg-gradient-to-br from-orange-500 to-pink-500"
+                          : "bg-gradient-to-br from-blue-500 to-purple-600"
+                          }`}
                       >
                         {message.sender === "user" ? (
                           <User size={20} className="text-white" />
@@ -643,11 +638,10 @@ If the question is not related to Indian heritage, politely redirect the convers
               <button
                 onClick={isListening ? stopVoiceInput : startVoiceInput}
                 disabled={isLoading}
-                className={`p-3 rounded-full transition-colors ${
-                  isListening
-                    ? "bg-red-500 text-white hover:bg-red-600"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                } disabled:opacity-50`}
+                className={`p-3 rounded-full transition-colors ${isListening
+                  ? "bg-red-500 text-white hover:bg-red-600"
+                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  } disabled:opacity-50`}
                 title={isListening ? "Stop listening" : "Start voice input"}
               >
                 {isListening ? <MicOff size={20} /> : <Mic size={20} />}
@@ -715,7 +709,7 @@ If the question is not related to Indian heritage, politely redirect the convers
             className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-heritage font-bold mb-4 bg-gradient-to-r from-orange-600 via-red-500 to-pink-600 bg-clip-text text-transparent">
-              Why Choose BharatVerse AI?
+              Why Choose Safar360 AI?
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Experience India's heritage like never before with our intelligent
