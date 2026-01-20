@@ -29,12 +29,12 @@ const Header = ({ currentPage, onPageChange, searchQuery, onSearchChange }) => {
 
   return (
     <>
-      <div className="h-1 bg-gradient-to-r from-amber-400 via-orange-500 to-orange-400 fixed top-0 w-full z-50" />
-      <div className="h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent fixed top-1 w-full z-50 opacity-60" />
-      <div className="fixed top-1.5 w-full z-40 h-0.5 bg-gradient-to-r from-transparent via-amber-300/50 to-transparent" />
+      <div className="h-1 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-600 fixed top-0 w-full z-50" />
+      <div className="h-0.5 bg-gradient-to-r from-transparent via-primary-200/50 to-transparent fixed top-1 w-full z-50 opacity-60" />
+      <div className="fixed top-1.5 w-full z-40 h-0.5 bg-gradient-to-r from-transparent via-primary-300/50 to-transparent" />
 
-      <header className="fixed top-0 w-full z-40 bg-gradient-to-r from-white via-amber-50/90 to-white backdrop-blur-xl border-b-2 border-amber-200 shadow-xl">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-50/30 to-transparent opacity-50 pointer-events-none" />
+      <header className="fixed top-0 w-full z-40 bg-gradient-to-r from-white via-primary-50/90 to-white backdrop-blur-xl border-b-2 border-primary-200 shadow-xl">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-50/30 to-transparent opacity-50 pointer-events-none" />
         <div className="flex items-center justify-between h-20 px-6 relative">
           <div className="flex-shrink-0 flex items-center min-w-0 pl-2">
             <button
@@ -47,10 +47,10 @@ const Header = ({ currentPage, onPageChange, searchQuery, onSearchChange }) => {
             >
               <Compass className="w-8 h-8 text-amber-700 group-hover:text-amber-800 transition-all duration-300 group-hover:rotate-45" />
               <div className="flex flex-col items-start pt-1">
-                <h1 className="text-3xl font-heritage font-bold bg-gradient-to-r from-amber-700 via-orange-600 to-red-600 bg-clip-text text-transparent tracking-wide group-hover:from-amber-800 group-hover:via-orange-700 group-hover:to-red-700 transition-all duration-300 drop-shadow-sm">
+                <h1 className="text-3xl font-heritage font-bold bg-gradient-to-r from-primary-700 via-accent-600 to-primary-600 bg-clip-text text-transparent tracking-wide group-hover:from-primary-800 group-hover:via-accent-700 group-hover:to-primary-700 transition-all duration-300 drop-shadow-sm">
                   Safar360
                 </h1>
-                <p className="text-[10px] text-amber-700 font-bold tracking-[0.2em] -mt-1 opacity-90 uppercase">
+                <p className="text-[10px] text-primary-700 font-bold tracking-[0.2em] -mt-1 opacity-90 uppercase">
                   Beyond Booking
                 </p>
               </div>

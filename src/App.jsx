@@ -317,7 +317,7 @@ function App() {
         )}
 
         {/* Floating Support Button */}
-        {currentPage !== "chat" && currentPage !== "home" && (
+        {/* {currentPage !== "chat" && currentPage !== "home" && (
           <button
             onClick={() => handlePageChange("chat")}
             className="fixed bottom-32 right-10 z-[1000] p-4 bg-blue-600 text-white rounded-full shadow-2xl hover:bg-blue-700 transition-all duration-300 transform hover:scale-110 flex items-center space-x-2"
@@ -326,7 +326,7 @@ function App() {
             <div className="w-6 h-6 rounded-full bg-white/20 animate-pulse"></div>
             <span className="font-bold text-xs">SUPPORT</span>
           </button>
-        )}
+        )} */}
 
         <style>{`
           .font-cinzel { font-family: 'Cinzel', serif; }
