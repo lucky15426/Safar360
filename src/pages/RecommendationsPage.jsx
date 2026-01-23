@@ -369,9 +369,8 @@ export default function RecommendationsPage({ onBack }) {
       </AnimatePresence>
 
       <div
-        className={`min-h-screen text-white flex flex-col items-center px-4 relative z-0 pt-24 md:pt-36 pb-16 ${
-          results.length === 0 ? "justify-center -mt-16" : ""
-        }`}
+        className={`min-h-screen text-white flex flex-col items-center px-4 relative z-0 pt-24 md:pt-36 pb-16 ${results.length === 0 ? "justify-center -mt-16" : ""
+          }`}
       >
         {/* Title Animation */}
         <div className="relative flex flex-col items-center mb-4">
@@ -532,278 +531,278 @@ export default function RecommendationsPage({ onBack }) {
           <AnimatePresence>
             {loading
               ? [...Array(4)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="h-96 bg-white/5 rounded-3xl animate-pulse border border-white/10"
-                  />
-                ))
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="h-96 bg-white/5 rounded-3xl animate-pulse border border-white/10"
+                />
+              ))
               : results.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{
+                    opacity: 0,
+                    y: 80,
+                    scale: 0.8,
+                    rotateX: 45,
+                    rotateY: -25,
+                    z: -100,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    rotateX: 0,
+                    rotateY: 0,
+                    z: 0,
+                  }}
+                  transition={{
+                    delay: index * 0.12,
+                    type: "spring",
+                    stiffness: 80,
+                    damping: 20,
+                    mass: 1.2,
+                    opacity: { duration: 0.8, ease: "easeOut" },
+                  }}
+                  whileHover={{
+                    y: -25,
+                    scale: 1.08,
+                    rotateY: 8,
+                    rotateX: -5,
+                    z: 50,
+                    transition: {
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 20,
+                    },
+                  }}
+                  className="group relative bg-black/40 backdrop-blur-md rounded-[2rem] overflow-hidden transition-all duration-500"
+                  style={{
+                    boxShadow:
+                      "0 15px 40px -10px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,215,0,0.1)",
+                    transformStyle: "preserve-3d",
+                    perspective: "1000px",
+                  }}
+                >
+                  {/* Creative Background Elements */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                    <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-purple-500/10" />
+                    <div className="absolute -top-20 -right-20 w-64 h-64 bg-amber-500/20 rounded-full blur-[80px] mix-blend-screen" />
+                    <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-purple-500/20 rounded-full blur-[80px] mix-blend-screen" />
+                  </div>
+
+                  {/* Animated Border Gradient */}
+                  <div className="absolute inset-0 p-[1px] rounded-[2rem] bg-gradient-to-br from-transparent via-amber-500/50 to-transparent opacity-30 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                  {/* Glowing border effect on hover */}
                   <motion.div
-                    key={index}
-                    initial={{
-                      opacity: 0,
-                      y: 80,
-                      scale: 0.8,
-                      rotateX: 45,
-                      rotateY: -25,
-                      z: -100,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                      scale: 1,
-                      rotateX: 0,
-                      rotateY: 0,
-                      z: 0,
+                    className="absolute inset-0 rounded-[2rem] pointer-events-none"
+                    initial={{ opacity: 0 }}
+                    whileHover={{
+                      opacity: [0, 1, 0.8, 1, 0],
+                      boxShadow: [
+                        "inset 0 0 0px rgba(212, 175, 55, 0)",
+                        "inset 0 0 30px rgba(212, 175, 55, 0.5)",
+                        "inset 0 0 50px rgba(212, 175, 55, 0.6)",
+                        "inset 0 0 30px rgba(212, 175, 55, 0.5)",
+                        "inset 0 0 0px rgba(212, 175, 55, 0)",
+                      ],
                     }}
                     transition={{
-                      delay: index * 0.12,
-                      type: "spring",
-                      stiffness: 80,
-                      damping: 20,
-                      mass: 1.2,
-                      opacity: { duration: 0.8, ease: "easeOut" },
+                      duration: 2.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
                     }}
-                    whileHover={{
-                      y: -25,
-                      scale: 1.08,
-                      rotateY: 8,
-                      rotateX: -5,
-                      z: 50,
-                      transition: {
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 20,
-                      },
-                    }}
-                    className="group relative bg-black/40 backdrop-blur-md rounded-[2rem] overflow-hidden transition-all duration-500"
-                    style={{
-                      boxShadow:
-                        "0 15px 40px -10px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,215,0,0.1)",
-                      transformStyle: "preserve-3d",
-                      perspective: "1000px",
-                    }}
-                  >
-                    {/* Creative Background Elements */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                      <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-purple-500/10" />
-                      <div className="absolute -top-20 -right-20 w-64 h-64 bg-amber-500/20 rounded-full blur-[80px] mix-blend-screen" />
-                      <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-purple-500/20 rounded-full blur-[80px] mix-blend-screen" />
-                    </div>
+                  />
 
-                    {/* Animated Border Gradient */}
-                    <div className="absolute inset-0 p-[1px] rounded-[2rem] bg-gradient-to-br from-transparent via-amber-500/50 to-transparent opacity-30 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                    {/* Glowing border effect on hover */}
+                  <div className="relative h-64 overflow-hidden">
+                    <motion.img
+                      src={item.image}
+                      alt={item.name}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                      initial={{ scale: 1.2, filter: "blur(10px)" }}
+                      animate={{ scale: 1, filter: "blur(0px)" }}
+                      transition={{
+                        duration: 1,
+                        delay: index * 0.12 + 0.3,
+                        ease: "easeOut",
+                      }}
+                      whileHover={{
+                        scale: 1.2,
+                        rotate: 2,
+                        transition: {
+                          type: "spring",
+                          stiffness: 200,
+                          damping: 15,
+                        },
+                      }}
+                      onError={(e) => (e.target.src = FALLBACK_IMAGE)}
+                    />
                     <motion.div
-                      className="absolute inset-0 rounded-[2rem] pointer-events-none"
+                      className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: index * 0.12 + 0.5 }}
+                    />
+
+                    {/* Traditional mandala pattern overlay */}
+                    <motion.div
+                      className="absolute inset-0 transition-opacity duration-700"
                       initial={{ opacity: 0 }}
                       whileHover={{
-                        opacity: [0, 1, 0.8, 1, 0],
-                        boxShadow: [
-                          "inset 0 0 0px rgba(212, 175, 55, 0)",
-                          "inset 0 0 30px rgba(212, 175, 55, 0.5)",
-                          "inset 0 0 50px rgba(212, 175, 55, 0.6)",
-                          "inset 0 0 30px rgba(212, 175, 55, 0.5)",
-                          "inset 0 0 0px rgba(212, 175, 55, 0)",
-                        ],
+                        opacity: 0.15,
+                        transition: { duration: 0.5 },
                       }}
-                      transition={{
-                        duration: 2.5,
-                        repeat: Infinity,
-                        ease: "easeInOut",
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 15l3 9h9l-7.5 6 3 9-7.5-6-7.5 6 3-9-7.5-6h9z' fill='%23d4af37' fill-opacity='0.4'/%3E%3C/svg%3E")`,
+                        backgroundSize: "60px 60px",
                       }}
                     />
 
-                    <div className="relative h-64 overflow-hidden">
-                      <motion.img
-                        src={item.image}
-                        alt={item.name}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-full object-cover"
-                        initial={{ scale: 1.2, filter: "blur(10px)" }}
-                        animate={{ scale: 1, filter: "blur(0px)" }}
-                        transition={{
-                          duration: 1,
-                          delay: index * 0.12 + 0.3,
+                    <motion.button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleFavorite(item);
+                      }}
+                      initial={{ scale: 0 }}
+                      animate={{
+                        scale: 1,
+
+                        transition: {
+                          type: "spring",
+                          stiffness: 200,
+                          damping: 15,
+                          delay: index * 0.12 + 0.6,
+                        },
+                      }}
+                      whileHover={{
+                        scale: 1.1,
+
+                        transition: {
+                          scale: { duration: 0.2 },
+                        },
+                      }}
+                      whileTap={{ scale: 0.9 }}
+                      className="absolute top-4 right-4 p-3 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-md transition-all text-white shadow-lg z-20 outline-none focus:outline-none focus:ring-0 border-none"
+                    >
+                      {isFavorite(item) ? "💛" : "🤍"}
+                    </motion.button>
+                  </div>
+
+                  <div className="p-6 relative">
+                    {/* Floating Category Badge with animation */}
+                    <motion.div
+                      className="absolute -top-5 left-6"
+                      initial={{ y: -20, opacity: 0, scale: 0.5 }}
+                      animate={{
+                        y: 0,
+                        opacity: 1,
+                        scale: 1,
+                        transition: {
+                          type: "spring",
+                          stiffness: 200,
+                          damping: 15,
+                          delay: index * 0.12 + 0.4,
+                        },
+                      }}
+                    >
+                      <motion.span
+                        className="bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 text-black text-xs font-black px-4 py-1.5 rounded-full shadow-lg uppercase tracking-widest border-2 border-yellow-300/70 inline-block"
+                        whileHover={{
+                          scale: 1.1,
+                          boxShadow: "0 0 25px rgba(251, 191, 36, 0.6)",
+                          transition: { duration: 0.3 },
+                        }}
+                      >
+                        {item.category}
+                      </motion.span>
+                    </motion.div>
+
+                    <motion.h3
+                      className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-200 mb-3 leading-tight drop-shadow-lg"
+                      style={{ fontFamily: "'Cinzel', serif" }}
+                      initial={{ opacity: 0, x: -30, filter: "blur(5px)" }}
+                      animate={{
+                        opacity: 1,
+                        x: 0,
+                        filter: "blur(0px)",
+                        transition: {
+                          delay: index * 0.12 + 0.5,
+                          duration: 0.6,
                           ease: "easeOut",
-                        }}
-                        whileHover={{
-                          scale: 1.2,
-                          rotate: 2,
-                          transition: {
-                            type: "spring",
-                            stiffness: 200,
-                            damping: 15,
-                          },
-                        }}
-                        onError={(e) => (e.target.src = FALLBACK_IMAGE)}
-                      />
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: index * 0.12 + 0.5 }}
-                      />
+                        },
+                      }}
+                    >
+                      {item.name}
+                    </motion.h3>
 
-                      {/* Traditional mandala pattern overlay */}
-                      <motion.div
-                        className="absolute inset-0 transition-opacity duration-700"
-                        initial={{ opacity: 0 }}
-                        whileHover={{
-                          opacity: 0.15,
-                          transition: { duration: 0.5 },
-                        }}
-                        style={{
-                          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 15l3 9h9l-7.5 6 3 9-7.5-6-7.5 6 3-9-7.5-6h9z' fill='%23d4af37' fill-opacity='0.4'/%3E%3C/svg%3E")`,
-                          backgroundSize: "60px 60px",
-                        }}
-                      />
-
-                      <motion.button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleFavorite(item);
-                        }}
+                    <motion.div
+                      className="flex items-center gap-2 text-amber-300 text-sm mb-4 font-medium"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{
+                        opacity: 1,
+                        x: 0,
+                        transition: {
+                          delay: index * 0.12 + 0.6,
+                          duration: 0.5,
+                        },
+                      }}
+                    >
+                      <motion.svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
                         initial={{ scale: 0 }}
                         animate={{
                           scale: 1,
-
                           transition: {
                             type: "spring",
                             stiffness: 200,
-                            damping: 15,
-                            delay: index * 0.12 + 0.6,
-                          },
-                        }}
-                        whileHover={{
-                          scale: 1.1,
-
-                          transition: {
-                            scale: { duration: 0.2 },
-                          },
-                        }}
-                        whileTap={{ scale: 0.9 }}
-                        className="absolute top-4 right-4 p-3 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-md transition-all text-white shadow-lg z-20 outline-none focus:outline-none focus:ring-0 border-none"
-                      >
-                        {isFavorite(item) ? "💛" : "🤍"}
-                      </motion.button>
-                    </div>
-
-                    <div className="p-6 relative">
-                      {/* Floating Category Badge with animation */}
-                      <motion.div
-                        className="absolute -top-5 left-6"
-                        initial={{ y: -20, opacity: 0, scale: 0.5 }}
-                        animate={{
-                          y: 0,
-                          opacity: 1,
-                          scale: 1,
-                          transition: {
-                            type: "spring",
-                            stiffness: 200,
-                            damping: 15,
-                            delay: index * 0.12 + 0.4,
+                            delay: index * 0.12 + 0.65,
                           },
                         }}
                       >
-                        <motion.span
-                          className="bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 text-black text-xs font-black px-4 py-1.5 rounded-full shadow-lg uppercase tracking-widest border-2 border-yellow-300/70 inline-block"
-                          whileHover={{
-                            scale: 1.1,
-                            boxShadow: "0 0 25px rgba(251, 191, 36, 0.6)",
-                            transition: { duration: 0.3 },
-                          }}
-                        >
-                          {item.category}
-                        </motion.span>
-                      </motion.div>
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                      </motion.svg>
+                      {item.region}
+                    </motion.div>
 
-                      <motion.h3
-                        className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-200 mb-3 leading-tight drop-shadow-lg"
-                        style={{ fontFamily: "'Cinzel', serif" }}
-                        initial={{ opacity: 0, x: -30, filter: "blur(5px)" }}
-                        animate={{
-                          opacity: 1,
-                          x: 0,
-                          filter: "blur(0px)",
-                          transition: {
-                            delay: index * 0.12 + 0.5,
-                            duration: 0.6,
-                            ease: "easeOut",
-                          },
-                        }}
-                      >
-                        {item.name}
-                      </motion.h3>
+                    <motion.p
+                      className="text-gray-200 text-sm line-clamp-3 leading-relaxed font-light tracking-wide"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{
+                        opacity: 1,
+                        y: 0,
+                        transition: {
+                          delay: index * 0.12 + 0.7,
+                          duration: 0.6,
+                        },
+                      }}
+                    >
+                      {item.domain}
+                    </motion.p>
 
-                      <motion.div
-                        className="flex items-center gap-2 text-amber-300 text-sm mb-4 font-medium"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{
-                          opacity: 1,
-                          x: 0,
-                          transition: {
-                            delay: index * 0.12 + 0.6,
-                            duration: 0.5,
-                          },
-                        }}
-                      >
-                        <motion.svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2.5"
-                          initial={{ scale: 0 }}
-                          animate={{
-                            scale: 1,
-                            transition: {
-                              type: "spring",
-                              stiffness: 200,
-                              delay: index * 0.12 + 0.65,
-                            },
-                          }}
-                        >
-                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                          <circle cx="12" cy="10" r="3"></circle>
-                        </motion.svg>
-                        {item.region}
-                      </motion.div>
-
-                      <motion.p
-                        className="text-gray-200 text-sm line-clamp-3 leading-relaxed font-light tracking-wide"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{
-                          opacity: 1,
-                          y: 0,
-                          transition: {
-                            delay: index * 0.12 + 0.7,
-                            duration: 0.6,
-                          },
-                        }}
-                      >
-                        {item.domain}
-                      </motion.p>
-
-                      {/* Decorative bottom border with shimmer */}
-                      <motion.div
-                        className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent"
-                        initial={{ scaleX: 0, opacity: 0 }}
-                        whileHover={{
-                          scaleX: 1,
-                          opacity: 1,
-                          transition: { duration: 0.6, ease: "easeOut" },
-                        }}
-                      />
-                    </div>
-                  </motion.div>
-                ))}
+                    {/* Decorative bottom border with shimmer */}
+                    <motion.div
+                      className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent"
+                      initial={{ scaleX: 0, opacity: 0 }}
+                      whileHover={{
+                        scaleX: 1,
+                        opacity: 1,
+                        transition: { duration: 0.6, ease: "easeOut" },
+                      }}
+                    />
+                  </div>
+                </motion.div>
+              ))}
           </AnimatePresence>
         </div>
       </div>

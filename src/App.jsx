@@ -17,11 +17,7 @@ import GlobalMusicPlayer from "./components/GlobalMusicPlayer";
 
 // Pages
 import HomePage from "./pages/HomePage";
-import StatesPage from "./pages/StatesPage";
-import HeritagePage from "./pages/HeritagePage";
-import HeritageDetailPage from "./pages/HeritageDetailPage";
-import FestivalsPage from "./pages/FestivalsPage";
-import ArtsPage from "./pages/ArtsPage";
+
 import HiddenGemsPage from "./pages/HiddenGemsPage";
 import QuizPage from "./pages/QuizPage";
 import ChatPage from "./pages/ChatPage";
@@ -31,6 +27,7 @@ import UploadPage from "./pages/UploadPage";
 import TourPage360 from "./pages/TourPage360";
 import RecommendationsPage from "./pages/RecommendationsPage";
 import ItineraryPlanner from "./pages/ItineraryPlanner";
+import PreTripChecklist from './components/PreTripChecklist';
 
 import { createOrUpdateUser } from "./services/userService";
 
@@ -79,6 +76,25 @@ function App() {
     }
   }, [isSignedIn, clerkUser]);
 
+  // Add this useEffect in your App component (after other useEffects)
+  useEffect(() => {
+    const pageTitles = {
+      home: 'Safar360 - Discover India\'s Heritage',
+      '360tour': 'VR Previews - Safar360',
+      itinerary: 'Trip Planning - Safar360',
+      gems: 'Hidden Gems - Safar360',
+      chat: 'Real-time Support - Safar360',
+      map: 'Local Insights - Safar360',
+      checklist: '🎒 Pre-trip Checklist - Safar360',
+      account: 'My Account - Safar360',
+      salahkar: 'Ask Salahkar - Safar360',
+      upload: 'Upload Hidden Gem - Safar360'
+    };
+
+    document.title = pageTitles[currentPage] || 'Safar360 - Discover India\'s Heritage';
+  }, [currentPage]);
+
+
   const handlePageChange = (page, item = null) => {
     setCurrentPage(page);
     setSelectedItem(item);
@@ -108,6 +124,9 @@ function App() {
         return <ChatPage {...pageProps} />;
       case "map":
         return <MapPage {...pageProps} />;
+      case "checklist":
+        return <PreTripChecklist />;
+
       case "account":
         if (!isLoaded) {
           return (
@@ -269,25 +288,25 @@ function App() {
           <Footer />
         )}
 
-        {/* ✨ DIVINE AMBER SALAHKAR BUTTON - The Click Magnet ✨ */}
+        {/* ✨ DIVINE SKY-BLUE SAFAR BUTTON - The Click Magnet ✨ */}
         {currentPage !== "salahkar" && (
           <button
             onClick={() => handlePageChange("salahkar")}
             className="salahkar-trigger group"
-            title="Ask Salahkar - AI Travel Consultant"
+            title="Ask Safar - AI Travel Assistant"
           >
             {/* Contextual Glow */}
-            <div className="absolute inset-0 rounded-full bg-orange-500 blur-[50px] opacity-20 group-hover:opacity-40 transition-opacity duration-1000 animate-pulse-slow"></div>
+            <div className="absolute inset-0 rounded-full bg-sky-400 blur-[50px] opacity-20 group-hover:opacity-40 transition-opacity duration-1000 animate-pulse-slow"></div>
 
             <div className="relative w-28 h-28 flex items-center justify-center">
               {/* Rotating Rune Ring */}
-              <div className="absolute inset-0 border border-orange-300/30 rounded-full w-full h-full animate-spin-slow-reverse"></div>
+              <div className="absolute inset-0 border border-sky-300/30 rounded-full w-full h-full animate-spin-slow-reverse"></div>
 
-              {/* Outer Golden Ripple */}
-              <div className="absolute inset-0 rounded-full border border-orange-400/50 w-full h-full animate-ripple"></div>
+              {/* Outer Cyan Ripple */}
+              <div className="absolute inset-0 rounded-full border border-sky-400/50 w-full h-full animate-ripple"></div>
 
               {/* The Gem Body */}
-              <div className="relative w-24 h-24 rounded-full bg-gradient-to-tr from-amber-700 via-orange-500 to-amber-300 shadow-2xl border-2 border-orange-200/50 flex flex-col items-center justify-center transform group-hover:scale-105 transition-all duration-500 ease-out overflow-hidden z-10">
+              <div className="relative w-24 h-24 rounded-full bg-gradient-to-tr from-sky-600 via-blue-500 to-cyan-300 shadow-2xl border-2 border-sky-200/50 flex flex-col items-center justify-center transform group-hover:scale-105 transition-all duration-500 ease-out overflow-hidden z-10">
                 {/* Shine effect */}
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/30 to-transparent opacity-60"></div>
 
@@ -300,21 +319,22 @@ function App() {
                 <div className="sparkle s3"></div>
 
                 {/* Content */}
-                <span className="relative z-20 font-cinzel font-black text-xs text-amber-900 tracking-[0.2em] mb-0.5 drop-shadow-sm text-center">
+                <span className="relative z-20 font-cinzel font-black text-xs text-white tracking-[0.2em] mb-0.5 drop-shadow-sm text-center">
                   ASK
                 </span>
-                <span className="relative z-20 font-cinzel font-bold text-[10px] text-amber-100 tracking-widest drop-shadow-md text-center">
-                  SALAHKAR
+                <span className="relative z-20 font-cinzel font-bold text-[10px] text-cyan-100 tracking-widest drop-shadow-md text-center">
+                  SAFAR
                 </span>
               </div>
 
               {/* Orbiting Firefly */}
               <div className="absolute inset-[-8px] animate-spin-slow pointer-events-none">
-                <div className="w-4 h-4 rounded-full bg-white shadow-[0_0_15px_4px_rgba(255,165,0,0.8)] absolute top-0 left-1/2 transform -translate-x-1/2 blur-[1px]"></div>
+                <div className="w-4 h-4 rounded-full bg-white shadow-[0_0_15px_4px_rgba(56,189,248,0.8)] absolute top-0 left-1/2 transform -translate-x-1/2 blur-[1px]"></div>
               </div>
             </div>
           </button>
         )}
+
 
         {/* Floating Support Button */}
         {/* {currentPage !== "chat" && currentPage !== "home" && (
