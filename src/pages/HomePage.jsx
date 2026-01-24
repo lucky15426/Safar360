@@ -8,7 +8,7 @@ import {
   Calendar,
   Sparkles,
   TrendingUp,
-  Globe,
+  Globe as GlobeIcon,
   Shield,
   Cpu,
   MessageCircle,
@@ -21,6 +21,10 @@ import ctaBg from "../assets/cta-bg.webp";
 import PanoViewer from "../components/PanoViewer";
 import SearchWidget from "../components/SearchWidget";
 import heroBgVideo from "../assets/home2.mp4";
+
+// 3D Components
+import Globe from "../components/3d/Globe";
+
 
 const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
   const [searchSuggestions, setSearchSuggestions] = useState([]);
@@ -84,7 +88,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
   // Travel Support Features (Instead of Heritage Topics)
   const travelFeatures = [
     {
-      icon: Globe,
+      icon: GlobeIcon,
       name: "360° Previews",
       count: "2.5K destinations",
       color: "text-blue-600",
@@ -232,21 +236,21 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section with Video Background */}
-      <section className="relative h-screen overflow-hidden flex items-center justify-center">
-        {/* Video Background */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="https://res.cloudinary.com/bharatverse/video/upload/v1768904085/homepage_n7cuif.mp4" type="video/mp4" />
-        </video>
+      {/* Hero Section with 3D Globe Background */}
+      <section className="relative h-screen overflow-hidden flex items-center justify-center bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
+        {/* 3D Globe Background */}
+        <div className="absolute inset-0">
+          <Globe
+            autoRotate={true}
+            rotationSpeed={0.001}
+            showStars={true}
+            cameraPosition={[0, 0, 3.5]}
+            markers={[]}
+          />
+        </div>
 
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/10 to-black/10" />
+        {/* Gradient Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-transparent to-slate-900/80 pointer-events-none" />
         <div className="relative z-10 max-w-6xl mx-auto h-full flex flex-col justify-center px-4">
           <div className="flex flex-col items-center text-center space-y-6">
             {/* Main Heading */}
@@ -289,7 +293,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
                 {
                   number: stats.destinations,
                   label: "Destinations",
-                  icon: Globe,
+                  icon: GlobeIcon,
                   suffix: "+",
                 },
                 {
@@ -389,7 +393,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
             {[
               {
-                icon: Globe,
+                icon: GlobeIcon,
                 title: "VR Previews",
                 description:
                   "Explore destinations in high-fidelity 360° VR before booking. Reduce travel uncertainty.",
