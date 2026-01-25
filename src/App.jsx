@@ -264,7 +264,7 @@ function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
-            className="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-yellow-50"
+            className="min-h-screen bg-slate-50"
           >
             <GlobalMusicPlayer />
             {/* Hide Header on Salahkar & Story pages */}
@@ -279,7 +279,7 @@ function App() {
             {/* Adjust main padding based on current page */}
             <main
               className={
-                currentPage === "salahkar" || currentPage === "storytelling"
+                currentPage === "salahkar" || currentPage === "storytelling" || currentPage === "home"
                   ? "min-h-screen"
                   : "min-h-screen pt-20"
               }

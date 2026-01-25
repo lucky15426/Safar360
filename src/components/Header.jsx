@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, User, Compass, MapPin, Backpack } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import useSoundEffect from "../hooks/useSoundEffect";
+import { Menu, X, User, Globe, MapPin, Backpack } from "lucide-react";
 import {
   useUser,
   SignInButton,
@@ -8,9 +10,22 @@ import {
 } from "@clerk/clerk-react";
 import { createOrUpdateUser } from "../services/userService";
 
-const Header = ({ currentPage, onPageChange, searchQuery, onSearchChange }) => {
+const Header = ({ currentPage, onPageChange }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { user: clerkUser, isLoaded, isSignedIn } = useUser();
+
+  // Sound Effects
+  const playHoverSound = useSoundEffect("https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3", 0.15);
+  const playClickSound = useSoundEffect("https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3", 0.2);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     if (isLoaded && isSignedIn && clerkUser) {
@@ -30,127 +45,157 @@ const Header = ({ currentPage, onPageChange, searchQuery, onSearchChange }) => {
 
   return (
     <>
-      {/* Minimal top accent line */}
-      <div className="h-0.5 bg-gradient-to-r from-transparent via-gray-200 to-transparent fixed top-0 w-full z-50" />
+      <header className="fixed top-0 w-full z-50 transition-all duration-500 bg-black/80 backdrop-blur-xl border-b border-white/10">
+        <div className="flex items-center justify-between h-24 px-10 relative">
 
-      <header className="fixed top-0 w-full z-40 bg-white/80 backdrop-blur-xl border-b border-gray-200 shadow-sm">
-        <div className="flex items-center justify-between h-20 px-6 relative">
-          <div className="flex-shrink-0 flex items-center min-w-0 pl-2">
+          {/* Logo Section */}
+          <div className="flex-shrink-0 flex items-center">
             <button
               onClick={() => {
                 onPageChange("home");
                 setIsMenuOpen(false);
               }}
-              className="flex items-center space-x-2 group focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 rounded-xl"
+              className="flex items-center space-x-2 group"
               aria-label="Safar360 Home"
             >
-              <Compass className="w-8 h-8 text-sky-600 group-hover:text-sky-700 transition-all duration-300 group-hover:rotate-45" />
-              <div className="flex flex-col items-start pt-1">
-                <h1 className="text-3xl font-heritage font-bold bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 bg-clip-text text-transparent tracking-wide group-hover:from-gray-900 group-hover:via-black group-hover:to-gray-900 transition-all duration-300 drop-shadow-sm">
-                  Safar360
-                </h1>
-                <p className="text-[10px] text-gray-600 font-bold tracking-[0.2em] -mt-1 opacity-90 uppercase">
-                  Beyond Booking
-                </p>
-              </div>
+              <Globe className="w-5 h-5 text-white group-hover:rotate-90 transition-transform duration-500" />
+              <h1 className="text-lg font-heritage font-bold text-white tracking-widest uppercase">
+                Safar 360
+              </h1>
             </button>
           </div>
 
-          <nav className="hidden xl:flex items-center justify-center flex-1">
-            <div className="flex items-center space-x-1 bg-gray-50/50 rounded-2xl p-2 backdrop-blur-sm border border-gray-200 shadow-sm">
-              {navLinks.map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => {
-                    onPageChange(link.id);
-                    setIsMenuOpen(false);
-                  }}
-                  className={`px-5 py-3 rounded-xl text-sm font-bold transition-all duration-300 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-1 border ${currentPage === link.id
-                      ? "bg-gradient-to-r from-sky-400 via-sky-500 to-sky-400 text-white shadow-md transform scale-105 border-sky-300"
-                      : "text-gray-700 hover:text-gray-900 hover:bg-gray-100 hover:shadow-sm border-transparent hover:border-gray-300 hover:scale-102"
-                    }`}
-                  aria-current={currentPage === link.id ? "page" : undefined}
-                >
-                  {link.label}
-                </button>
-              ))}
-            </div>
-          </nav>
-
-          <div className="flex items-center space-x-3 flex-shrink-0 pl-2">
-            {isSignedIn && clerkUser ? (
-              <div className="flex items-center space-x-2 min-w-0">
-                <button
-                  onClick={() => onPageChange("account")}
-                  className="flex items-center space-x-2 px-4 py-3 rounded-xl text-gray-700 hover:bg-gray-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 border border-transparent hover:border-gray-300 hover:shadow-sm max-w-[160px] min-w-0"
-                  title="Go to Account"
-                >
-                  <User size={18} />
-                  <span className="hidden sm:inline font-semibold text-sm truncate max-w-[90px] min-w-0">
-                    {clerkUser.firstName ||
-                      clerkUser.emailAddresses[0]?.emailAddress ||
-                      "Account"}
-                  </span>
-                </button>
-                <UserButton afterSignOutUrl="/" />
-              </div>
-            ) : (
-              <div className="flex items-center space-x-3">
-                {isLoaded && (
-                  <>
-                    <SignInButton>
-                      <button className="px-5 py-3 text-sm font-bold text-gray-700 hover:text-gray-900 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 rounded-xl hover:bg-gray-100 border border-transparent hover:border-gray-300 hover:shadow-sm">
-                        Login
-                      </button>
-                    </SignInButton>
-                    <SignUpButton>
-                      <button className="px-6 py-3 bg-gradient-to-r from-sky-500 via-sky-600 to-sky-500 text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg hover:from-sky-600 hover:via-sky-700 hover:to-sky-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 transform hover:scale-105 border border-sky-400">
-                        Sign Up
-                      </button>
-                    </SignUpButton>
-                  </>
-                )}
-              </div>
-            )}
-
+          {/* Desktop Navigation Links - Restored & Prominent */}
+          <nav className="hidden lg:flex items-center space-x-8">
+            <button
+              onClick={() => onPageChange("home")}
+              onMouseEnter={playHoverSound}
+              className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === 'home' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
+            >
+              Home
+            </button>
+            <button
+              onClick={() => onPageChange("360tour")}
+              onMouseEnter={playHoverSound}
+              className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === '360tour' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
+            >
+              VR Views
+            </button>
+            <button
+              onClick={() => onPageChange("gems")}
+              onMouseEnter={playHoverSound}
+              className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === 'gems' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
+            >
+              Hidden Gems
+            </button>
+            <button
+              onClick={() => onPageChange("itinerary")}
+              onMouseEnter={playHoverSound}
+              className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === 'itinerary' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
+            >
+              Itinerary
+            </button>
+            <button
+              onClick={() => onPageChange("chat")}
+              onMouseEnter={playHoverSound}
+              className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === 'chat' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
+            >
+              Support
+            </button>
             <button
               onClick={() => {
-                setIsMenuOpen(!isMenuOpen);
+                const galleryEl = document.getElementById('explore-more-section');
+                if (galleryEl) galleryEl.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="xl:hidden p-3 rounded-xl text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 border border-transparent hover:border-gray-300 hover:shadow-sm"
-              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              onMouseEnter={playHoverSound}
+              className="text-[10px] font-bold tracking-[0.2em] uppercase text-sky-400/80 hover:text-sky-300 transition-all duration-300"
             >
-              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+              Explore More
             </button>
+          </nav>
+
+          <div className="flex items-center space-x-6">
+
+            {/* Auth / Account Section */}
+            <div className="hidden md:flex items-center space-x-6 border-l border-white/10 pl-8 h-10">
+              {isSignedIn && clerkUser ? (
+                <div className="flex items-center space-x-4">
+                  <button
+                    onClick={() => onPageChange("account")}
+                    className="text-white hover:text-sky-300 transition-colors"
+                    title="Account"
+                  >
+                    <User size={24} />
+                  </button>
+                  <UserButton afterSignOutUrl="/" />
+                </div>
+              ) : (
+                <div className="flex items-center space-x-6">
+                  {isLoaded && (
+                    <>
+                      <SignInButton>
+                        <button className="text-white text-sm font-bold tracking-[0.2em] uppercase hover:text-sky-300 transition-colors">
+                          Login
+                        </button>
+                      </SignInButton>
+                      <SignUpButton>
+                        <button className="px-6 py-2 border border-white/40 rounded-full text-white text-sm font-bold tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-all">
+                          Sign Up
+                        </button>
+                      </SignUpButton>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
-        {isMenuOpen && (
-          <div className="xl:hidden bg-white/95 backdrop-blur-xl border-t border-gray-200 shadow-sm">
-            <div className="max-w-7xl mx-auto px-2 py-6">
-              <div className="grid grid-cols-2 gap-2">
-                {navLinks.map((link) => (
-                  <button
-                    key={link.id}
-                    onClick={() => {
-                      onPageChange(link.id);
-                      setIsMenuOpen(false);
-                    }}
-                    className={`px-3 py-3 rounded-xl text-sm font-bold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-1 border flex items-center justify-center gap-2 ${currentPage === link.id
-                        ? "bg-gradient-to-r from-sky-400 via-sky-500 to-sky-400 text-white shadow-md border-sky-300"
-                        : "text-gray-700 hover:text-gray-900 hover:bg-gray-100 border-gray-200 hover:border-gray-300 hover:shadow-sm"
-                      }`}
-                    aria-current={currentPage === link.id ? "page" : undefined}
-                  >
-                    {link.icon === "MapPin" && <MapPin size={14} />}
-                    {link.icon === "Backpack" && <Backpack size={14} />}
-                    {link.label}
-                  </button>
-                ))}
+        {/* Cinematic Menu Overlay */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, x: "100%" }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed inset-0 top-[96px] bg-black/95 backdrop-blur-2xl z-40 overflow-y-auto"
+            >
+              <div className="max-w-6xl mx-auto px-10 py-20 flex flex-col items-center justify-center min-h-[60vh]">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 w-full">
+                  {navLinks.map((link, idx) => (
+                    <motion.button
+                      key={link.id}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: idx * 0.1 }}
+                      onClick={() => {
+                        onPageChange(link.id);
+                        setIsMenuOpen(false);
+                        playClickSound();
+                      }}
+                      onMouseEnter={playHoverSound}
+                      className="group flex flex-col items-center text-center p-8 rounded-3xl border border-white/5 hover:bg-white/5 hover:border-white/20 transition-all duration-500"
+                    >
+                      <span className="text-white/40 text-[10px] tracking-[0.5em] uppercase mb-4 group-hover:text-sky-400 transition-colors">
+                        Discover
+                      </span>
+                      <h3 className="text-2xl font-bold text-white tracking-widest uppercase transition-transform group-hover:scale-110">
+                        {link.label}
+                      </h3>
+                      <div className="mt-6 w-12 h-[1px] bg-white/20 group-hover:w-24 group-hover:bg-sky-400 transition-all duration-500" />
+                    </motion.button>
+                  ))}
+                </div>
               </div>
-            </div>
-          </div>
-        )}
+
+              {/* Bottom Decoration */}
+              <div className="absolute bottom-10 left-10 text-white/20 text-xs tracking-[1em] uppercase">
+                Explore Your World
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
     </>
   );

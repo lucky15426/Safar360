@@ -147,8 +147,8 @@ const GlobeCore = ({
                     bumpScale={0.08}
                     metalness={0.05}
                     roughness={0.85}
-                    emissive="#1a1a2e"
-                    emissiveIntensity={0.2}
+                    emissive="#2a2a4e"
+                    emissiveIntensity={0.4}
                 />
             </mesh>
 
@@ -257,11 +257,11 @@ const Globe = ({
 
             >
                 {/* Advanced Lighting Setup */}
-                <ambientLight intensity={0.6} color="#ffffff" />
-                <directionalLight position={[15, 10, 8]} intensity={1.3} color="#ffffff" />
-                <directionalLight position={[-15, -10, -8]} intensity={0.4} color="#4fc3dc" />
-                <pointLight position={[10, 10, 10]} intensity={0.6} color="#00d4ff" />
-                <pointLight position={[-10, -10, -10]} intensity={0.3} color="#ff6b6b" />
+                <ambientLight intensity={1.2} color="#ffffff" />
+                <directionalLight position={[15, 10, 8]} intensity={2.5} color="#ffffff" />
+                <directionalLight position={[-15, -10, -8]} intensity={0.8} color="#4fc3dc" />
+                <pointLight position={[10, 10, 10]} intensity={0.8} color="#00d4ff" />
+                <pointLight position={[-10, -10, -10]} intensity={0.5} color="#ff6b6b" />
 
                 {/* Enhanced Stars with better LOD */}
                 {showStars && (
