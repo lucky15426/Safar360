@@ -22,7 +22,7 @@ import GlobalMusicPlayer from "./components/GlobalMusicPlayer";
 import HomePage from "./pages/HomePage";
 
 import HiddenGemsPage from "./pages/HiddenGemsPage";
-import QuizPage from "./pages/QuizPage";
+
 import ChatPage from "./pages/ChatPage";
 import MapPage from "./pages/MapPage";
 import AccountPage from "./pages/AccountPage";
@@ -131,106 +131,106 @@ function App() {
       case "checklist":
         return <PreTripChecklist />;
 
-      case "account":
-        if (!isLoaded) {
-          return (
-            <div className="flex justify-center items-center h-64">
-              <LoadingSpinner size="lg" />
-            </div>
-          );
-        }
-        if (!isSignedIn) {
-          return (
-            <div
-              className="fixed inset-0 flex justify-center items-start"
-              style={{
-                backgroundImage: 'url("https://res.cloudinary.com/bharatverse/image/upload/v1766498817/hpnpenprlb8qhkslxfyj.webp")',
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                minHeight: "100vh",
-                minWidth: "100vw",
-                zIndex: 50,
-              }}
-            >
-              <div
-                style={{
-                  width: "100vw",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "flex-start",
-                  paddingTop: "18vh",
-                  minHeight: "100vh",
-                }}
-              >
-                <SignIn
-                  afterSignInUrl="/quiz"
-                  appearance={{
-                    elements: {
-                      rootBox: {
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        width: "100vw",
-                        minHeight: "auto",
-                        background: "none",
-                        margin: 0,
-                        padding: 0,
-                      },
-                      card: {
-                        margin: 0,
-                        padding: "2.25rem 2rem 2rem 2rem",
-                        maxWidth: "360px",
-                        width: "100%",
-                        background: "rgba(255,255,255,0.10)",
-                        backdropFilter: "blur(15px)",
-                        WebkitBackdropFilter: "blur(15px)",
-                        borderRadius: "22px",
-                        border: "1.5px solid rgba(255,255,255,0.24)",
-                        boxShadow:
-                          "0 16px 40px 0 rgba(50,24,0,0.20), 0 2px 8px 0 rgba(0,0,0,0.06)",
-                      },
-                      formContainer: {
-                        maxWidth: "330px",
-                        margin: "0 auto",
-                        padding: 0,
-                        width: "100%",
-                      },
-                      cardBox: {
-                        maxWidth: "340px",
-                        width: "100%",
-                        margin: "0 auto",
-                      },
-                      modal: { padding: 0, margin: 0 },
-                      main: { margin: 0, padding: 0 },
-                      root: { margin: 0, padding: 0 },
-                      identityPreview: { display: "none" },
-                      footer: { display: "none" },
-                      headerTitle: {
-                        textAlign: "center",
-                        fontWeight: 700,
-                        fontSize: "1.3rem",
-                        letterSpacing: ".1rem",
-                      },
-                      headerSubtitle: {
-                        textAlign: "center",
-                        color: "#946c25",
-                        marginTop: "1rem",
-                      },
-                    },
-                    variables: {
-                      colorPrimary: "#e6a53c",
-                      borderRadius: "22px",
-                      fontSize: "1rem",
-                      colorText: "#3a2300",
-                    },
-                  }}
-                />
-              </div>
-            </div>
-          );
-        }
-        return <QuizPage {...pageProps} />;
+      // case "account":
+      //   if (!isLoaded) {
+      //     return (
+      //       <div className="flex justify-center items-center h-64">
+      //         <LoadingSpinner size="lg" />
+      //       </div>
+      //     );
+      //   }
+      //   if (!isSignedIn) {
+      //     return (
+      //       <div
+      //         className="fixed inset-0 flex justify-center items-start"
+      //         style={{
+      //           backgroundImage: 'url("https://res.cloudinary.com/bharatverse/image/upload/v1766498817/hpnpenprlb8qhkslxfyj.webp")',
+      //           backgroundSize: "cover",
+      //           backgroundPosition: "center",
+      //           backgroundRepeat: "no-repeat",
+      //           minHeight: "100vh",
+      //           minWidth: "100vw",
+      //           zIndex: 50,
+      //         }}
+      //       >
+      //         <div
+      //           style={{
+      //             width: "100vw",
+      //             display: "flex",
+      //             justifyContent: "center",
+      //             alignItems: "flex-start",
+      //             paddingTop: "18vh",
+      //             minHeight: "100vh",
+      //           }}
+      //         >
+      //           <SignIn
+      //             afterSignInUrl="/quiz"
+      //             appearance={{
+      //               elements: {
+      //                 rootBox: {
+      //                   display: "flex",
+      //                   justifyContent: "center",
+      //                   alignItems: "center",
+      //                   width: "100vw",
+      //                   minHeight: "auto",
+      //                   background: "none",
+      //                   margin: 0,
+      //                   padding: 0,
+      //                 },
+      //                 card: {
+      //                   margin: 0,
+      //                   padding: "2.25rem 2rem 2rem 2rem",
+      //                   maxWidth: "360px",
+      //                   width: "100%",
+      //                   background: "rgba(255,255,255,0.10)",
+      //                   backdropFilter: "blur(15px)",
+      //                   WebkitBackdropFilter: "blur(15px)",
+      //                   borderRadius: "22px",
+      //                   border: "1.5px solid rgba(255,255,255,0.24)",
+      //                   boxShadow:
+      //                     "0 16px 40px 0 rgba(50,24,0,0.20), 0 2px 8px 0 rgba(0,0,0,0.06)",
+      //                 },
+      //                 formContainer: {
+      //                   maxWidth: "330px",
+      //                   margin: "0 auto",
+      //                   padding: 0,
+      //                   width: "100%",
+      //                 },
+      //                 cardBox: {
+      //                   maxWidth: "340px",
+      //                   width: "100%",
+      //                   margin: "0 auto",
+      //                 },
+      //                 modal: { padding: 0, margin: 0 },
+      //                 main: { margin: 0, padding: 0 },
+      //                 root: { margin: 0, padding: 0 },
+      //                 identityPreview: { display: "none" },
+      //                 footer: { display: "none" },
+      //                 headerTitle: {
+      //                   textAlign: "center",
+      //                   fontWeight: 700,
+      //                   fontSize: "1.3rem",
+      //                   letterSpacing: ".1rem",
+      //                 },
+      //                 headerSubtitle: {
+      //                   textAlign: "center",
+      //                   color: "#946c25",
+      //                   marginTop: "1rem",
+      //                 },
+      //               },
+      //               variables: {
+      //                 colorPrimary: "#e6a53c",
+      //                 borderRadius: "22px",
+      //                 fontSize: "1rem",
+      //                 colorText: "#3a2300",
+      //               },
+      //             }}
+      //           />
+      //         </div>
+      //       </div>
+      //     );
+      //   }
+      //   return <QuizPage {...pageProps} />;
       case "upload":
         return <UploadPage {...pageProps} />;
 

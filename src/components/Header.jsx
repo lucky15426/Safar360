@@ -120,13 +120,9 @@ const Header = ({ currentPage, onPageChange }) => {
             <div className="hidden md:flex items-center space-x-6 border-l border-white/10 pl-8 h-10">
               {isSignedIn && clerkUser ? (
                 <div className="flex items-center space-x-4">
-                  <button
-                    onClick={() => onPageChange("account")}
-                    className="text-white hover:text-sky-300 transition-colors"
-                    title="Account"
-                  >
-                    <User size={24} />
-                  </button>
+
+                  <User size={24} />
+
                   <UserButton afterSignOutUrl="/" />
                 </div>
               ) : (

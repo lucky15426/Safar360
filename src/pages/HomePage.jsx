@@ -327,7 +327,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
           {activeVideoIndex === 0 && (
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.65 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1 }}
               style={{ y: globeY }}
@@ -336,7 +336,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
               <Globe
                 autoRotate={true}
                 rotationSpeed={0.005}
-                showStars={true}
+                showStars={false}
                 cameraPosition={[0, 0, 4]}
                 markers={[]}
               />

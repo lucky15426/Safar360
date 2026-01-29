@@ -7,6 +7,8 @@ const GlobalMusicPlayer = () => {
   const [volume] = useState(0.20);
 
   const playlist = [
+    "/aud-1.mp3",
+    "/aud-2.mp3",
     "/audio.mpeg",
     "/indian-hindi-song-music-467340.mp3.mpeg",
   ];
