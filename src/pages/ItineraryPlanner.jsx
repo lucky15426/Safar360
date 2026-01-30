@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Sparkles, ArrowRight, RotateCcw, Zap } from "lucide-react";
 import GeminiItineraryForm from "../components/GeminiItineraryForm";
 import GeminiItineraryDisplay from "../components/GeminiItineraryDisplay";
-import heroBgImage from "../assets/it-6.jpg"; // ✅ Import image
+import SimpleMarkdownDisplay from "../components/SimpleMarkdownDisplay";
+import heroBgImage from "../assets/it-6.jpg"; // Fallback/Unused but kept for import safety
 
-const ItineraryPlanner = () => {
+// New optimized component for video suggestion - REMOVED per user request
+
+const ItineraryPlanner = ({ selectedItem }) => {
   const [itinerary, setItinerary] = useState(null);
   const [formData, setFormData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const resultsRef = React.useRef(null);
 
   const handleItineraryGenerated = (result, form) => {
     setIsLoading(true);
@@ -16,12 +20,15 @@ const ItineraryPlanner = () => {
       setItinerary(result);
       setFormData(form);
       setIsLoading(false);
+
+      // Auto-scroll to top of results
       setTimeout(() => {
-        window.scrollTo({
-          top: document.body.scrollHeight,
-          behavior: "smooth",
-        });
-      }, 300);
+        if (resultsRef.current) {
+          const yOffset = -100; // Offset for header/padding
+          const y = resultsRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 100);
     }, 500);
   };
 
@@ -31,126 +38,162 @@ const ItineraryPlanner = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // Check for incoming AI-generated itinerary data from selectedItem prop
+  React.useEffect(() => {
+    // Prop handling logic
+  }, []);
+
+  React.useEffect(() => {
+    if (selectedItem && selectedItem.generatedItinerary) {
+      setItinerary(selectedItem.generatedItinerary);
+      setFormData({
+        startDate: "Flexible",
+        endDate: "Flexible",
+        startTime: "Morning",
+        endTime: "Evening"
+      });
+      setTimeout(() => {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth",
+        });
+      }, 500);
+    }
+  }, [selectedItem]);
+
   return (
-    <div
-      className="min-h-screen relative overflow-hidden"
-      style={{
-        backgroundImage: `url(${heroBgImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-      }}
-    >
-      {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/55 via-black/40 to-black/50 backdrop-blur-sm"></div>
+    <div className="min-h-screen bg-slate-950 text-slate-200 selection:bg-cyan-500/30">
 
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-10 right-10 w-72 h-72 bg-orange-300/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-10 left-10 w-96 h-96 bg-amber-300/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }}></div>
-      </div>
+      {/* 🌌 HERO SECTION - FULL SCREEN VIDEO HERO */}
+      <div className="relative h-screen w-full overflow-hidden flex flex-col justify-center items-center">
 
-      {/* Main Content */}
-      <div className="relative z-10 py-12 px-4">
-        <div className="max-w-5xl mx-auto">
-          {/* Header - Enhanced */}
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0">
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-slate-950/40 z-10 transition-opacity duration-300 hover:bg-slate-950/30"></div>
+          <iframe
+            className="absolute top-1/2 left-1/2 w-[177.77%] h-[150%] min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
+            src="https://www.youtube.com/embed/G5RpJwCJDqc?autoplay=1&mute=1&loop=1&playlist=G5RpJwCJDqc&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&vq=hd2160&enablejsapi=1"
+            title="Background Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            style={{ pointerEvents: 'none' }}
+          ></iframe>
+          {/* Custom Video Suggestion Overlay - REMOVED */}
+          {/* Gradient fade at bottom to blend into next section */}
+          <div className="absolute bottom-0 w-full h-40 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent z-20"></div>
+        </div>
+
+        {/* Hero Content Overlay */}
+        <div className="relative z-30 text-center px-4 max-w-5xl mx-auto pt-10">
           <motion.div
-            initial={{ opacity: 0, y: -30 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-12 text-center"
+            transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full px-4 py-2 mb-6">
-              <Sparkles size={18} className="text-yellow-300" />
-              <span className="text-sm font-semibold text-white">Safar360 Travel Support (AI)</span>
-            </div>
-
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-heritage font-bold mb-4 text-white drop-shadow-[0_10px_40px_rgba(0,0,0,0.9)]">
-              Plan Your Indian Journey
+            {/* Main Heading */}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-heritage font-bold mb-6 text-white drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] leading-tight">
+              {itinerary ? "Your Curated Journey" : "Explore the Unseen"}
             </h1>
 
-            <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-[0_6px_20px_rgba(0,0,0,0.8)]">
-              Let <span className="font-semibold text-yellow-300">Google Gemini AI</span> craft your perfect itinerary. Choose your destination or let us recommend the best fit.
-            </p>
+            {/* Subheading */}
+            {itinerary ? (
+              <p className="text-lg md:text-2xl text-slate-100 max-w-4xl mx-auto font-light leading-relaxed tracking-wide drop-shadow-md animate-in fade-in slide-in-from-bottom-3 duration-700">
+                "An exclusive, tailored experience through the heart of <span className="font-semibold text-cyan-300">{itinerary.selectedState}</span>. Prepare for an unforgettable adventure."
+              </p>
+            ) : (
+              <p className="text-lg md:text-2xl text-slate-100 max-w-3xl mx-auto font-light leading-relaxed tracking-wide drop-shadow-md">
+                "To travel is to live. Embark on a journey that transcends boundaries and creates <span className="font-semibold text-cyan-300">timeless memories</span>."
+              </p>
+            )}
+
+            {/* Scroll Down Indicator */}
+            {!itinerary && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, y: [0, 10, 0] }}
+                transition={{ delay: 1, repeat: Infinity, duration: 2 }}
+                className="mt-16 text-slate-400 flex flex-col items-center gap-2"
+              >
+                <p className="text-sm uppercase tracking-widest font-medium">Scroll to Plan</p>
+                <ArrowRight className="rotate-90 text-cyan-400" size={24} />
+              </motion.div>
+            )}
           </motion.div>
+        </div>
+      </div>
 
-          {/* Form Section - Card with Premium Look */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative mb-12"
-          >
-            {/* Glow Effect Behind Card */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 via-red-400 to-amber-400 rounded-3xl blur-xl opacity-30"></div>
+      {/* 📜 MAIN FORM & CONTENT SECTION - BELOW HERO */}
+      <div className="relative z-10 -mt-20 pb-20 px-4">
+        <div className="max-w-6xl mx-auto">
 
-            {/* Card */}
-            <div className="relative bg-white/95 backdrop-blur-lg rounded-3xl p-8 md:p-12 shadow-2xl border border-white/20">
-              <div className="flex items-center space-x-3 mb-8">
-                <div className="w-14 h-14 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center shadow-lg">
-                  <MapPin className="text-white" size={28} />
+          {/* Form Section - Glassmorphism Card */}
+          {!itinerary && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative mb-20"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 rounded-[2rem] blur-2xl opacity-50"></div>
+
+              <div className="relative bg-slate-900/80 backdrop-blur-xl rounded-[2rem] p-8 md:p-12 border border-white/10 shadow-2xl ring-1 ring-white/5">
+                <div className="flex flex-col md:flex-row items-center justify-between mb-10 border-b border-white/5 pb-8 gap-6 md:gap-0">
+                  <div className="flex items-center space-x-6">
+                    <div className="w-16 h-16 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-2xl flex items-center justify-center border border-cyan-500/30 shadow-[0_0_25px_rgba(6,182,212,0.1)] group-hover:scale-105 transition-transform duration-500">
+                      <MapPin className="text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]" size={32} />
+                    </div>
+                    <div>
+                      {/* New Creative Header */}
+                      <h2 className="text-4xl md:text-5xl font-heritage text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-purple-300 mb-1 drop-shadow-sm">Design Your Journey</h2>
+                      <p className="text-sm text-slate-400 tracking-[0.2em] uppercase font-medium">Tailor every detail</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h2 className="text-3xl font-bold text-amber-900">Trip Details</h2>
-                  <p className="text-sm text-amber-700">Fill in your travel preferences</p>
+
+                <div className="form-dark-mode-override">
+                  <GeminiItineraryForm onItineraryGenerated={handleItineraryGenerated} />
                 </div>
               </div>
+            </motion.div>
+          )}
 
-              <GeminiItineraryForm onItineraryGenerated={handleItineraryGenerated} />
-            </div>
-          </motion.div>
-
-          {/* Results Section - With Animation */}
+          {/* Results Section */}
           <AnimatePresence>
             {itinerary && formData && (
               <motion.div
+                ref={resultsRef}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 50 }}
                 transition={{ duration: 0.6 }}
               >
-                {/* Loading State */}
-                {isLoading && (
-                  <div className="text-center py-16">
-                    <div className="flex items-center justify-center space-x-2 mb-4">
-                      <Zap className="text-yellow-300 animate-pulse" size={32} />
-                      <span className="text-2xl font-bold text-white drop-shadow-lg">Generating Your Itinerary...</span>
-                    </div>
-                    <p className="text-white/80">AI is crafting your personalized journey...</p>
+                {isLoading ? (
+                  <div className="text-center py-20 bg-slate-900/50 rounded-[2rem] border border-white/5">
+                    <Zap className="text-yellow-300 animate-pulse mx-auto mb-6" size={48} />
+                    <h3 className="text-3xl font-bold text-white mb-2">Crafting your itinerary...</h3>
+                    <p className="text-slate-400">Our AI engine is analyzing thousands of data points.</p>
                   </div>
-                )}
-
-                {!isLoading && (
+                ) : (
                   <>
-                    {/* Success Badge */}
                     <div className="mb-8 text-center">
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring", stiffness: 200 }}
-                        className="inline-flex items-center space-x-2 bg-green-500/30 backdrop-blur-md border-2 border-green-400 rounded-full px-6 py-3"
-                      >
-                        <span className="text-2xl">✨</span>
-                        <span className="font-semibold text-green-100">Itinerary Ready!</span>
-                      </motion.div>
+                      <span className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-green-500/10 text-green-300 border border-green-500/20 shadow-[0_0_15px_rgba(34,197,94,0.1)]">
+                        <Sparkles size={14} />
+                        <span className="font-semibold tracking-wide">Itinerary Ready</span>
+                      </span>
                     </div>
-
-                    {/* Results */}
-                    <GeminiItineraryDisplay itinerary={itinerary} formData={formData} />
-
-                    {/* Plan Another Button - Premium */}
+                    {typeof itinerary === 'string' ? (
+                      <SimpleMarkdownDisplay markdown={itinerary} />
+                    ) : (
+                      <GeminiItineraryDisplay itinerary={itinerary} formData={formData} />
+                    )}
                     <motion.button
                       whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.98 }}
+                      whileTap={{ scale: 0.95 }}
                       onClick={handleNewItinerary}
-                      className="mt-12 mx-auto block group relative"
+                      className="mt-16 mx-auto flex items-center space-x-3 bg-white text-slate-900 font-bold py-4 px-10 rounded-full shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-cyan-500/40 transition-all"
                     >
-                      <div className="absolute -inset-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition duration-300"></div>
-                      <div className="relative bg-white hover:bg-gray-50 text-orange-600 hover:text-orange-700 font-bold py-4 px-10 rounded-2xl transition duration-300 flex items-center space-x-2">
-                        <RotateCcw size={20} />
-                        <span>Plan Another Itinerary</span>
-                        <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                      </div>
+                      <RotateCcw size={20} />
+                      <span>Plan Another Trip</span>
                     </motion.button>
                   </>
                 )}
