@@ -35,12 +35,13 @@ const Header = ({ currentPage, onPageChange }) => {
 
   const navLinks = [
     { id: "home", label: "Home" },
-    { id: "360tour", label: "VR Previews" },
+    { id: "360tour", label: "VR Tours" },
+    { id: "ask-safar", label: "Ask Safar" },
     { id: "itinerary", label: "Trip Planning", icon: "MapPin" },
     { id: "gems", label: "Hidden Gems" },
-    { id: "chat", label: "Real-time Support" },
-    { id: "map", label: "Local Insights" },
-    { id: "checklist", label: "Pre-trip Checklist", icon: "Backpack" },
+    { id: "chat", label: "Support" },
+    { id: "tracker", label: "Flight Tracker", icon: "Plane" },
+    { id: "checklist", label: "Checklist", icon: "Backpack" },
   ];
 
   return (
@@ -79,7 +80,7 @@ const Header = ({ currentPage, onPageChange }) => {
               onMouseEnter={playHoverSound}
               className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === '360tour' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
             >
-              VR Views
+              VR Tours
             </button>
             <button
               onClick={() => onPageChange("gems")}
@@ -94,6 +95,13 @@ const Header = ({ currentPage, onPageChange }) => {
               className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === 'itinerary' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
             >
               Itinerary
+            </button>
+            <button
+              onClick={() => onPageChange("tracker")}
+              onMouseEnter={playHoverSound}
+              className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === 'tracker' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
+            >
+              Flights
             </button>
             <button
               onClick={() => onPageChange("chat")}

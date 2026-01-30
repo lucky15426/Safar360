@@ -28,6 +28,7 @@ import MapPage from "./pages/MapPage";
 import AccountPage from "./pages/AccountPage";
 import UploadPage from "./pages/UploadPage";
 import TourPage360 from "./pages/TourPage360";
+import FlightTrackerPage from "./pages/FlightTrackerPage";
 import RecommendationsPage from "./pages/RecommendationsPage";
 import ItineraryPlanner from "./pages/ItineraryPlanner";
 import PreTripChecklist from './components/PreTripChecklist';
@@ -234,6 +235,10 @@ function App() {
       case "upload":
         return <UploadPage {...pageProps} />;
 
+      case "tracker":
+        return <FlightTrackerPage />;
+
+      case "ask-safar":
       case "salahkar":
         return <RecommendationsPage onBack={() => handlePageChange("home")} />;
 
