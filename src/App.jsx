@@ -20,13 +20,14 @@ import GlobalMusicPlayer from "./components/GlobalMusicPlayer";
 
 // Pages
 import HomePage from "./pages/HomePage";
+import WorldToursPage from "./pages/WorldToursPage";
 
 import HiddenGemsPage from "./pages/HiddenGemsPage";
 
 import ChatPage from "./pages/ChatPage";
 import MapPage from "./pages/MapPage";
 import UploadPage from "./pages/UploadPage";
-import TourPage360 from "./pages/TourPage360";
+
 import FlightTrackerPage from "./pages/FlightTrackerPage";
 import RecommendationsPage from "./pages/RecommendationsPage";
 import ItineraryPlanner from "./pages/ItineraryPlanner";
@@ -85,6 +86,7 @@ function App() {
     const pageTitles = {
       home: 'Safar360 - Discover India\'s Heritage',
       '360tour': 'VR Previews - Safar360',
+
       itinerary: 'Trip Planning - Safar360',
       gems: 'Hidden Gems - Safar360',
       chat: 'Real-time Support - Safar360',
@@ -119,7 +121,8 @@ function App() {
       case "home":
         return <HomePage {...pageProps} />;
       case "360tour":
-        return <TourPage360 {...pageProps} onPageChange={handlePageChange} />;
+        return <WorldToursPage {...pageProps} />;
+
       case "itinerary":
         return <ItineraryPlanner {...pageProps} />;
       case "gems":
