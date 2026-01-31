@@ -5,7 +5,7 @@
         "country": "Brazil",
         "category": "City",
         "videoId": "KkSzad253o0",
-        "thumbnail": "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/rio.jpg",
         "description": "Vibrant carnival spirit beneath Christ the Redeemer.",
         "highlights": [
             "Copacabana",
@@ -22,7 +22,7 @@
         "country": "Russia",
         "category": "City",
         "videoId": "q5GXQQo8I-k",
-        "thumbnail": "https://images.unsplash.com/photo-1556610961-2fecc5927173?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/st-petersburg.jpg",
         "description": "The cultural heart of Russia, home to the Hermitage.",
         "highlights": [
             "Hermitage",
@@ -39,7 +39,7 @@
         "country": "Japan",
         "category": "City",
         "videoId": "kyN623RzFe0",
-        "thumbnail": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/tokyo.jpg",
         "description": "A neon-lit metropolis where tradition meets future.",
         "highlights": [
             "Shibuya Crossing",
@@ -56,7 +56,7 @@
         "country": "USA",
         "category": "City",
         "videoId": "xI1ft3sCH2Y",
-        "thumbnail": "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/miami.jpg",
         "description": "Sun-soaked beaches and Art Deco glamour.",
         "highlights": [
             "South Beach",
@@ -73,7 +73,7 @@
         "country": "UAE",
         "category": "City",
         "videoId": "b7BUpveunKo",
-        "thumbnail": "https://images.unsplash.com/photo-1518684079858-191c49182754?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/dubai.jpg",
         "description": "Futuristic skyline rising from the desert sands.",
         "highlights": [
             "Burj Khalifa",
@@ -90,7 +90,7 @@
         "country": "USA",
         "category": "City",
         "videoId": "JSNZbZ8gswo",
-        "thumbnail": "https://images.unsplash.com/photo-1534190239940-9ba8944ea261?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/los-angeles.jpg",
         "description": "The entertainment capital of the world.",
         "highlights": [
             "Hollywood Sign",
@@ -107,7 +107,7 @@
         "country": "USA",
         "category": "City",
         "videoId": "0vtXW8wy1DM",
-        "thumbnail": "https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/las-vegas.jpg",
         "description": "The dazzling city of lights and entertainment.",
         "highlights": [
             "The Strip",
@@ -124,7 +124,7 @@
         "country": "Switzerland",
         "category": "City",
         "videoId": "P3jyeihhCWk",
-        "thumbnail": "https://images.unsplash.com/photo-1515488764276-beab7607c1e6?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/zurich.jpg",
         "description": "Alpine beauty meets urban sophistication.",
         "highlights": [
             "Lake Zurich",
@@ -141,7 +141,7 @@
         "country": "UK",
         "category": "City",
         "videoId": "KGerjHMa90s",
-        "thumbnail": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/london.jpg",
         "description": "Historic royal grandeur and modern vibrancy.",
         "highlights": [
             "Big Ben",
@@ -158,7 +158,7 @@
         "country": "USA",
         "category": "City",
         "videoId": "YM6GTu_RcWM",
-        "thumbnail": "https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/manhattan.jpg",
         "description": "The iconic skyline of New York City.",
         "highlights": [
             "Empire State",
@@ -175,7 +175,7 @@
         "country": "France",
         "category": "City",
         "videoId": "2ghX9JFKsE0",
-        "thumbnail": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/paris.jpg",
         "description": "Romance and art in the City of Light.",
         "highlights": [
             "Eiffel Tower",
@@ -192,7 +192,7 @@
         "country": "Portugal",
         "category": "City",
         "videoId": "2JMbosX2HHY",
-        "thumbnail": "https://images.unsplash.com/photo-1563212720-3b02f83a7a93?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/porto.jpg",
         "description": "Colorful riverside charm and historic bridges.",
         "highlights": [
             "Douro River",
@@ -209,7 +209,7 @@
         "country": "China",
         "category": "City",
         "videoId": "IfnO4tEdkpo",
-        "thumbnail": "https://images.unsplash.com/photo-1583498875560-6b71f971b84e?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/guangzhou.jpg",
         "description": "A sprawling port city and shimmering skyline.",
         "highlights": [
             "Canton Tower",
@@ -226,7 +226,7 @@
         "country": "India",
         "category": "Heritage",
         "videoId": "2aJ9cOwbzxo",
-        "thumbnail": "https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/taj-mahal.jpg",
         "description": "An ivory-white marble mausoleum of eternal love.",
         "highlights": [
             "Mausoleum",
@@ -243,7 +243,7 @@
         "country": "Mexico",
         "category": "Heritage",
         "videoId": "5nCVL_z5Doo",
-        "thumbnail": "https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/teotihuacan.jpg",
         "description": "Ancient Mesoamerican pyramids of the Sun and Moon.",
         "highlights": [
             "Pyramid of Sun",
@@ -260,7 +260,7 @@
         "country": "Israel",
         "category": "Heritage",
         "videoId": "dtpvkWgTXGM",
-        "thumbnail": "https://images.unsplash.com/photo-1541369722379-305459393c83?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/jerusalem.jpg",
         "description": "A holy city of deep spiritual significance.",
         "highlights": [
             "Western Wall",
@@ -277,7 +277,7 @@
         "country": "Jordan",
         "category": "Heritage",
         "videoId": "xSiv4TkfSOE",
-        "thumbnail": "https://images.unsplash.com/photo-1501238295340-c810d2c15cc8?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/petra.jpg",
         "description": "The Rose City carved directly into vibrant rock.",
         "highlights": [
             "The Treasury",
@@ -294,7 +294,7 @@
         "country": "China",
         "category": "Heritage",
         "videoId": "FNObY8x9ixQ",
-        "thumbnail": "https://images.unsplash.com/photo-1549420067-152865293233?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/fenghuang.jpg",
         "description": "The Ancient Phoenix Town with stilt houses.",
         "highlights": [
             "Tuojiang River",
@@ -311,7 +311,7 @@
         "country": "Egypt",
         "category": "Heritage",
         "videoId": "HiCX09V7iac",
-        "thumbnail": "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/pyramids.jpg",
         "description": "The timeless wonder of the ancient world.",
         "highlights": [
             "Great Pyramid",
@@ -328,7 +328,7 @@
         "country": "Maldives",
         "category": "Nature",
         "videoId": "9JR1IekZGUY",
-        "thumbnail": "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/maldives.jpg",
         "description": "Tropical island paradise with crystal clear waters.",
         "highlights": [
             "Coral Reefs",
@@ -345,7 +345,7 @@
         "country": "Montenegro",
         "category": "Nature",
         "videoId": "JEV_euIuwlY",
-        "thumbnail": "https://images.unsplash.com/photo-1560931558-8685e1350a83?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/montenegro.jpg",
         "description": "Red roofs meeting the azure Adriatic Sea.",
         "highlights": [
             "Kotor Bay",
@@ -362,7 +362,7 @@
         "country": "Mexico",
         "category": "Nature",
         "videoId": "_kJkCut7I1k",
-        "thumbnail": "https://images.unsplash.com/photo-1534655381831-274889c258d4?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/cancun.jpg",
         "description": "Caribbean turquoise waters and white beaches.",
         "highlights": [
             "Beaches",
@@ -379,7 +379,7 @@
         "country": "Indonesia",
         "category": "Nature",
         "videoId": "6SbH51yN-q8",
-        "thumbnail": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/bali.jpg",
         "description": "Island of the Gods, lush jungles and temples.",
         "highlights": [
             "Rice Terraces",
@@ -396,7 +396,7 @@
         "country": "South Africa",
         "category": "City",
         "videoId": "E-M61Y-WPQs",
-        "thumbnail": "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/cape-town.jpg",
         "description": "A port city on South Africa's southwest coast.",
         "highlights": [
             "Table Mountain",
@@ -414,7 +414,7 @@
         "country": "Venezuela",
         "category": "Nature",
         "videoId": "L_tqK4eqelA",
-        "thumbnail": "https://images.unsplash.com/photo-1575351740920-1b702432863e?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/angel-falls.jpg",
         "description": "The world's highest uninterrupted waterfall.",
         "highlights": [
             "Waterfall",
@@ -432,7 +432,7 @@
         "country": "USA",
         "category": "City",
         "videoId": "tjQGnXBn1WA",
-        "thumbnail": "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/san-francisco.jpg",
         "description": "Famous for the Golden Gate Bridge and fog.",
         "highlights": [
             "Golden Gate",
@@ -450,7 +450,7 @@
         "country": "Japan",
         "category": "Nature",
         "videoId": "VUVDXSJqYbM",
-        "thumbnail": "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/lake-hibara.jpg",
         "description": "Scenic lake created by the eruption of Mount Bandai.",
         "highlights": [
             "Mount Bandai",
@@ -468,7 +468,7 @@
         "country": "Finland",
         "category": "Nature",
         "videoId": "sto1YBOS2bw",
-        "thumbnail": "https://images.unsplash.com/photo-1518098268026-4e89f1a2cd8e?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/lapland.jpg",
         "description": "The magical home of Santa Claus and snowy wonders.",
         "highlights": [
             "Northern Lights",
@@ -486,7 +486,7 @@
         "country": "Arctic",
         "category": "Nature",
         "videoId": "W11U_CZXUCQ",
-        "thumbnail": "https://images.unsplash.com/photo-1579033461380-adb47c3eb938?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/northern-lights.jpg",
         "description": "The Aurora Borealis dancing across the night sky.",
         "highlights": [
             "Aurora",
@@ -504,7 +504,7 @@
         "country": "Russia",
         "category": "City",
         "videoId": "fOxt1cR2XK4",
-        "thumbnail": "https://images.unsplash.com/photo-1596426305677-44933932782e?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/kazan.jpg",
         "description": "A melting pot of Asian and European culture.",
         "highlights": [
             "Kazan Kremlin",
@@ -522,7 +522,7 @@
         "country": "Bhutan",
         "category": "Heritage",
         "videoId": "z4HwBo3VlC4",
-        "thumbnail": "https://images.unsplash.com/photo-1624890659688-66a90802e3b2?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/bhutan.jpg",
         "description": "The Land of the Thunder Dragon in the Himalayas.",
         "highlights": [
             "Tiger's Nest",
@@ -540,7 +540,7 @@
         "country": "China",
         "category": "City",
         "videoId": "skn-h6pi8V8",
-        "thumbnail": "https://images.unsplash.com/photo-1506318137071-a8bcbf6755dd?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/hong-kong.jpg",
         "description": "A dazzling skyline meeting the harbor.",
         "highlights": [
             "Victoria Peak",
@@ -558,7 +558,7 @@
         "country": "China",
         "category": "Nature",
         "videoId": "0YwaAgB_-nw",
-        "thumbnail": "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/huangshan.jpg",
         "description": "The Yellow Mountains famous for sunrises and pines.",
         "highlights": [
             "Granite Peaks",
@@ -576,7 +576,7 @@
         "country": "Algeria",
         "category": "Nature",
         "videoId": "RdFkC6Gtb5A",
-        "thumbnail": "https://images.unsplash.com/photo-1539768652586-b45281862551?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/sahara.jpg",
         "description": "Endless golden dunes of the world's largest hot desert.",
         "highlights": [
             "Dunes",
@@ -594,7 +594,7 @@
         "country": "Russia",
         "category": "Heritage",
         "videoId": "qW5P_m3lDXI",
-        "thumbnail": "https://images.unsplash.com/photo-1612294137279-d591b6e49226?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/ingushetia.jpg",
         "description": "Ancient watchtowers in the Caucasus Mountains.",
         "highlights": [
             "Towers",
@@ -612,7 +612,7 @@
         "country": "Japan",
         "category": "City",
         "videoId": "7f7MvEzBeDk",
-        "thumbnail": "https://images.unsplash.com/photo-1542051841857-5f90071e7989?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/shibuya.jpg",
         "description": "The world's busiest pedestrian crossing.",
         "highlights": [
             "Crossing",
@@ -630,7 +630,7 @@
         "country": "China",
         "category": "City",
         "videoId": "2pQ-pHbRPiQ",
-        "thumbnail": "https://images.unsplash.com/photo-1538428494252-43fb0d67d22e?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/shanghai.jpg",
         "description": "A global financial hub with a futuristic skyline.",
         "highlights": [
             "The Bund",
@@ -648,7 +648,7 @@
         "country": "Russia",
         "category": "Heritage",
         "videoId": "KC5YDoqVkBE",
-        "thumbnail": "https://images.unsplash.com/photo-1569335406180-877794711317?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/golden-ring.jpg",
         "description": "Historic cities northeast of Moscow.",
         "highlights": [
             "Churches",
@@ -666,7 +666,7 @@
         "country": "Greenland",
         "category": "Nature",
         "videoId": "YGa7p4_J9nA",
-        "thumbnail": "https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/icebergs.jpg",
         "description": "Majestic icebergs floating in arctic waters.",
         "highlights": [
             "Icebergs",
@@ -684,7 +684,7 @@
         "country": "Egypt",
         "category": "Heritage",
         "videoId": "9TCHI2qbZ78",
-        "thumbnail": "https://images.unsplash.com/photo-1598555894178-02484c207909?q=80&w=3840&auto=format&fit=crop",
+        "thumbnail": "/images/vr_thumbnails/egypt-pyramids-2.jpg",
         "description": "Another perspective of the ancient architectural marvels.",
         "highlights": [
             "Pyramids",
