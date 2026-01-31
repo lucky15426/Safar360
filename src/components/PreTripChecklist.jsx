@@ -296,8 +296,8 @@ const PreTripChecklist = () => {
                                         <div
                                             key={checklist.id}
                                             className={`p-3 rounded-lg cursor-pointer transition-all border ${activeChecklist?.id === checklist.id
-                                                    ? 'bg-blue-50 border-blue-400 shadow-md'
-                                                    : 'bg-slate-50 border-slate-200 hover:bg-slate-100'
+                                                ? 'bg-blue-50 border-blue-400 shadow-md'
+                                                : 'bg-slate-50 border-slate-200 hover:bg-slate-100'
                                                 }`}
                                         >
                                             <button
@@ -402,8 +402,8 @@ const PreTripChecklist = () => {
                                                     <div
                                                         key={item.id}
                                                         className={`flex items-center gap-3 p-3 rounded-lg transition-all border ${item.completed
-                                                                ? 'bg-green-50 border-green-200'
-                                                                : 'bg-slate-50 border-slate-200 hover:bg-slate-100'
+                                                            ? 'bg-green-50 border-green-200'
+                                                            : 'bg-slate-50 border-slate-200 hover:bg-slate-100'
                                                             }`}
                                                     >
                                                         <button

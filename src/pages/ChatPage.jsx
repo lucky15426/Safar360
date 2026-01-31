@@ -8,19 +8,19 @@ import {
   Lightbulb,
   MapPin,
   Book,
-  Star,
   MicOff,
   Volume2,
   VolumeX,
-  Building,
-  Calendar,
-  Music,
-  History,
-  ChefHat,
-  Palette,
+  Plane,
+  Globe,
+  Wallet,
+  Shield,
+  Luggage,
+  Languages,
   Sparkles,
   MessageCircle,
-  Hand,
+  Compass,
+  CreditCard,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-hot-toast";
@@ -30,7 +30,7 @@ const ChatPage = ({ user }) => {
     {
       id: 1,
       sender: "bot",
-      text: "Namaste! Welcome to Safar360 AI Heritage Guide! I'm here to help you discover India's incredible cultural heritage. Ask me about monuments, festivals, traditions, history, or anything related to Indian culture!",
+      text: "Welcome to Safar360 Travel Companion! 🌍 I'm your AI-powered international travel expert. Ask me about visa requirements, flight booking tips, destination guides, currency exchange, local customs, travel safety, or any travel planning help you need!",
       timestamp: new Date().toISOString(),
       type: "greeting",
     },
@@ -45,40 +45,44 @@ const ChatPage = ({ user }) => {
 
   const quickQuestions = [
     {
-      icon: Building,
-      text: "Tell me about the Taj Mahal",
-      category: "Monument",
+      icon: Globe,
+      text: "What visa do I need for Europe?",
+      category: "Visa & Documents",
     },
     {
-      icon: Calendar,
-      text: "What is Diwali and how is it celebrated?",
-      category: "Festival",
-    },
-    { icon: Music, text: "Explain Bharatanatyam dance form", category: "Arts" },
-    {
-      icon: History,
-      text: "Share the history of Mughal architecture",
-      category: "History",
+      icon: Plane,
+      text: "Tips for finding cheap flights",
+      category: "Flights",
     },
     {
-      icon: ChefHat,
-      text: "What are some traditional Indian dishes?",
-      category: "Cuisine",
+      icon: Compass,
+      text: "Best places to visit in Japan",
+      category: "Destinations",
     },
     {
-      icon: Palette,
-      text: "Tell me about Madhubani paintings",
-      category: "Art",
+      icon: CreditCard,
+      text: "How does currency exchange work?",
+      category: "Currency",
+    },
+    {
+      icon: Shield,
+      text: "Travel safety tips for solo travelers",
+      category: "Safety",
+    },
+    {
+      icon: Luggage,
+      text: "Essential packing checklist",
+      category: "Packing",
     },
   ];
 
   const conversationStarters = [
-    "What can you tell me about...",
-    "I'm planning to visit...",
-    "Can you explain the significance of...",
-    "What's the history behind...",
-    "How is... celebrated in India?",
-    "What are some hidden gems in...",
+    "I'm planning a trip to...",
+    "What do I need to know about...",
+    "Help me find flights to...",
+    "What's the best time to visit...",
+    "How do I apply for a visa to...",
+    "What are must-see attractions in...",
   ];
 
   // Initialize speech recognition
@@ -164,13 +168,21 @@ const ChatPage = ({ user }) => {
     const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
     const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
 
-    const prompt = `You are Safar360 AI Heritage Guide, an expert on Indian culture, heritage, monuments, festivals, arts, history, and traditions. 
+    const prompt = `You are Safar360 Travel Companion, an expert AI assistant for international travel. You help users with:
+- Visa requirements and travel documents for any country
+- Flight booking tips, airline comparisons, and airport information
+- Destination recommendations, attractions, and itinerary planning
+- Currency exchange rates, budgeting, and money-saving tips
+- Travel safety advisories and health precautions
+- Local customs, etiquette, and cultural tips
+- Accommodation recommendations (hotels, hostels, Airbnb)
+- Transportation options at destinations
+- Packing advice and travel gear recommendations
+- Language tips and useful phrases
 
 User question: ${message}
 
-Please provide a comprehensive, accurate, and engaging response about Indian heritage. Include specific details, historical context, and cultural significance when relevant. Keep the response informative yet conversational, and feel free to suggest related topics the user might find interesting.
-
-If the question is not related to Indian heritage, politely redirect the conversation back to Indian cultural topics.`;
+Provide a comprehensive, accurate, and helpful response. Include practical tips, specific recommendations, and actionable advice. Be conversational and friendly. If relevant, suggest related travel topics the user might find useful.`;
 
     const response = await fetch(API_URL, {
       method: "POST",
@@ -217,40 +229,34 @@ If the question is not related to Indian heritage, politely redirect the convers
   const generateFallbackResponse = (message) => {
     const lowerMessage = message.toLowerCase();
 
-    if (lowerMessage.includes("taj mahal")) {
-      return "The Taj Mahal is one of the most beautiful monuments in the world! Built by Shah Jahan in memory of his beloved wife Mumtaz Mahal between 1632-1653, this ivory-white marble mausoleum is located in Agra, Uttar Pradesh. It's a UNESCO World Heritage Site and represents the finest example of Mughal architecture, combining Indian, Islamic, and Persian architectural styles.";
+    if (lowerMessage.includes("visa") || lowerMessage.includes("passport")) {
+      return "Visa requirements vary by country and your nationality. Generally, you'll need a valid passport (with 6+ months validity), completed application form, passport photos, and proof of travel plans. Popular destinations like Europe (Schengen), USA, UK, and Australia have specific requirements. I recommend checking the official embassy website of your destination country for the most accurate and up-to-date information.";
     }
 
-    if (
-      lowerMessage.includes("diwali") ||
-      lowerMessage.includes("festival of lights")
-    ) {
-      return "Diwali, the Festival of Lights, is one of the most celebrated festivals in India! It celebrates the victory of light over darkness and good over evil. The festival lasts for 5 days and includes lighting oil lamps (diyas), decorating homes with rangoli, bursting firecrackers, exchanging sweets, and worshipping Goddess Lakshmi for prosperity.";
+    if (lowerMessage.includes("flight") || lowerMessage.includes("cheap") || lowerMessage.includes("airline")) {
+      return "Here are some tips for finding cheap flights: 1) Book 6-8 weeks in advance for domestic, 2-3 months for international. 2) Be flexible with dates - mid-week flights are often cheaper. 3) Use flight comparison sites like Skyscanner, Google Flights, or Kayak. 4) Set price alerts for your routes. 5) Consider nearby airports. 6) Clear browser cookies or use incognito mode when searching.";
     }
 
-    if (
-      lowerMessage.includes("bharatanatyam") ||
-      lowerMessage.includes("dance")
-    ) {
-      return "Bharatanatyam is one of India's oldest and most revered classical dance forms! Originating from Tamil Nadu temples over 2000 years ago, it combines storytelling through intricate hand gestures (mudras), facial expressions (abhinaya), and rhythmic footwork (adavus). It's considered a spiritual practice that connects the dancer with the divine.";
+    if (lowerMessage.includes("currency") || lowerMessage.includes("money") || lowerMessage.includes("exchange")) {
+      return "For currency exchange, here are some tips: 1) Compare rates before traveling - banks often offer better rates than airports. 2) Use ATMs at your destination for competitive rates. 3) Inform your bank about travel plans to avoid card blocks. 4) Consider travel cards with no foreign transaction fees. 5) Always carry some local cash for emergencies. 6) Avoid exchanging at hotels or tourist spots where rates are typically poor.";
     }
 
-    if (lowerMessage.includes("food") || lowerMessage.includes("cuisine")) {
-      return "Indian cuisine is incredibly diverse and flavorful! Each region has its unique dishes - from spicy curries in the south to rich gravies in the north, from street food like chaat to elaborate thalis. Popular dishes include biryani, butter chicken, dosa, samosa, and countless vegetarian options. Indian food is known for its use of aromatic spices like turmeric, cumin, and cardamom.";
+    if (lowerMessage.includes("pack") || lowerMessage.includes("luggage") || lowerMessage.includes("bag")) {
+      return "Essential packing checklist: 💼 Travel documents (passport, visa, tickets), 2) Versatile clothing layers, 3) Comfortable walking shoes, 4) Toiletries & medications, 5) Phone charger & power adapter, 6) Copies of important documents, 7) First-aid kit basics, 8) Reusable water bottle, 9) Day bag/backpack. Pro tip: Roll clothes to save space and use packing cubes for organization!";
     }
 
     if (
       lowerMessage.includes("hello") ||
       lowerMessage.includes("hi") ||
-      lowerMessage.includes("namaste")
+      lowerMessage.includes("hey")
     ) {
-      return "Namaste! Welcome to your personal Indian Heritage guide! I'm here to help you explore India's incredible cultural diversity. You can ask me about monuments, festivals, art forms, history, cuisine, traditions, or any specific place you'd like to visit. What interests you most about Indian heritage?";
+      return "Hello! 👋 Welcome to Safar360 Travel Companion! I'm here to help you plan your perfect trip. Ask me about visa requirements, flight booking tips, destination recommendations, currency exchange, travel safety, packing advice, or anything else related to international travel. Where are you thinking of traveling to?";
     }
 
     const genericResponses = [
-      `That's a fascinating topic about Indian heritage! ${message} touches on the rich cultural tapestry of India. While I'd love to provide more detailed information, I can share that India's heritage spans thousands of years with diverse traditions, magnificent architecture, and vibrant festivals.`,
-      `Thank you for asking about "${message}"! India's cultural heritage is incredibly vast and diverse. Each region has unique traditions, art forms, and historical significance. Would you like to know about any specific monument, festival, or cultural practice?`,
-      `I appreciate your interest in "${message}"! Indian heritage encompasses ancient civilizations, magnificent monuments, classical arts, vibrant festivals, and diverse traditions. Is there a particular aspect of Indian culture you'd like to explore further?`,
+      `Great question about "${message}"! International travel can be exciting and I'm here to help. Whether you need visa info, flight tips, destination guides, or packing advice, feel free to ask. What specific aspect of your travel plans can I help with?`,
+      `Thanks for asking about "${message}"! Planning a trip involves many details - from visas and flights to accommodation and activities. I can help with all of these. What would you like to know more about?`,
+      `I'd love to help with "${message}"! Travel planning is my specialty. Whether it's finding the best destinations, understanding visa requirements, or getting packing tips, I've got you covered. What details do you need?`,
     ];
 
     return genericResponses[
@@ -260,24 +266,37 @@ If the question is not related to Indian heritage, politely redirect the convers
 
   const getBotSuggestions = (userMessage, botResponse) => {
     const suggestions = [];
+    const lowerMessage = userMessage.toLowerCase();
 
-    if (userMessage.toLowerCase().includes("taj mahal")) {
+    if (lowerMessage.includes("visa") || lowerMessage.includes("passport")) {
       suggestions.push(
-        "Tell me about other Mughal monuments",
-        "How to visit Taj Mahal?",
-        "Similar monuments in India"
+        "What documents do I need?",
+        "How long does visa processing take?",
+        "Tips for visa interview"
       );
-    } else if (userMessage.toLowerCase().includes("diwali")) {
+    } else if (lowerMessage.includes("flight") || lowerMessage.includes("cheap")) {
       suggestions.push(
-        "Other Indian festivals",
-        "How to celebrate Diwali?",
-        "Regional Diwali traditions"
+        "Best time to book flights",
+        "How to find airline deals",
+        "Tips for long-haul flights"
       );
-    } else if (userMessage.toLowerCase().includes("dance")) {
+    } else if (lowerMessage.includes("pack") || lowerMessage.includes("luggage")) {
       suggestions.push(
-        "Other classical dances",
-        "Where to learn Bharatanatyam?",
-        "Indian folk dances"
+        "Carry-on essentials",
+        "What not to pack",
+        "Packing for different climates"
+      );
+    } else if (lowerMessage.includes("currency") || lowerMessage.includes("money")) {
+      suggestions.push(
+        "Best travel cards",
+        "ATM withdrawal tips abroad",
+        "Budgeting for travel"
+      );
+    } else if (lowerMessage.includes("safe") || lowerMessage.includes("solo")) {
+      suggestions.push(
+        "Solo travel destinations",
+        "Travel insurance tips",
+        "Emergency contacts abroad"
       );
     }
 
@@ -343,26 +362,28 @@ If the question is not related to Indian heritage, politely redirect the convers
           muted
           loop
           className="absolute inset-0 w-full h-full object-cover"
-          src="https://res.cloudinary.com/bharatverse/video/upload/v1766498836/zqbrec6oay46vvkmtfxq.mp4"
+          src="https://res.cloudinary.com/bharatverse/video/upload/v1769873152/21118-315137091_pwwezs.mp4"
         />
-        <div className="relative z-10 flex flex-col items-start justify-start pl-8 md:pl-16 pt-12">
-          <div className="bg-black/40 rounded-2xl px-8 py-8 shadow-2xl backdrop-blur-md space-y-4 w-fit max-w-3xl text-center">
+        <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
+          <div className="text-center space-y-6 max-w-4xl px-4">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              className="text-6xl md:text-7xl font-heritage font-extrabold tracking-wider bg-gradient-to-r from-orange-400 via-yellow-300 to-pink-500 bg-clip-text text-transparent drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)] mb-2 select-none"
+              className="text-6xl md:text-8xl font-serif font-normal tracking-[0.15em] text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)] uppercase"
+              style={{ fontFamily: "'Playfair Display', 'Times New Roman', serif" }}
             >
-              Namaste
+              Explore the<br />Unseen
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.12, duration: 0.6 }}
-              className="text-2xl md:text-3xl font-light text-white/90 max-w-xl drop-shadow-lg tracking-tight"
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="text-lg md:text-xl font-light text-white/90 max-w-2xl mx-auto drop-shadow-lg tracking-wide"
+              style={{ fontFamily: "'Georgia', serif" }}
             >
-              Your AI-powered gateway to India's timeless heritage, culture, and
-              traditions
+              "To travel is to live. Embark on a journey that transcends
+              boundaries and creates <span className="text-cyan-300 italic">timeless memories</span>."
             </motion.p>
           </div>
         </div>
@@ -372,9 +393,9 @@ If the question is not related to Indian heritage, politely redirect the convers
         {/* Quick Questions */}
         <div className="mb-8">
           <div className="flex items-center justify-center mb-4">
-            <Lightbulb className="mr-2 text-saffron-600" size={24} />
+            <Lightbulb className="mr-2 text-blue-600" size={24} />
             <h2 className="text-xl font-semibold text-gray-800">
-              Quick Questions to Get Started
+              Quick Travel Questions
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -389,13 +410,13 @@ If the question is not related to Indian heritage, politely redirect the convers
                   whileTap={{ scale: 0.98 }}
                   transition={{ delay: index * 0.1 }}
                   onClick={() => handleQuickQuestion(question.text)}
-                  className="relative group p-6 rounded-2xl bg-white/40 backdrop-blur-xl border border-white/50 shadow-xl hover:shadow-2xl hover:border-orange-300 transition-all duration-300 overflow-hidden"
+                  className="relative group p-6 rounded-2xl bg-white/40 backdrop-blur-xl border border-white/50 shadow-xl hover:shadow-2xl hover:border-blue-300 transition-all duration-300 overflow-hidden"
                 >
                   {/* Animated gradient border */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 opacity-0 group-hover:opacity-20 transition-opacity"></div>
 
                   <div className="relative z-10 flex items-start space-x-4">
-                    <div className="w-14 h-14 bg-gradient-to-br from-orange-400 to-pink-500 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all">
+                    <div className="w-14 h-14 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all">
                       <IconComponent className="text-white" size={26} />
                     </div>
                     <div className="text-left">
@@ -653,7 +674,7 @@ If the question is not related to Indian heritage, politely redirect the convers
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Ask me about Indian heritage, monuments, festivals, arts, or traditions..."
+                  placeholder="Ask me about visas, flights, destinations, travel tips, currency, safety..."
                   className="w-full resize-none px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-saffron-500 focus:border-transparent outline-none max-h-32"
                   rows="1"
                   style={{
@@ -708,12 +729,11 @@ If the question is not related to Indian heritage, politely redirect the convers
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-heritage font-bold mb-4 bg-gradient-to-r from-orange-600 via-red-500 to-pink-600 bg-clip-text text-transparent">
-              Why Choose Safar360 AI?
+            <h2 className="text-4xl md:text-5xl font-heritage font-bold mb-4 bg-gradient-to-r from-cyan-600 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+              Why Choose Safar360 Travel Companion?
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Experience India's heritage like never before with our intelligent
-              guide
+              Your complete AI assistant for international travel planning and support
             </p>
           </motion.div>
 
@@ -743,11 +763,11 @@ If the question is not related to Indian heritage, politely redirect the convers
                 </motion.div>
 
                 <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                  Smart Suggestions
+                  Personalized Recommendations
                 </h3>
                 <p className="text-gray-600 leading-relaxed mb-4">
-                  Get personalized follow-up questions and topic suggestions
-                  based on your interests
+                  Get tailored travel suggestions based on your preferences,
+                  budget, and travel style
                 </p>
 
                 {/* Arrow icon that animates on hover */}
@@ -782,11 +802,11 @@ If the question is not related to Indian heritage, politely redirect the convers
                 </motion.div>
 
                 <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors">
-                  Location Aware
+                  Worldwide Coverage
                 </h3>
                 <p className="text-gray-600 leading-relaxed mb-4">
-                  Discover heritage sites near you with real-time location-based
-                  recommendations
+                  Get expert advice for any destination around the globe -
+                  from popular hotspots to hidden gems
                 </p>
 
                 <motion.div
@@ -820,11 +840,11 @@ If the question is not related to Indian heritage, politely redirect the convers
                 </motion.div>
 
                 <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">
-                  Expert Knowledge
+                  Travel Expert Knowledge
                 </h3>
                 <p className="text-gray-600 leading-relaxed mb-4">
-                  Trained on authentic heritage content and verified expert
-                  sources from across India
+                  Powered by AI trained on travel guides, visa requirements,
+                  and real traveler experiences
                 </p>
 
                 <motion.div

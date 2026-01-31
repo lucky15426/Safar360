@@ -844,7 +844,7 @@ const MapPage = () => {
     },
   ];
 
- 
+
   useEffect(() => {
     let filtered = allSites.filter((site) => {
       const q = searchQuery.toLowerCase();
@@ -862,7 +862,7 @@ const MapPage = () => {
     setFilteredSites(filtered);
   }, [searchQuery, selectedRegion, selectedType]);
 
- 
+
   const createCustomIcon = (type, region, isSelected = false) => {
     let color = "#3b82f6";
     let emoji = "📍";
@@ -1157,56 +1157,56 @@ const MapPage = () => {
                 )}
                 eventHandlers={{ click: () => setSelectedSite(site) }}
               >
-                
-                  <Popup>
-                    <div className="w-80">
-                      <img
-                        src={site.image}
-                        alt={site.title}
-                        className="w-full h-40 object-cover rounded-lg mb-3"
-                      />
-                      <div className="mb-3">
-                        <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800 mb-2">
-                          {site.type}
-                        </span>
-                        <h3 className="font-bold text-lg mb-1">{site.title}</h3>
-                        <p className="text-sm text-gray-600 mb-2">{site.state}</p>
+
+                <Popup>
+                  <div className="w-80">
+                    <img
+                      src={site.image}
+                      alt={site.title}
+                      className="w-full h-40 object-cover rounded-lg mb-3"
+                    />
+                    <div className="mb-3">
+                      <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800 mb-2">
+                        {site.type}
+                      </span>
+                      <h3 className="font-bold text-lg mb-1">{site.title}</h3>
+                      <p className="text-sm text-gray-600 mb-2">{site.state}</p>
+                    </div>
+                    <p className="text-sm text-gray-700 mb-3">{site.description}</p>
+
+                    <div className="space-y-2 mb-4 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-yellow-600">⭐ {site.rating}</span>
+                        <span className="text-gray-600">{site.visitors}</span>
                       </div>
-                      <p className="text-sm text-gray-700 mb-3">{site.description}</p>
-
-                      <div className="space-y-2 mb-4 text-sm">
-                        <div className="flex justify-between">
-                          <span className="text-yellow-600">⭐ {site.rating}</span>
-                          <span className="text-gray-600">{site.visitors}</span>
-                        </div>
-                        <div className="text-gray-600">
-                          <p>Hours: {site.openHours}</p>
-                          <p>Fee: {site.entryFee}</p>
-                        </div>
-                      </div>
-
-                      <div className="space-y-2">
-                        {isRouteMode && (
-                          <button
-                            onClick={() => addToRoute(site)}
-                            className="w-full bg-green-600 text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors"
-                          >
-                            Add to Route
-                          </button>
-                        )}
-
-                        <button
-                          onClick={() => navigateFromLiveLocation(site)}
-                          className="w-full bg-blue-600 text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
-                        >
-                          <MapPin size={16} />
-                          Navigate from My Location
-                        </button>
+                      <div className="text-gray-600">
+                        <p>Hours: {site.openHours}</p>
+                        <p>Fee: {site.entryFee}</p>
                       </div>
                     </div>
-                  </Popup>
 
-                
+                    <div className="space-y-2">
+                      {isRouteMode && (
+                        <button
+                          onClick={() => addToRoute(site)}
+                          className="w-full bg-green-600 text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors"
+                        >
+                          Add to Route
+                        </button>
+                      )}
+
+                      <button
+                        onClick={() => navigateFromLiveLocation(site)}
+                        className="w-full bg-blue-600 text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+                      >
+                        <MapPin size={16} />
+                        Navigate from My Location
+                      </button>
+                    </div>
+                  </div>
+                </Popup>
+
+
               </Marker>
             ))}
 

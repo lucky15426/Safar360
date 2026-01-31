@@ -79,58 +79,54 @@ const UploadPage = () => {
     },
   ];
 
-  const indianStates = [
-    "Andhra Pradesh",
-    "Arunachal Pradesh",
-    "Assam",
-    "Bihar",
-    "Chhattisgarh",
-    "Goa",
-    "Gujarat",
-    "Haryana",
-    "Himachal Pradesh",
-    "Jharkhand",
-    "Karnataka",
-    "Kerala",
-    "Madhya Pradesh",
-    "Maharashtra",
-    "Manipur",
-    "Meghalaya",
-    "Mizoram",
-    "Nagaland",
-    "Odisha",
-    "Punjab",
-    "Rajasthan",
-    "Sikkim",
-    "Tamil Nadu",
-    "Telangana",
-    "Tripura",
-    "Uttar Pradesh",
-    "Uttarakhand",
-    "West Bengal",
-    "Delhi",
-    "Jammu and Kashmir",
-    "Ladakh",
+  const countries = [
+    "United States",
+    "United Kingdom",
+    "India",
+    "France",
+    "Italy",
+    "Spain",
+    "Japan",
+    "Germany",
+    "Canada",
+    "Australia",
+    "Brazil",
+    "Mexico",
+    "Greece",
+    "Switzerland",
+    "Thailand",
+    "Singapore",
+    "United Arab Emirates",
+    "Netherlands",
+    "Norway",
+    "Switzerland",
+    "New Zealand",
+    "South Africa",
+    "Emarates",
+    "Saudi Arabia",
+    "Turkey",
+    "Egypt",
+    "Vietnam",
+    "Indonesia",
+    "Korea",
   ];
 
   const categories = [
     "Hidden Tourist Place",
-    "Ancient Temple",
-    "Historical Fort",
-    "Royal Palace",
-    "Archaeological Site",
-    "Natural Heritage",
-    "Folk Art Tradition",
-    "Traditional Craft",
-    "Festival Site",
-    "Architectural Marvel",
-    "Cultural Landscape",
-    "Hidden Village",
-    "Sacred Grove",
-    "Stepwell",
-    "Cave Complex",
-    "Rock Art",
-    "Living Heritage",
+    "Mountain Retreat",
+    "Beaches & Islands",
+    "Urban Exploration",
+    "Historical Landmark",
+    "Nature Sanctuary",
+    "Cultural Experience",
+    "Adventure Spot",
+    "Food & Culinary",
+    "Village & Rural",
+    "Spiritual Site",
+    "Modern Architecture",
+    "Art Gallery",
+    "Photography Point",
+    "Local Secret",
     "Other",
   ];
 
@@ -494,8 +490,8 @@ const UploadPage = () => {
                 type="text"
                 value={formData.title}
                 onChange={(e) => handleInputChange("title", e.target.value)}
-                placeholder="Name of the heritage site or tradition"
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
+                placeholder="Name of the travel destination or experience"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                 required
               />
             </div>
@@ -507,7 +503,7 @@ const UploadPage = () => {
               <select
                 value={formData.category}
                 onChange={(e) => handleInputChange("category", e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                 required
               >
                 <option value="">Select category</option>
@@ -528,8 +524,8 @@ const UploadPage = () => {
                 onChange={(e) =>
                   handleInputChange("description", e.target.value)
                 }
-                placeholder="Detailed description of the heritage site"
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none h-32 resize-none"
+                placeholder="Detailed description of the destination"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none h-32 resize-none"
                 required
               />
               <p className="text-sm text-gray-500 mt-1">
@@ -548,7 +544,7 @@ const UploadPage = () => {
                 className="rounded border-gray-300"
               />
               <label htmlFor="hidden" className="text-sm text-gray-700">
-                This is a hidden/lesser-known heritage site
+                This is a hidden/lesser-known travel gem
               </label>
             </div>
           </div>
@@ -560,18 +556,18 @@ const UploadPage = () => {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  State *
+                  Country *
                 </label>
                 <select
                   value={formData.state}
                   onChange={(e) => handleInputChange("state", e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                   required
                 >
-                  <option value="">Select state</option>
-                  {indianStates.map((state) => (
-                    <option key={state} value={state}>
-                      {state}
+                  <option value="">Select country</option>
+                  {countries.map((country) => (
+                    <option key={country} value={country}>
+                      {country}
                     </option>
                   ))}
                 </select>
@@ -585,8 +581,8 @@ const UploadPage = () => {
                   type="text"
                   value={formData.city}
                   onChange={(e) => handleInputChange("city", e.target.value)}
-                  placeholder="Nearest city or district"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
+                  placeholder="City or region"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                   required
                 />
               </div>
@@ -604,7 +600,7 @@ const UploadPage = () => {
                     handleInputChange("coordinates.lat", e.target.value)
                   }
                   placeholder="Latitude"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                   step="any"
                 />
               </div>
@@ -620,7 +616,7 @@ const UploadPage = () => {
                     handleInputChange("coordinates.lng", e.target.value)
                   }
                   placeholder="Longitude"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                   step="any"
                 />
               </div>
@@ -646,7 +642,7 @@ const UploadPage = () => {
                   handleInputChange("howToReach", e.target.value)
                 }
                 placeholder="Detailed directions on how to reach this place"
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none h-24 resize-none"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none h-24 resize-none"
               />
             </div>
           </div>
@@ -661,11 +657,10 @@ const UploadPage = () => {
               </label>
 
               <div
-                className={`border-2 border-dashed rounded-xl p-8 text-center transition-colors cursor-pointer ${
-                  dragActive
-                    ? "border-orange-500 bg-orange-50"
-                    : "border-gray-300 hover:border-orange-400"
-                }`}
+                className={`border-2 border-dashed rounded-xl p-8 text-center transition-colors cursor-pointer ${dragActive
+                  ? "border-blue-500 bg-blue-50"
+                  : "border-gray-300 hover:border-blue-400"
+                  }`}
                 onDragEnter={(e) => {
                   e.preventDefault();
                   setDragActive(true);
@@ -686,7 +681,7 @@ const UploadPage = () => {
                   Drag & drop images or click to browse
                 </p>
                 <p className="text-sm text-gray-600">
-                  High-quality images showcase the heritage site better
+                  High-quality images showcase the destination better
                 </p>
 
                 <input
@@ -757,7 +752,7 @@ const UploadPage = () => {
                     ) : (
                       <button
                         onClick={startAudioRecording}
-                        className="px-6 py-3 rounded-xl font-semibold bg-orange-500 text-white hover:bg-orange-600 transition-colors"
+                        className="px-6 py-3 rounded-xl font-semibold bg-blue-500 text-white hover:bg-blue-600 transition-colors"
                       >
                         Start Recording
                       </button>
@@ -779,14 +774,14 @@ const UploadPage = () => {
           <div className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Cultural Significance *
+                Why is it special? *
               </label>
               <textarea
                 value={formData.culturalSignificance}
                 onChange={(e) =>
                   handleInputChange("culturalSignificance", e.target.value)
                 }
-                placeholder="Explain the cultural, historical, or spiritual importance"
+                placeholder="Explain why this place is worth visiting"
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none h-32 resize-none"
                 required
               />
@@ -843,12 +838,12 @@ const UploadPage = () => {
                 {formData.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center space-x-1 bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm"
+                    className="inline-flex items-center space-x-1 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
                   >
                     <span>{tag}</span>
                     <button
                       onClick={() => removeTag(tag)}
-                      className="text-orange-600 hover:text-orange-800"
+                      className="text-blue-600 hover:text-blue-800"
                     >
                       ×
                     </button>
@@ -864,7 +859,7 @@ const UploadPage = () => {
                     <button
                       key={tag}
                       onClick={() => addTag(tag)}
-                      className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-orange-100 hover:text-orange-800 transition-colors"
+                      className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-blue-100 hover:text-blue-800 transition-colors"
                     >
                       + {tag}
                     </button>
@@ -935,7 +930,7 @@ const UploadPage = () => {
               <p className="text-sm text-blue-700">
                 <strong>Important:</strong> Your submission will be reviewed by
                 our team before publishing. Thank you for contributing to
-                India's heritage preservation!
+                our global travel community!
               </p>
             </div>
 
@@ -958,12 +953,11 @@ const UploadPage = () => {
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-8">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-4">
-            Share a Hidden Heritage Gem
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-4">
+            Share Your Travel Discovery
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Help preserve India's cultural heritage by sharing lesser-known
-            sites and traditions from your region. No login required.
+            Inspire others by sharing hidden gems and amazing experiences from your travels around the world.
           </p>
         </div>
 
@@ -973,11 +967,10 @@ const UploadPage = () => {
               <React.Fragment key={step.id}>
                 <div className="flex flex-col items-center flex-shrink-0">
                   <div
-                    className={`w-12 h-12 rounded-full flex items-center justify-center font-bold transition-all duration-300 ${
-                      currentStep >= step.id
-                        ? "bg-orange-500 text-white"
-                        : "bg-gray-200 text-gray-500"
-                    }`}
+                    className={`w-12 h-12 rounded-full flex items-center justify-center font-bold transition-all duration-300 ${currentStep >= step.id
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-200 text-gray-500"
+                      }`}
                   >
                     {currentStep > step.id ? (
                       <CheckCircle size={20} />
@@ -987,11 +980,10 @@ const UploadPage = () => {
                   </div>
                   <div className="text-center mt-2">
                     <div
-                      className={`font-semibold text-sm ${
-                        currentStep >= step.id
-                          ? "text-orange-600"
-                          : "text-gray-500"
-                      }`}
+                      className={`font-semibold text-sm ${currentStep >= step.id
+                        ? "text-blue-600"
+                        : "text-gray-500"
+                        }`}
                     >
                       {step.title}
                     </div>
@@ -1000,9 +992,8 @@ const UploadPage = () => {
 
                 {index < steps.length - 1 && (
                   <div
-                    className={`flex-1 h-1 mx-4 transition-all duration-300 ${
-                      currentStep > step.id ? "bg-orange-500" : "bg-gray-200"
-                    }`}
+                    className={`flex-1 h-1 mx-4 transition-all duration-300 ${currentStep > step.id ? "bg-blue-500" : "bg-gray-200"
+                      }`}
                   />
                 )}
               </React.Fragment>
@@ -1040,7 +1031,7 @@ const UploadPage = () => {
             {currentStep < steps.length ? (
               <button
                 onClick={nextStep}
-                className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold rounded-xl hover:shadow-lg transition"
+                className="px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-bold rounded-xl hover:shadow-lg transition"
               >
                 Continue →
               </button>
@@ -1048,7 +1039,7 @@ const UploadPage = () => {
               <button
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className="px-8 py-3 bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold rounded-xl hover:shadow-lg transition disabled:opacity-50"
+                className="px-8 py-3 bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-bold rounded-xl hover:shadow-lg transition disabled:opacity-50"
               >
                 {isSubmitting ? "Submitting..." : "Submit for Review"}
               </button>

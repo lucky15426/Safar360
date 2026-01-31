@@ -227,9 +227,9 @@ const UploadForm = ({ user, onSubmit, onCancel }) => {
       // Process tags - convert comma-separated string to array
       const tagsArray = formData.tags
         ? formData.tags
-            .split(",")
-            .map((tag) => tag.trim())
-            .filter((tag) => tag.length > 0)
+          .split(",")
+          .map((tag) => tag.trim())
+          .filter((tag) => tag.length > 0)
         : [];
 
       const submissionData = {

@@ -27,7 +27,7 @@ export async function generateItinerary(params) {
     if ([6, 7, 8, 9].includes(m)) return "monsoon (avoid plains - choose western ghats, northeast states)";
     return "autumn (best for most of India)";
   };
-  
+
   const seasonalContext = getSeasonalContext(month);
 
   const isAnyState = !state || state === "any";
@@ -144,8 +144,8 @@ Generate NOW:
 
     let itinerary;
     try {
-      const jsonMatch = text.match(/\`\`\`json\n?([\s\S]*?)\n?\`\`\`/) || 
-                        text.match(/\{[\s\S]*\}/);
+      const jsonMatch = text.match(/\`\`\`json\n?([\s\S]*?)\n?\`\`\`/) ||
+        text.match(/\{[\s\S]*\}/);
       itinerary = JSON.parse(jsonMatch ? jsonMatch[1] || jsonMatch[0] : text);
     } catch (parseError) {
       console.error("JSON Parse Error:", parseError);
