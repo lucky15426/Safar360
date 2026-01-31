@@ -4,7 +4,7 @@ import { MapPin, Sparkles, ArrowRight, RotateCcw, Zap } from "lucide-react";
 import GeminiItineraryForm from "../components/GeminiItineraryForm";
 import GeminiItineraryDisplay from "../components/GeminiItineraryDisplay";
 import SimpleMarkdownDisplay from "../components/SimpleMarkdownDisplay";
-import heroBgImage from "../assets/it-6.jpg"; // Fallback/Unused but kept for import safety
+
 
 // New optimized component for video suggestion - REMOVED per user request
 
@@ -70,17 +70,17 @@ const ItineraryPlanner = ({ selectedItem }) => {
         {/* Background Video */}
         <div className="absolute inset-0 z-0">
           {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-slate-950/40 z-10 transition-opacity duration-300 hover:bg-slate-950/30"></div>
+          <div className="absolute inset-0 bg-slate-950/10 z-10 transition-opacity duration-300 hover:bg-slate-950/10"></div>
           <iframe
             className="absolute top-1/2 left-1/2 w-[177.77%] h-[150%] min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
-            src="https://www.youtube.com/embed/G5RpJwCJDqc?autoplay=1&mute=1&loop=1&playlist=G5RpJwCJDqc&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&vq=hd2160&enablejsapi=1"
+            src="https://www.youtube.com/embed/G5RpJwCJDqc?autoplay=1&mute=1&loop=1&playlist=G5RpJwCJDqc&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&vq=hd4320&vq=highres&hd=1&enablejsapi=1"
             title="Background Video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             style={{ pointerEvents: 'none' }}
           ></iframe>
           {/* Custom Video Suggestion Overlay - REMOVED */}
           {/* Gradient fade at bottom to blend into next section */}
-          <div className="absolute bottom-0 w-full h-40 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent z-20"></div>
+          <div className="absolute bottom-0 w-full h-40 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent z-20"></div>
         </div>
 
         {/* Hero Content Overlay */}

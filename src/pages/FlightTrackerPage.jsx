@@ -97,61 +97,77 @@ const FlightTrackerPage = () => {
         <div className="min-h-screen bg-slate-50 font-sans text-slate-900 pb-20">
             {/* 
                 HERO / SEARCH SECTION 
-                Video Background & Ocean Theme
+                Full Screen Video Background & Premium Theme
             */}
-            <div className="relative pt-32 pb-32 px-6 shadow-2xl overflow-hidden min-h-[650px] flex flex-col justify-center">
+            <div className="relative h-screen px-6 shadow-2xl overflow-hidden flex flex-col justify-center items-center">
 
-                {/* VIDEO BACKGROUND (User Requested YouTube HD - JiJ0r9Ig74A) */}
-                <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
+                {/* VIDEO BACKGROUND */}
+                <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden bg-slate-900">
                     <iframe
-                        className="absolute top-1/2 left-1/2 w-[177.77vh] h-[100vw] min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover scale-110 pointer-events-none"
-                        src="https://www.youtube-nocookie.com/embed/JiJ0r9Ig74A?autoplay=1&mute=1&controls=0&loop=1&playlist=JiJ0r9Ig74A&playsinline=1&start=14&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1"
+                        className="absolute top-1/2 left-1/2 w-[177.77vh] h-[100vw] min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover scale-110 pointer-events-none opacity-85"
+                        src="https://www.youtube-nocookie.com/embed/GiXi58i7UEs?autoplay=1&mute=1&controls=0&loop=1&playlist=GiXi58i7UEs&playsinline=1&start=5&end=251&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&vq=hd4320&vq=highres&hd=1"
                         title="Flight Tracker Background"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                     ></iframe>
-                    {/* Overlay: Minimal tint for text readability, NO blur */}
-                    <div className="absolute inset-0 bg-blue-900/10 mix-blend-multiply" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-black/10" />
+                    {/* Multi-layered Overlays for depth and readability */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/10 via-transparent to-slate-950/10" />
+                    <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay" />
+                    {/* Decorative radial glow */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
                 </div>
 
-                <div className="max-w-5xl mx-auto text-center relative z-10 w-full">
+                <div className="max-w-6xl mx-auto text-center relative z-10 w-full px-4">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="inline-flex items-center space-x-3 bg-white/10 backdrop-blur-md px-5 py-2 rounded-full mb-8 border border-white/20 shadow-lg"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                        className="inline-flex items-center space-x-3 bg-white/5 backdrop-blur-xl px-6 py-2 rounded-full mb-10 border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)]"
                     >
-                        <Plane className="w-4 h-4 text-cyan-300" />
-                        <span className="text-xs font-bold tracking-[0.2em] uppercase text-cyan-50">Live Global Tracking</span>
+                        <Plane className="w-4 h-4 text-cyan-400 animate-pulse" />
+                        <span className="text-[10px] font-black tracking-[0.3em] uppercase text-cyan-100">SkyLink Live Tracker</span>
                     </motion.div>
 
-                    <h1 className="text-5xl md:text-8xl font-heritage font-bold mb-6 tracking-tight drop-shadow-2xl text-white">
-                        Track Your Flight
+                    <h1 className="text-6xl md:text-[7rem] font-heritage font-bold mb-8 tracking-tighter leading-none text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                        Track The <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Sky</span>
                     </h1>
-                    <p className="text-lg md:text-2xl text-blue-100/90 mb-16 max-w-3xl mx-auto font-light leading-relaxed drop-shadow-md">
-                        Real-time status, path visualization, and arrival estimates. <br className="hidden md:block" /> Connect with the sky in real-time.
-                    </p>
 
-                    <form onSubmit={fetchFlightData} className="relative max-w-xl mx-auto flex items-center justify-center transform hover:scale-[1.01] transition-transform duration-500">
-                        {/* Input Field Container */}
-                        <div className="relative w-full z-10 group">
-                            <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none">
-                                <Search className="h-6 w-6 text-slate-400 group-focus-within:text-blue-500 transition-colors" />
+                    <p className="text-xl md:text-3xl text-blue-50/80 mb-0 max-w-3xl mx-auto font-light leading-relaxed drop-shadow-lg">
+                        Real-time visualization and global flight intelligence at your fingertips.
+                    </p>
+                </div>
+
+                {/* Bottom Scroll Indicator - adjusted position for full screen */}
+                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-40">
+                    <div className="w-1 h-12 bg-gradient-to-b from-white to-transparent rounded-full" />
+                </div>
+            </div>
+
+            {/* SEARCH SECTION - POSITIONED BELOW THE FOLD */}
+            <div className="bg-white relative z-30 py-24">
+                <div className="max-w-2xl mx-auto px-6">
+                    <form onSubmit={fetchFlightData} className="relative group">
+                        {/* Glow effect around search */}
+                        <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-[2.5rem] blur opacity-15 group-focus-within:opacity-30 transition duration-500" />
+
+                        <div className="relative flex items-center">
+                            <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none">
+                                <Search className="h-7 w-7 text-slate-400 group-focus-within:text-blue-400 transition-colors" />
                             </div>
                             <input
                                 type="text"
                                 value={flightNumber}
                                 onChange={(e) => setFlightNumber(e.target.value.toUpperCase())}
-                                placeholder="Enter Flight Number (e.g. AI101)"
-                                className="w-full pl-16 pr-40 py-6 rounded-2xl text-slate-800 bg-white/95 backdrop-blur-xl placeholder-slate-400 shadow-[0_20px_40px_rgba(0,0,0,0.2)] focus:shadow-[0_25px_50px_rgba(37,99,235,0.25)] focus:outline-none focus:ring-4 focus:ring-blue-400/30 text-lg font-medium tracking-wide transition-all border border-white/20"
+                                placeholder="Flight Number (e.g. EK202)"
+                                className="w-full pl-16 pr-44 py-7 rounded-[2.2rem] text-slate-900 bg-slate-50 border border-slate-200 backdrop-blur-2xl placeholder-slate-400 shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500/30 text-xl font-medium tracking-wide transition-all"
                             />
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="absolute right-3 top-2.5 bottom-2.5 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-8 rounded-xl font-bold tracking-wide transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center space-x-2 shadow-lg hover:shadow-cyan-400/40"
+                                className="absolute right-3 top-3 bottom-3 bg-slate-900 hover:bg-black text-white px-10 rounded-[1.8rem] font-black text-sm tracking-widest transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center space-x-2 shadow-xl border border-white/10 hover:shadow-blue-500/20"
                             >
-                                {loading ? <RefreshCw className="w-5 h-5 animate-spin" /> : <><span>TRACK</span><ChevronRight className="w-4 h-4" /></>}
+                                {loading ? <RefreshCw className="w-5 h-5 animate-spin" /> : <span>SEARCH</span>}
                             </button>
                         </div>
                     </form>
@@ -160,10 +176,10 @@ const FlightTrackerPage = () => {
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="mt-12 inline-flex items-center space-x-3 text-red-50 bg-red-900/80 backdrop-blur-md px-6 py-3 rounded-2xl border border-red-500/50 shadow-lg"
+                            className="mt-8 flex items-center justify-center space-x-3 text-red-600 bg-red-50 px-8 py-4 rounded-2xl border border-red-100 shadow-sm"
                         >
-                            <AlertCircle className="w-5 h-5" />
-                            <span className="font-medium">{error}</span>
+                            <AlertCircle className="w-5 h-5 text-red-500" />
+                            <span className="font-semibold text-sm">{error}</span>
                         </motion.div>
                     )}
                 </div>
@@ -172,57 +188,65 @@ const FlightTrackerPage = () => {
             {/* 
                 FLIGHT STATUS DASHBOARD
             */}
-            <div className="max-w-7xl mx-auto px-6 -mt-32 relative z-20">
+            <div className="max-w-7xl mx-auto px-6 relative z-20">
                 <AnimatePresence>
                     {flightData && (
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95 }}
-                            className="bg-white rounded-3xl shadow-2xl border border-slate-200/60 overflow-hidden backdrop-blur-xl mb-20"
+                            transition={{ type: "spring", damping: 20 }}
+                            className="bg-white rounded-[3rem] shadow-[0_40px_100px_rgba(0,0,0,0.1)] border border-slate-200/50 overflow-hidden backdrop-blur-xl mb-24"
                         >
                             {/* Header: Route Info */}
-                            <div className="bg-white/80 border-b border-slate-100 p-8 md:p-10 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-                                <div>
-                                    <div className="flex items-center justify-center md:justify-start space-x-3 mb-3">
-                                        <div className="bg-slate-900 text-white px-4 py-1.5 rounded-lg text-sm font-bold tracking-wider">
+                            <div className="bg-white border-b border-slate-50 p-10 flex flex-col md:flex-row justify-between items-center gap-8">
+                                <div className="text-center md:text-left">
+                                    <div className="flex items-center justify-center md:justify-start space-x-4 mb-4">
+                                        <div className="bg-blue-600 text-white px-5 py-2 rounded-xl text-lg font-black italic tracking-tighter shadow-lg shadow-blue-500/20">
                                             {flightData.flight?.iata || flightNumber}
                                         </div>
-                                        <div className={`px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider ${flightData.flight_status === 'active' ? 'bg-emerald-100 text-emerald-800' :
-                                            flightData.flight_status === 'scheduled' ? 'bg-amber-100 text-amber-800' :
-                                                'bg-slate-100 text-slate-600'
+                                        <div className={`px-5 py-2 rounded-xl text-xs font-black uppercase tracking-[0.2em] shadow-sm ${flightData.flight_status === 'active' ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' :
+                                            flightData.flight_status === 'scheduled' ? 'bg-amber-50 text-amber-600 border border-amber-100' :
+                                                'bg-slate-50 text-slate-500 border border-slate-100'
                                             }`}>
                                             {flightData.flight_status}
                                         </div>
                                     </div>
-                                    <h2 className="text-3xl font-heritage font-bold text-slate-900">
+                                    <h2 className="text-4xl font-heritage font-bold text-slate-900 mb-1">
                                         {flightData.airline?.name}
                                     </h2>
-                                    <p className="text-slate-500 font-medium">Operated by {flightData.airline?.name}</p>
+                                    <p className="text-slate-400 flex items-center justify-center md:justify-start gap-2">
+                                        <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+                                        Primary Carrier Intelligence
+                                    </p>
                                 </div>
 
-                                <div className="flex items-center space-x-12 mt-8 md:mt-0">
+                                <div className="flex items-center space-x-16 bg-slate-50/50 p-8 rounded-[2rem] border border-slate-100 shadow-inner">
                                     <div className="text-center">
-                                        <div className="text-4xl font-black text-slate-900 tracking-tight">{flightData.departure?.iata}</div>
-                                        <div className="text-xs text-slate-400 font-bold uppercase tracking-widest mt-1">Origin</div>
-                                        <div className="text-xl font-bold text-blue-700 mt-2 font-mono">
+                                        <div className="text-5xl font-black text-slate-900 tracking-tighter drop-shadow-sm">{flightData.departure?.iata}</div>
+                                        <div className="text-[10px] text-blue-500 font-black uppercase tracking-[0.3em] mt-2 opacity-70">Dep. Origin</div>
+                                        <div className="text-xl font-bold text-slate-900 mt-2 font-mono">
                                             {new Date(flightData.departure?.scheduled).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                         </div>
                                     </div>
 
                                     <div className="flex flex-col items-center">
-                                        <div className="w-32 h-[2px] bg-slate-200 relative mb-3">
-                                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-2 border border-slate-100 rounded-full">
-                                                <Plane className="w-5 h-5 text-slate-400 rotate-90" />
+                                        <motion.div
+                                            animate={{ x: [0, 5, 0] }}
+                                            transition={{ repeat: Infinity, duration: 3 }}
+                                            className="w-40 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent relative mb-4"
+                                        >
+                                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-2 border border-blue-100 rounded-full shadow-md">
+                                                <Plane className="w-6 h-6 text-blue-600 rotate-90" />
                                             </div>
-                                        </div>
-                                        <div className="text-xs text-slate-400 font-bold uppercase tracking-widest">Duration: ~2h 30m</div>
+                                        </motion.div>
+                                        <div className="text-[10px] text-slate-400 font-black uppercase tracking-[0.1em]">NON-STOP FLIGHT</div>
                                     </div>
 
                                     <div className="text-center">
-                                        <div className="text-4xl font-black text-slate-900 tracking-tight">{flightData.arrival?.iata}</div>
-                                        <div className="text-xs text-slate-400 font-bold uppercase tracking-widest mt-1">Destination</div>
-                                        <div className="text-xl font-bold text-blue-700 mt-2 font-mono">
+                                        <div className="text-5xl font-black text-slate-900 tracking-tighter drop-shadow-sm">{flightData.arrival?.iata}</div>
+                                        <div className="text-[10px] text-cyan-600 font-black uppercase tracking-[0.3em] mt-2 opacity-70">Arr. Destination</div>
+                                        <div className="text-xl font-bold text-slate-900 mt-2 font-mono">
                                             {new Date(flightData.arrival?.scheduled).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                         </div>
                                     </div>
@@ -232,7 +256,7 @@ const FlightTrackerPage = () => {
                             {/* Content Grid: Map + Details */}
                             <div className="grid grid-cols-1 lg:grid-cols-3">
                                 {/* Map Section - Spans 2 cols */}
-                                <div className="lg:col-span-2 h-[600px] bg-slate-100 relative z-0">
+                                <div className="lg:col-span-2 h-[650px] bg-slate-50 relative z-0">
                                     {/* MAP CONTAINER */}
                                     {(flightData.live || (flightData.departure?.latitude)) ? (
                                         <MapContainer
@@ -241,7 +265,7 @@ const FlightTrackerPage = () => {
                                                 flightData.live?.longitude || flightData.departure.longitude || 0
                                             ]}
                                             zoom={5}
-                                            className="w-full h-full z-0 grayscale-[20%] contrast-[1.1]"
+                                            className="w-full h-full z-0 contrast-[1.05]"
                                             scrollWheelZoom={false}
                                             attributionControl={false}
                                         >
@@ -253,9 +277,14 @@ const FlightTrackerPage = () => {
                                             {flightData.live && (
                                                 <Marker position={[flightData.live.latitude, flightData.live.longitude]} icon={planeIcon}>
                                                     <Popup>
-                                                        <div className="font-bold">{flightData.flight?.iata}</div>
-                                                        <div>Alt: {flightData.live.altitude}m</div>
-                                                        <div>Spd: {flightData.live.speed_horizontal}km/h</div>
+                                                        <div className="font-bold flex items-center gap-2">
+                                                            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-ping" />
+                                                            {flightData.flight?.iata}
+                                                        </div>
+                                                        <div className="text-xs mt-1">
+                                                            <div>Alt: {Math.round(flightData.live.altitude * 3.28084).toLocaleString()} ft</div>
+                                                            <div>Speed: {Math.round(flightData.live.speed_horizontal * 0.539957)} kts</div>
+                                                        </div>
                                                     </Popup>
                                                 </Marker>
                                             )}
@@ -279,14 +308,12 @@ const FlightTrackerPage = () => {
                                                 <Polyline
                                                     positions={[
                                                         [Number(flightData.departure.latitude), Number(flightData.departure.longitude)],
-                                                        // If live exists, add it to path? Or just straight line for now
-                                                        // [flightData.live?.latitude, flightData.live?.longitude], 
                                                         [Number(flightData.arrival.latitude), Number(flightData.arrival.longitude)]
                                                     ]}
-                                                    color="#1e40af"
+                                                    color="#2563eb"
                                                     weight={3}
-                                                    dashArray="10, 10"
-                                                    opacity={0.7}
+                                                    dashArray="12, 12"
+                                                    opacity={0.6}
                                                 />
                                             )}
 
@@ -295,69 +322,81 @@ const FlightTrackerPage = () => {
                                     ) : (
                                         <div className="w-full h-full flex items-center justify-center text-slate-400 bg-slate-50">
                                             <div className="text-center">
-                                                <MapPin className="w-12 h-12 mx-auto mb-3 opacity-30 text-slate-500" />
-                                                <p className="font-medium">Map data unavailable for this flight.</p>
+                                                <MapPin className="w-16 h-16 mx-auto mb-4 opacity-20 text-slate-500" />
+                                                <p className="font-bold text-slate-400">Tactical Map Data Restricted</p>
                                             </div>
                                         </div>
                                     )}
+                                    {/* Map Data Badge */}
+                                    <div className="absolute bottom-6 left-6 z-10 bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl shadow-xl border border-slate-200 pointer-events-none">
+                                        <div className="flex items-center gap-2 text-[10px] font-black tracking-widest text-slate-900 uppercase">
+                                            <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse" />
+                                            High-Fidelity Telemetry Enabled
+                                        </div>
+                                    </div>
                                 </div>
 
                                 {/* Details Panel */}
-                                <div className="bg-white p-8 border-l border-slate-100">
-                                    <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">Live Telemetry</h3>
+                                <div className="bg-white p-10 border-l border-slate-100 flex flex-col justify-between">
+                                    <div>
+                                        <h3 className="text-[10px] font-black text-blue-600/50 uppercase tracking-[0.4em] mb-10">Network Payload</h3>
 
-                                    <div className="space-y-10">
-                                        <div className="flex items-start space-x-5">
-                                            <div className="p-3 bg-blue-50 rounded-2xl text-blue-700">
-                                                <Navigation className="w-6 h-6" />
-                                            </div>
-                                            <div>
-                                                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Altitude</div>
-                                                <div className="text-3xl font-black text-slate-900">
-                                                    {flightData.live?.altitude ? Math.round(flightData.live.altitude * 3.28084).toLocaleString() : 'N/A'} <span className="text-sm font-medium text-slate-400">ft</span>
+                                        <div className="space-y-12">
+                                            <div className="flex items-start space-x-6 group">
+                                                <div className="p-4 bg-blue-600 text-white rounded-2xl shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform">
+                                                    <Navigation className="w-6 h-6" />
+                                                </div>
+                                                <div>
+                                                    <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Flight Altitude</div>
+                                                    <div className="text-4xl font-black text-slate-900 leading-none">
+                                                        {flightData.live?.altitude ? Math.round(flightData.live.altitude * 3.28084).toLocaleString() : '--'} <span className="text-sm font-black text-blue-500 uppercase">FT</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div className="flex items-start space-x-5">
-                                            <div className="p-3 bg-cyan-50 rounded-2xl text-cyan-700">
-                                                <Clock className="w-6 h-6" />
-                                            </div>
-                                            <div>
-                                                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Ground Speed</div>
-                                                <div className="text-3xl font-black text-slate-900">
-                                                    {flightData.live?.speed_horizontal ? Math.round(flightData.live.speed_horizontal * 0.539957) : 'N/A'} <span className="text-sm font-medium text-slate-400">knots</span>
+                                            <div className="flex items-start space-x-6 group">
+                                                <div className="p-4 bg-cyan-500 text-white rounded-2xl shadow-lg shadow-cyan-500/20 group-hover:scale-110 transition-transform">
+                                                    <Clock className="w-6 h-6" />
+                                                </div>
+                                                <div>
+                                                    <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Ground Speed</div>
+                                                    <div className="text-4xl font-black text-slate-900 leading-none">
+                                                        {flightData.live?.speed_horizontal ? Math.round(flightData.live.speed_horizontal * 0.539957) : '--'} <span className="text-sm font-black text-cyan-500 uppercase">KTS</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div className="flex items-start space-x-5">
-                                            <div className="p-3 bg-slate-100 rounded-2xl text-slate-700">
-                                                <MapPin className="w-6 h-6" />
-                                            </div>
-                                            <div>
-                                                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Coordinates</div>
-                                                <div className="text-lg font-bold text-slate-900 font-mono tracking-tighter">
-                                                    {flightData.live?.latitude?.toFixed(2) || '--'} / {flightData.live?.longitude?.toFixed(2) || '--'}
+                                            <div className="flex items-start space-x-6 group">
+                                                <div className="p-4 bg-slate-900 text-white rounded-2xl shadow-lg group-hover:scale-110 transition-transform">
+                                                    <MapPin className="w-6 h-6" />
+                                                </div>
+                                                <div>
+                                                    <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Geospatial Pos.</div>
+                                                    <div className="text-xl font-bold text-slate-900 font-mono italic">
+                                                        {flightData.live?.latitude?.toFixed(4) || '---'} / {flightData.live?.longitude?.toFixed(4) || '---'}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className="mt-12 p-6 bg-slate-50/50 rounded-2xl border border-slate-100">
-                                        <h4 className="font-bold text-slate-800 mb-4 text-sm uppercase tracking-wide">Details</h4>
-                                        <ul className="space-y-3 text-sm text-slate-600">
-                                            <li className="flex justify-between border-b border-slate-200/50 pb-2">
-                                                <span>Aircraft</span>
-                                                <span className="font-bold text-slate-900">{flightData.aircraft?.iata || 'Unknown'}</span>
+                                    <div className="mt-16 p-8 bg-slate-50 rounded-3xl border border-slate-100 shadow-inner">
+                                        <div className="flex items-center gap-2 mb-6">
+                                            <div className="w-1 h-3 bg-blue-600 rounded-full" />
+                                            <h4 className="font-black text-slate-900 text-xs uppercase tracking-widest">Metadata</h4>
+                                        </div>
+                                        <ul className="space-y-4 text-sm">
+                                            <li className="flex justify-between items-center bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-100">
+                                                <span className="text-slate-400 font-medium">Aircraft</span>
+                                                <span className="font-black text-slate-900">{flightData.aircraft?.iata || 'TBD'}</span>
                                             </li>
-                                            <li className="flex justify-between border-b border-slate-200/50 pb-2">
-                                                <span>Terminal</span>
-                                                <span className="font-bold text-slate-900">{flightData.departure?.terminal || 'N/A'}</span>
+                                            <li className="flex justify-between items-center bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-100">
+                                                <span className="text-slate-400 font-medium">Terminal</span>
+                                                <span className="font-black text-slate-900">{flightData.departure?.terminal || '---'}</span>
                                             </li>
-                                            <li className="flex justify-between pt-1">
-                                                <span>Gate</span>
-                                                <span className="font-bold text-slate-900">{flightData.departure?.gate || 'N/A'}</span>
+                                            <li className="flex justify-between items-center bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-100">
+                                                <span className="text-slate-400 font-medium">Gate</span>
+                                                <span className="font-black text-slate-900">{flightData.departure?.gate || '---'}</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -367,27 +406,56 @@ const FlightTrackerPage = () => {
                     )}
                 </AnimatePresence>
 
-                {/* Empty State / How it works - RE-DESIGNED OCEAN BLUE THEME */}
+                {/* Empty State / How it works - PREMIUM REDESIGN */}
                 {!flightData && !loading && (
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-4 mb-20">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10 mb-32">
                         {[
-                            { icon: Search, title: "Search Flight", desc: "Enter your airline and flight number to instantly find your plane on the map." },
-                            { icon: Navigation, title: "Track Live", desc: "See real-time GPS position, altitude, and ground speed updates." },
-                            { icon: Clock, title: "Stay Updated", desc: "Get accurate arrival times, gate info, and delay notifications." }
+                            {
+                                icon: Search,
+                                title: "Instant Intelligence",
+                                desc: "Ingest live AIS data points from ground stations worldwide to pinpoint your specific aircraft.",
+                                gradient: "from-blue-600 to-indigo-700"
+                            },
+                            {
+                                icon: Navigation,
+                                title: "Telemetry Feed",
+                                desc: "Visualize real-time vector components including barometric altitude, vertical rate, and true airspeed.",
+                                gradient: "from-indigo-600 to-purple-700"
+                            },
+                            {
+                                icon: Clock,
+                                title: "Terminal Dynamics",
+                                desc: "Monitor precision turnaround times, gate allocation shifts, and tactical delay notifications.",
+                                gradient: "from-purple-600 to-pink-700"
+                            }
                         ].map((item, idx) => (
-                            <div key={idx} className="bg-white/90 backdrop-blur-lg p-10 rounded-3xl shadow-xl border border-white/40 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group overflow-hidden relative">
-                                {/* Decorative Gradient Background on Hover */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: idx * 0.1 }}
+                                className="bg-white p-12 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 text-center hover:shadow-[0_30px_70px_rgba(0,0,0,0.1)] hover:-translate-y-3 transition-all duration-500 group relative overflow-hidden"
+                            >
+                                {/* Active Gradient Background on Hover */}
+                                <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500`} />
 
-                                {/* Icon with Blue Gradient */}
-                                <div className="relative z-10 w-24 h-24 mx-auto bg-gradient-to-tr from-blue-100 to-cyan-50 text-blue-600 rounded-3xl flex items-center justify-center mb-6 shadow-inner group-hover:scale-110 transition-transform duration-300">
-                                    <item.icon className="w-10 h-10 group-hover:text-cyan-600 transition-colors" />
+                                {/* Animated Background Glow */}
+                                <div className={`absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br ${item.gradient} rounded-full blur-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-700`} />
+
+                                {/* Icon Wrapped in Premium Container */}
+                                <div className={`relative z-10 w-28 h-28 mx-auto bg-gradient-to-br ${item.gradient} p-[2px] rounded-[2rem] mb-10 group-hover:rotate-6 transition-all duration-500 shadow-xl shadow-blue-500/10`}>
+                                    <div className="w-full h-full bg-white rounded-[1.9rem] flex items-center justify-center">
+                                        <item.icon className="w-10 h-10 text-slate-900 group-hover:scale-110 transition-transform duration-500" />
+                                    </div>
                                 </div>
 
                                 {/* Text Content */}
-                                <h3 className="relative z-10 text-2xl font-heritage font-bold text-slate-900 mb-4">{item.title}</h3>
-                                <p className="relative z-10 text-slate-600 leading-relaxed font-light">{item.desc}</p>
-                            </div>
+                                <h3 className="relative z-10 text-2xl font-heritage font-bold text-slate-900 mb-6 tracking-tight group-hover:text-blue-600 transition-colors">{item.title}</h3>
+                                <p className="relative z-10 text-slate-500 leading-relaxed font-medium text-sm px-2 opacity-80 group-hover:opacity-100 transition-opacity">{item.desc}</p>
+
+                                {/* Decorative Line */}
+                                <div className={`w-12 h-1 mx-auto mt-8 bg-gradient-to-r ${item.gradient} rounded-full opacity-20 group-hover:opacity-100 transition-all duration-500 group-hover:w-20`} />
+                            </motion.div>
                         ))}
                     </div>
                 )}

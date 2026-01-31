@@ -6,7 +6,7 @@ import {
   Map as MapIcon, ArrowRight, DollarSign, ShieldAlert, Download, FileText, Loader
 } from "lucide-react";
 import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
+import { jsPDF } from "jspdf";
 
 const GeminiItineraryDisplay = ({ itinerary, formData }) => {
   const itineraryRef = useRef(null);

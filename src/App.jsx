@@ -25,7 +25,6 @@ import HiddenGemsPage from "./pages/HiddenGemsPage";
 
 import ChatPage from "./pages/ChatPage";
 import MapPage from "./pages/MapPage";
-import AccountPage from "./pages/AccountPage";
 import UploadPage from "./pages/UploadPage";
 import TourPage360 from "./pages/TourPage360";
 import FlightTrackerPage from "./pages/FlightTrackerPage";
