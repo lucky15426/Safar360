@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import useSoundEffect from "../hooks/useSoundEffect";
 import { Menu, X, User, Globe, MapPin, Backpack } from "lucide-react";
@@ -10,10 +11,43 @@ import {
 } from "@clerk/clerk-react";
 import { createOrUpdateUser } from "../services/userService";
 
-const Header = ({ currentPage, onPageChange }) => {
+// Route configuration matching App.jsx
+const ROUTES = {
+  home: "/",
+  "360tour": "/360tour",
+  gems: "/gems",
+  itinerary: "/itinerary",
+  chat: "/chat",
+  map: "/map",
+  checklist: "/checklist",
+  upload: "/upload",
+  tracker: "/tracker",
+  salahkar: "/salahkar",
+  "ask-safar": "/salahkar",
+};
+
+// Helper to get page id from pathname
+function getPageIdFromPath(pathname) {
+  if (pathname === "/") return "home";
+  return pathname.slice(1);
+}
+
+const Header = ({ searchQuery, onSearchChange }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { user: clerkUser, isLoaded, isSignedIn } = useUser();
+
+  // Get current page from URL
+  const currentPage = getPageIdFromPath(location.pathname);
+
+  // Navigation handler using router
+  const handleNavigation = (pageId) => {
+    const path = ROUTES[pageId] || "/";
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   // Sound Effects
   const playHoverSound = useSoundEffect("https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3", 0.15);
@@ -53,7 +87,7 @@ const Header = ({ currentPage, onPageChange }) => {
           <div className="flex-shrink-0 flex items-center">
             <button
               onClick={() => {
-                onPageChange("home");
+                handleNavigation("home");
                 setIsMenuOpen(false);
               }}
               className="flex items-center space-x-2 group"
@@ -69,42 +103,42 @@ const Header = ({ currentPage, onPageChange }) => {
           {/* Desktop Navigation Links - Restored & Prominent */}
           <nav className="hidden lg:flex items-center space-x-8">
             <button
-              onClick={() => onPageChange("home")}
+              onClick={() => handleNavigation("home")}
               onMouseEnter={playHoverSound}
               className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === 'home' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
             >
               Home
             </button>
             <button
-              onClick={() => onPageChange("360tour")}
+              onClick={() => handleNavigation("360tour")}
               onMouseEnter={playHoverSound}
               className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === '360tour' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
             >
               VR Tours
             </button>
             <button
-              onClick={() => onPageChange("gems")}
+              onClick={() => handleNavigation("gems")}
               onMouseEnter={playHoverSound}
               className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === 'gems' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
             >
               Hidden Gems
             </button>
             <button
-              onClick={() => onPageChange("itinerary")}
+              onClick={() => handleNavigation("itinerary")}
               onMouseEnter={playHoverSound}
               className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === 'itinerary' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
             >
               Itinerary
             </button>
             <button
-              onClick={() => onPageChange("tracker")}
+              onClick={() => handleNavigation("tracker")}
               onMouseEnter={playHoverSound}
               className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === 'tracker' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
             >
               Flights
             </button>
             <button
-              onClick={() => onPageChange("chat")}
+              onClick={() => handleNavigation("chat")}
               onMouseEnter={playHoverSound}
               className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === 'chat' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
             >
@@ -174,7 +208,7 @@ const Header = ({ currentPage, onPageChange }) => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: idx * 0.1 }}
                       onClick={() => {
-                        onPageChange(link.id);
+                        handleNavigation(link.id);
                         setIsMenuOpen(false);
                         playClickSound();
                       }}

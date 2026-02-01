@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 const API_BASE = "https://bharatverse11-new-recommender-system-nlp2.hf.space";
@@ -13,7 +14,8 @@ function getImageURL(item) {
   return `${API_BASE}${item.image}`;
 }
 
-export default function RecommendationsPage({ onBack }) {
+export default function RecommendationsPage() {
+  const navigate = useNavigate();
   const [input, setInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [results, setResults] = useState([]);
@@ -241,7 +243,7 @@ export default function RecommendationsPage({ onBack }) {
         className="fixed top-6 left-0 right-0 z-[60] px-4 md:px-6 flex justify-between items-start pointer-events-none"
       >
         <motion.button
-          onClick={onBack}
+          onClick={() => navigate(-1)}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           className="pointer-events-auto bg-white/10 backdrop-blur-md text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all border border-white/20 flex items-center justify-center group"
