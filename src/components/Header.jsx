@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import useSoundEffect from "../hooks/useSoundEffect";
-import { Menu, X, User, Globe, MapPin, Backpack } from "lucide-react";
+import { Menu, X, User, Globe, MapPin, Backpack, FolderOpen } from "lucide-react";
 import {
   useUser,
   SignInButton,
@@ -24,6 +24,7 @@ const ROUTES = {
   tracker: "/tracker",
   salahkar: "/salahkar",
   "ask-safar": "/salahkar",
+  vault: "/vault",
 };
 
 // Helper to get page id from pathname
@@ -76,6 +77,7 @@ const Header = ({ searchQuery, onSearchChange }) => {
     { id: "chat", label: "Support" },
     { id: "tracker", label: "Flight Tracker", icon: "Plane" },
     { id: "checklist", label: "Checklist", icon: "Backpack" },
+    { id: "vault", label: "Document Vault", icon: "FolderOpen" },
   ];
 
   return (
@@ -143,6 +145,13 @@ const Header = ({ searchQuery, onSearchChange }) => {
               className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === 'chat' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
             >
               Support
+            </button>
+            <button
+              onClick={() => handleNavigation("vault")}
+              onMouseEnter={playHoverSound}
+              className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === 'vault' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
+            >
+              Vault
             </button>
             <button
               onClick={() => {

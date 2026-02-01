@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useNavigate, useLocation } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { useNavigate, useLocation, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import { useUser, SignIn, useAuth } from "@clerk/clerk-react";
+import { useUser, useAuth } from "@clerk/clerk-react";
 import { Scroll } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import LoadingScreen from "./components/LoadingScreen";
@@ -33,17 +32,9 @@ import FlightTrackerPage from "./pages/FlightTrackerPage";
 import RecommendationsPage from "./pages/RecommendationsPage";
 import ItineraryPlanner from "./pages/ItineraryPlanner";
 import PreTripChecklist from './components/PreTripChecklist';
+import DocumentVault from './pages/DocumentVault';
 
 import { createOrUpdateUser } from "./services/userService";
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 60 * 1000,
-      cacheTime: 10 * 60 * 1000,
-    },
-  },
-});
 
 // Route configuration for easy management
 const ROUTES = {
@@ -58,6 +49,7 @@ const ROUTES = {
   tracker: "/tracker",
   salahkar: "/salahkar",
   "ask-safar": "/salahkar", // Alias for salahkar
+  vault: "/vault",
 };
 
 // Page titles for SEO
@@ -72,6 +64,7 @@ const PAGE_TITLES = {
   "/upload": "Upload Hidden Gem - Safar360",
   "/tracker": "Flight Tracker - Safar360",
   "/salahkar": "Ask Salahkar - Safar360",
+  "/vault": "Document Vault - Safar360",
 };
 
 // Helper function to get current page ID from path
@@ -81,8 +74,8 @@ function getPageIdFromPath(pathname) {
   return pathname.slice(1);
 }
 
-// Inner app component that uses router hooks
-function AppContent() {
+// Inner app component
+export default function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
@@ -185,7 +178,7 @@ function AppContent() {
           {/* Adjust main padding based on current page */}
           <main
             className={
-              hideHeaderFooter || currentPage === "home"
+              hideHeaderFooter || currentPage === "home" || currentPage === "tracker"
                 ? "min-h-screen"
                 : "min-h-screen pt-20"
             }
@@ -201,6 +194,7 @@ function AppContent() {
               <Route path="/upload" element={<UploadPage {...pageProps} />} />
               <Route path="/tracker" element={<FlightTrackerPage />} />
               <Route path="/salahkar" element={<RecommendationsPage />} />
+              <Route path="/vault" element={<DocumentVault {...pageProps} />} />
               {/* Fallback to home for unknown routes */}
               <Route path="*" element={<HomePage {...pageProps} />} />
             </Routes>
@@ -357,14 +351,4 @@ function AppContent() {
   );
 }
 
-function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <AppContent />
-      </BrowserRouter>
-    </QueryClientProvider>
-  );
-}
 
-export default App;
