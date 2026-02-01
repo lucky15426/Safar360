@@ -13,8 +13,8 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Force update v2.1
-console.log("Hidden Gems Page Loaded - v2.1");
+// Force update v2.2
+console.log("Hidden Gems Page Loaded - v2.2 (Descriptions Updated)");
 
 // Engine Imports
 import { getHiddenGems } from "../services/recommendationEngine";
@@ -259,15 +259,15 @@ const HiddenGemsPage = ({ onPageChange, addBookmark }) => {
                     alt={gem.city}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"
+                    referrerPolicy="no-referrer"
                     onError={(e) => {
                       console.warn("Image failed to load:", gem.image);
+                      // Keep the fallback, but the referrerPolicy should fix the primary load
                       e.target.onerror = null;
                       e.target.src = "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2000&auto=format&fit=crop"
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-90" />
-
-                  {/* Match Score Badge Removed */}
 
                   {/* Actions Overlay */}
                   <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-[-10px] group-hover:translate-y-0">
@@ -299,10 +299,9 @@ const HiddenGemsPage = ({ onPageChange, addBookmark }) => {
                   </h2>
 
                   {/* Why Hidden Section */}
-                  <div className="mb-4 bg-slate-800/50 p-3 rounded-lg border border-slate-700/50 overflow-hidden">
-                    <p className="text-cyan-200 text-xs italic flex items-start gap-2 line-clamp-3">
-                      {/* <Info className="w-3 h-3 mt-0.5 flex-shrink-0" /> */}
-                      "{gem.description}"
+                  <div className="mb-4 bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                    <p className="text-cyan-200 text-xs italic flex items-start gap-2">
+                      "{gem.why_hidden}"
                     </p>
                   </div>
 
