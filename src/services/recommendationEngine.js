@@ -47,13 +47,19 @@ export const getHiddenGems = ({ userLat, userLon, selectedCountry, preference = 
 
     // 1. FILTERING
     let gems = destinations.filter(dest => {
-        // Match country (case-insensitive) OR allow "All"
+        // Must match country (case-insensitive) OR allow "All"
         if (selectedCountry && selectedCountry !== "All" && dest.country.toLowerCase() !== selectedCountry.toLowerCase()) return false;
 
         // "Hidden Gem" Criteria:
-        // We relaxed the strict filtering because many "gems" (like Sigiriya) are popular but still worth recommending.
-        // Instead of hiding them, we will rely on the ranking/scoring to sort them.
-        return true;
+        // - Popularity < 40 (Slightly lenient to catch 'emerging' gems)
+        // - Crowd Level must be 'low' or 'medium' (exclude 'high')
+        // - Type must NOT be 'megacity' or 'capital'
+        const isHidden =
+            dest.popularity_score < 40 &&
+            dest.crowd_level !== 'high' &&
+            !['megacity', 'capital'].includes(dest.destination_type);
+
+        return isHidden;
     });
 
     // 2. SCORING & RANKING
@@ -103,13 +109,14 @@ export const getHiddenGems = ({ userLat, userLon, selectedCountry, preference = 
             city: gem.city,
             country: gem.country,
             distance_km: gem.distance_km,
-            why_hidden: `A ${gem.crowd_level}-crowd ${gem.destination_type} perfect for ${gem.travel_theme} lovers.`,
+            // Prefer the rich "why_hidden" from JSON, fallback to template if missing
+            why_hidden: gem.why_hidden || `A ${gem.crowd_level}-crowd ${gem.destination_type} perfect for ${gem.travel_theme} lovers.`,
+            description: gem.description, // Pass through the rich description!
             destination_type: gem.destination_type,
             travel_theme: gem.travel_theme,
             avg_budget_per_day: gem.avg_budget_per_day,
             safety_index: gem.safety_index,
             image: gem.image, // Pass the correct image path!
-            description: gem.description, // Pass the actual description
             match_score: gem.match_score,
             coordinates: { lat: gem.latitude, lon: gem.longitude }
         };
