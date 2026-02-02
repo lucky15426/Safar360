@@ -72,10 +72,10 @@ const Header = ({ searchQuery, onSearchChange }) => {
   const navLinks = [
     { id: "home", label: "Home" },
     { id: "360tour", label: "VR Tours" },
-    { id: "ask-safar", label: "Ask Safar" },
+    // { id: "ask-safar", label: "Ask Safar" },
     { id: "itinerary", label: "Trip Planning", icon: "MapPin" },
     { id: "gems", label: "Hidden Gems" },
-    { id: "chat", label: "Support" },
+    // { id: "chat", label: "Support" },
     { id: "tracker", label: "Flight Tracker", icon: "Plane" },
     { id: "checklist", label: "Checklist", icon: "Backpack" },
     { id: "vault", label: "Document Vault", icon: "FolderOpen" },

@@ -511,7 +511,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
                 { id: "360tour", title: "VR Previews", desc: "Experience destinations in 360°", icon: Camera, color: "bg-blue-500" },
                 { id: "gems", title: "Hidden Gems", desc: "Discover secret local spots", icon: MapPin, color: "bg-emerald-500" },
                 { id: "itinerary", title: "Itinerary Planner", desc: "Plan your trip with certainty", icon: Calendar, color: "bg-purple-500" },
-                { id: "chat", title: "Real-time Support", desc: "24/7 AI-powered travel help", icon: MessageCircle, color: "bg-sky-500" },
+                // { id: "chat", title: "Real-time Support", desc: "24/7 AI-powered travel help", icon: MessageCircle, color: "bg-sky-500" },
                 { id: "map", title: "Local Insights", desc: "Navigate like a local", icon: GlobeIcon, color: "bg-amber-500" },
                 { id: "checklist", title: "Trip Checklist", desc: "Never leave essentials behind", icon: CheckCircle, color: "bg-rose-500" },
                 { id: "360view", title: "360° View", desc: "Immersive panoramic experiences", icon: RotateCcw, color: "bg-cyan-600" },

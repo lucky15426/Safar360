@@ -222,7 +222,8 @@ export default function App() {
           )}
 
           {/* ✨ DIVINE SKY-BLUE SAFAR BUTTON - The Click Magnet ✨ */}
-          {currentPage !== "salahkar" && (
+          {/* TEMPORARILY HIDDEN - Set to true to show again */}
+          {false && currentPage !== "salahkar" && (
             <button
               onClick={() => handlePageChange("salahkar")}
               className="salahkar-trigger group"
