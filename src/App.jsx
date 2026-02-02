@@ -33,6 +33,7 @@ import RecommendationsPage from "./pages/RecommendationsPage";
 import ItineraryPlanner from "./pages/ItineraryPlanner";
 import PreTripChecklist from './components/PreTripChecklist';
 import DocumentVault from './pages/DocumentVault';
+import TourPage360 from './pages/TourPage360';
 
 import { createOrUpdateUser } from "./services/userService";
 
@@ -50,6 +51,7 @@ const ROUTES = {
   salahkar: "/salahkar",
   "ask-safar": "/salahkar", // Alias for salahkar
   vault: "/vault",
+  "360view": "/360view",
 };
 
 // Page titles for SEO
@@ -65,6 +67,7 @@ const PAGE_TITLES = {
   "/tracker": "Flight Tracker - Safar360",
   "/salahkar": "Ask Salahkar - Safar360",
   "/vault": "Document Vault - Safar360",
+  "/360view": "360° View - Safar360",
 };
 
 // Helper function to get current page ID from path
@@ -195,6 +198,7 @@ export default function App() {
               <Route path="/tracker" element={<FlightTrackerPage />} />
               <Route path="/salahkar" element={<RecommendationsPage />} />
               <Route path="/vault" element={<DocumentVault {...pageProps} />} />
+              <Route path="/360view" element={<TourPage360 onPageChange={handlePageChange} />} />
               {/* Fallback to home for unknown routes */}
               <Route path="*" element={<HomePage {...pageProps} />} />
             </Routes>

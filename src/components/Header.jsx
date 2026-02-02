@@ -25,6 +25,7 @@ const ROUTES = {
   salahkar: "/salahkar",
   "ask-safar": "/salahkar",
   vault: "/vault",
+  "360view": "/360view",
 };
 
 // Helper to get page id from pathname
@@ -78,6 +79,7 @@ const Header = ({ searchQuery, onSearchChange }) => {
     { id: "tracker", label: "Flight Tracker", icon: "Plane" },
     { id: "checklist", label: "Checklist", icon: "Backpack" },
     { id: "vault", label: "Document Vault", icon: "FolderOpen" },
+    { id: "360view", label: "360° View", icon: "Globe" },
   ];
 
   return (
@@ -147,6 +149,13 @@ const Header = ({ searchQuery, onSearchChange }) => {
               Support
             </button>
             <button
+              onClick={() => handleNavigation("360view")}
+              onMouseEnter={playHoverSound}
+              className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === '360view' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
+            >
+              360° View
+            </button>
+            <button
               onClick={() => handleNavigation("vault")}
               onMouseEnter={playHoverSound}
               className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === 'vault' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
@@ -155,8 +164,12 @@ const Header = ({ searchQuery, onSearchChange }) => {
             </button>
             <button
               onClick={() => {
-                const galleryEl = document.getElementById('explore-more-section');
-                if (galleryEl) galleryEl.scrollIntoView({ behavior: 'smooth' });
+                if (location.pathname === '/' || location.pathname === '') {
+                  const galleryEl = document.getElementById('explore-more-section');
+                  if (galleryEl) galleryEl.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                  navigate('/#explore-more-section');
+                }
               }}
               onMouseEnter={playHoverSound}
               className="text-[10px] font-bold tracking-[0.2em] uppercase text-sky-400/80 hover:text-sky-300 transition-all duration-300"

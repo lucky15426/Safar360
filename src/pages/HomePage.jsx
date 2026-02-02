@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useLocation } from "react-router-dom";
 import useSoundEffect from "../hooks/useSoundEffect";
 import {
   Play,
@@ -32,6 +33,7 @@ import Globe from "../components/3d/Globe";
 
 
 const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
+  const location = useLocation();
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
   const [isSearching, setIsSearching] = useState(false);
   const [stats, setStats] = useState({
@@ -189,7 +191,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
     {
       title: "VR Destination Tours",
       subtitle: "Explore Before You Book",
-      image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600",
+      image: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=600&auto=format&fit=crop",
       action: () => onPageChange("360tour"),
       icon: Camera,
     },
@@ -280,6 +282,21 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
       );
     }, 500);
   }, []);
+
+  // Handle hash-based scrolling (e.g., from Header "Explore More")
+  useEffect(() => {
+    if (location.hash === '#explore-more-section') {
+      const timer = setTimeout(() => {
+        const element = document.getElementById('explore-more-section');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+          // Optional: Clear hash after scroll if desired
+          // window.history.replaceState(null, '', window.location.pathname);
+        }
+      }, 500); // Small delay to ensure page is rendered
+      return () => clearTimeout(timer);
+    }
+  }, [location.hash]);
 
   const handleSearch = (query) => {
     setIsSearching(true);
@@ -497,7 +514,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
                 { id: "chat", title: "Real-time Support", desc: "24/7 AI-powered travel help", icon: MessageCircle, color: "bg-sky-500" },
                 { id: "map", title: "Local Insights", desc: "Navigate like a local", icon: GlobeIcon, color: "bg-amber-500" },
                 { id: "checklist", title: "Trip Checklist", desc: "Never leave essentials behind", icon: CheckCircle, color: "bg-rose-500" },
-                { id: "Ask Safar", title: "AI Guide", desc: "Personalized recommendations", icon: Sparkles, color: "bg-indigo-500" },
+                { id: "360view", title: "360° View", desc: "Immersive panoramic experiences", icon: RotateCcw, color: "bg-cyan-600" },
                 { id: "upload", title: "Share a Gem", desc: "Contribute to the community", icon: Play, color: "bg-teal-500" },
               ].map((feat, idx) => (
                 <motion.button
