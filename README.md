@@ -83,7 +83,7 @@
 
 The application is optimized for deployment on **Vercel**. 
 
-- **Live URL**: [Replace with your Vercel URL]
+
 - **GitHub**: [lucky15426/Safar360](https://github.com/lucky15426/Safar360)
 
 ---
@@ -92,8 +92,4 @@ The application is optimized for deployment on **Vercel**.
 
 Developed with passion for **VOYAGEHACK 3.0**, Safar360 aims to bridge the gap between imagination and reality for travelers worldwide.
 
-**Team Lead**: [Your Name/Handle]
-**Project Category**: Travel & Tourism / AI Innovation
 
----
-Developed by **BharatVerse Team** 🇮🇳
