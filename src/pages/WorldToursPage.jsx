@@ -328,13 +328,17 @@ const WorldToursPage = ({ onPageChange, setIsImmersiveMode }) => { // Accept upd
 
                 {/* YouTube Video Background - User Requested ID: ueeTs3BINtA */}
                 <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none w-screen h-screen bg-black">
+                    {/* YOUTUBE IFRAME */}
                     <iframe
-                        className="absolute top-1/2 left-1/2 w-[177.77vh] min-w-full min-h-[56.25vw] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-                        src="https://www.youtube.com/embed/f6SwQAV4aDc?autoplay=1&mute=1&controls=0&loop=1&playlist=f6SwQAV4aDc&start=2&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&enablejsapi=1&origin=http://localhost:5173&vq=hd2160"
+                        className="absolute top-[45%] left-1/2 w-[177.77vh] min-w-full min-h-[56.25vw] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                        src="https://www.youtube.com/embed/f6SwQAV4aDc?autoplay=1&mute=1&controls=0&loop=1&playlist=f6SwQAV4aDc&start=2&rel=0&modestbranding=1&playsinline=1"
                         title="VR Tours Background"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        style={{ aspectRatio: '16/9' }}
-                    ></iframe>
+                        allow="autoplay; encrypted-media"
+                        style={{ aspectRatio: "16/9" }}
+                    />
+
+                    {/* TOP MASK (HIDES TITLE BAR) */}
+                    <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-950 to-transparent z-10" />
                 </div>
 
                 {/* Light Gradient Overlays (Reduced opacity for better visibility) */}
