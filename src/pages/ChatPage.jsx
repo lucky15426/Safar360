@@ -362,7 +362,7 @@ Provide a comprehensive, accurate, and helpful response. Include practical tips,
           muted
           loop
           className="absolute inset-0 w-full h-full object-cover"
-          src="https://res.cloudinary.com/bharatverse/video/upload/v1769873152/21118-315137091_pwwezs.mp4"
+          src="https://res.cloudinary.com/safar360/video/upload/v1770650688/chatbot_iml5bk.mp4"
         />
         <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
           <div className="text-center space-y-6 max-w-4xl px-4">

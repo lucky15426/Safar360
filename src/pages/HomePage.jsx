@@ -56,28 +56,28 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
       title: "EXTREME.",
       subtitle: "PEAKS",
       description: "Conquer the highest summits and witness the world from above.",
-      url: "https://res.cloudinary.com/bharatverse/video/upload/v1769330885/newhomepage_qy1orn.mp4",
+      url: "https://res.cloudinary.com/safar360/video/upload/v1770650361/3135808-hd_1280_720_24fps_upe8sq.mp4",
     },
     {
       id: 3,
       title: "COASTAL.",
       subtitle: "ESCAPE",
       description: "Where golden sands meet azure waves—your perfect beach getaway.",
-      url: "https://res.cloudinary.com/bharatverse/video/upload/v1769335033/3094026-hd_1920_1080_30fps_n2smad.mp4",
+      url: "https://res.cloudinary.com/safar360/video/upload/v1770650605/ocean_rubfhj.mp4",
     },
     {
       id: 4,
       title: "VIBRANT.",
       subtitle: "CITIES",
       description: "Experience the pulse of modern metropolises and urban wonders.",
-      url: "https://res.cloudinary.com/bharatverse/video/upload/v1769340129/7197880-hd_1920_1080_30fps_bp0nny.mp4",
+      url: "https://res.cloudinary.com/safar360/video/upload/v1770650626/vibrantcities_j3ywrq.mp4",
     },
     {
       id: 5,
       title: "SERENE.",
       subtitle: "FORESTS",
       description: "Get lost in the peaceful emerald canopies and nature's embrace.",
-      url: "https://res.cloudinary.com/bharatverse/video/upload/v1769335070/3135811-hd_1920_1080_24fps_nphgzd.mp4"
+      url: "https://res.cloudinary.com/safar360/video/upload/v1770650645/lastpage_ngccm1.mp4"
     },
   ];
 
@@ -850,7 +850,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
               className="w-full h-full object-cover brightness-70"
               draggable="false"
             >
-              <source src="https://res.cloudinary.com/bharatverse/video/upload/v1769008332/14756931_3840_2160_30fps_teaoda.mp4" type="video/mp4" />
+              <source src="https://res.cloudinary.com/safar360/video/upload/v1770650614/neeche_felkyx.mp4" type="video/mp4" />
             </video>
             <div className="absolute inset-0 bg-black/40"></div>
           </div>

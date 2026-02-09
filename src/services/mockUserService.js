@@ -65,7 +65,7 @@ export const getCurrentMockUser = () => {
 // ✅ Clear mock user (optional - for testing)
 export const clearMockUser = () => {
   if (typeof window !== "undefined") {
-    sessionStorage.removeItem("bharatverse_mock_user");
+    sessionStorage.removeItem("safar360_mock_user");
     console.log("✅ Mock user cleared from session");
   }
 };

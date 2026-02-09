@@ -178,7 +178,7 @@ const TourPage360 = ({ onPageChange }) => {
             playsInline
             className="absolute inset-0 w-full h-full object-cover"
           >
-            <source src="https://res.cloudinary.com/bharatverse/video/upload/v1766498471/zfs7izglmckzknou6jvl.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/safar360/video/upload/v1770650678/homepage_pwhxss.mp4" type="video/mp4" />
           </video>
           {/* Gradient fade at bottom */}
           <div className="absolute bottom-0 w-full h-40 bg-gradient-to-t from-slate-50 via-slate-50/40 to-transparent z-20"></div>
@@ -455,7 +455,7 @@ const TourPage360 = ({ onPageChange }) => {
             playsInline
             className="absolute inset-0 w-full h-full object-cover"
           >
-            <source src="https://res.cloudinary.com/bharatverse/video/upload/v1770042688/287388_medium_xll8or.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/safar360/video/upload/v1770650678/hiddengems_bg_nucnt1.mp4" type="video/mp4" />
           </video>
         </div>
 

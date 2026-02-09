@@ -58,7 +58,7 @@ const Footer = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 -z-10 w-full h-full">
         <img
-          src="https://res.cloudinary.com/bharatverse/image/upload/v1769012377/travel-concept-with-paper-boats-frame_nbcqye.jpg"
+          src="https://res.cloudinary.com/safar360/image/upload/v1770651419/travel-concept-with-paper-boats-frame_kobiwj.jpg"
           alt="Footer background"
           className="object-cover w-full h-full brightness-75"
           draggable="false"
