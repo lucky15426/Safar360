@@ -1,4 +1,5 @@
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';  // 👈 FIXED: Correct env var + fallback
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'; // Fallback to local server for development
+
 
 export const getDocuments = async () => {
   const res = await fetch(`${API_BASE}/documents`, {
@@ -19,7 +20,7 @@ export const uploadDocument = async (formData) => {
 };
 
 export const deleteDocument = async (id) => {
-  const res = await fetch(`${API_BASE}/documents/${id}`, { 
+  const res = await fetch(`${API_BASE}/documents/${id}`, {
     method: 'DELETE',
     credentials: 'include'  // 👈 ADDED: Clerk auth cookies
   });

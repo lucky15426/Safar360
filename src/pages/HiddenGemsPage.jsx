@@ -141,7 +141,8 @@ const HiddenGemsPage = ({ onPageChange, addBookmark }) => {
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none w-full h-full bg-slate-900">
           <iframe
             className="absolute top-1/2 left-1/2 w-[177.77vh] min-w-full min-h-[56.25vw] -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-100" // Opacity 100 for Ultra HD pop
-            src="https://www.youtube.com/embed/-IkEMMKSqcw?autoplay=1&mute=1&controls=0&loop=1&playlist=-IkEMMKSqcw&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&enablejsapi=1&origin=http://localhost:5173&vq=hd2160"
+            src={`https://www.youtube.com/embed/-IkEMMKSqcw?autoplay=1&mute=1&controls=0&loop=1&playlist=-IkEMMKSqcw&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&enablejsapi=1&origin=${window.location.origin}&vq=hd2160`}
+
             title="Hidden Gems Background"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             style={{ aspectRatio: '16/9' }}
