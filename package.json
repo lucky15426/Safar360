@@ -30,6 +30,7 @@
     "leva": "^0.10.1",
     "lucide-react": "^0.543.0",
     "mapillary-js": "^4.1.2",
+    "ogl": "^1.0.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.62.0",

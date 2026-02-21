@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+import Aurora from './animations/Aurora';
+
 const loadingMessages = [
     "⌛ Discovering destinations...",
     "⌛ Checking weather patterns...",
@@ -46,42 +48,30 @@ const LoadingScreen = () => {
             }}
             className="fixed inset-0 z-[10000] flex flex-col items-center justify-center bg-[#000000] text-white overflow-hidden"
         >
-            {/* Background Particles */}
-            {[...Array(20)].map((_, i) => (
-                <motion.div
-                    key={i}
-                    className="absolute w-1 h-1 bg-white/30 rounded-full"
-                    initial={{
-                        x: Math.random() * 2000 - 1000,
-                        y: Math.random() * 2000 - 1000,
-                        opacity: 0.1,
-                        scale: Math.random() * 2
-                    }}
-                    animate={{
-                        y: [null, Math.random() * -500],
-                        opacity: [0.1, 0.5, 0.1],
-                    }}
-                    transition={{
-                        duration: Math.random() * 5 + 5,
-                        repeat: Infinity,
-                        ease: "linear"
-                    }}
+            {/* ✨ Aurora Background Animation ✨ */}
+            <div className="absolute inset-0 z-0">
+                <Aurora
+                    colorStops={["#6670ff", "#f2def2", "#3f313f"]}
+                    blend={0.51}
+                    amplitude={1.0}
+                    speed={1}
                 />
-            ))}
+            </div>
 
             {/* Cinematic Radial Light Glow */}
             <motion.div
                 animate={{
                     scale: [1, 1.2, 1],
-                    opacity: [0.2, 0.4, 0.2],
+                    opacity: [0.1, 0.2, 0.1],
                 }}
                 transition={{
                     duration: 4,
                     repeat: Infinity,
                     ease: "easeInOut"
                 }}
-                className="absolute w-[800px] h-[800px] bg-gradient-radial from-blue-600/20 via-sky-500/5 to-transparent blur-[120px] rounded-full"
+                className="absolute w-[800px] h-[800px] bg-gradient-radial from-blue-600/10 via-sky-500/5 to-transparent blur-[120px] rounded-full z-0"
             />
+
 
             <div className="relative z-10 flex flex-col items-center">
                 {/* Main Logo Text with Shimmer/Glow */}
