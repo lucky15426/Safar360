@@ -5,19 +5,19 @@ import { getDocuments, uploadDocument, deleteDocument } from '../services/docume
 import DocumentList from '../components/DocumentList.jsx';
 
 const documentTypes = [
-  'Passport', 
-  'Visa', 
-  'Flight Ticket', 
-  'Hotel Booking', 
-  'Travel Insurance', 
-  'Itinerary', 
-  'Vaccination', 
-  'Event Ticket', 
+  'Passport',
+  'Visa',
+  'Flight Ticket',
+  'Hotel Booking',
+  'Travel Insurance',
+  'Itinerary',
+  'Vaccination',
+  'Event Ticket',
   'Other'
 ];
 
 export default function DocumentVault() {
-  const { isLoaded, isSignedIn } = useAuth();
+  const { isLoaded, isSignedIn, getToken } = useAuth();
   const { user } = useUser();
   const [docs, setDocs] = useState([]);
   const [name, setName] = useState('');
@@ -33,10 +33,12 @@ export default function DocumentVault() {
 
   const loadDocuments = async () => {
     try {
-      const data = await getDocuments();
+      const token = await getToken();
+      if (!token) throw new Error('No authentication token found');
+      const data = await getDocuments(token);
       setDocs(data);
     } catch (err) {
-      console.error(err);
+      console.error('Fetch docs error:', err);
     }
   };
 
@@ -49,14 +51,16 @@ export default function DocumentVault() {
     // 👈 FIXED: Use customType when "Other" selected
     formData.append('type', type === 'Other' ? customType || name : type);
     try {
-      await uploadDocument(formData);
+      const token = await getToken();
+      if (!token) throw new Error('No authentication token found');
+      await uploadDocument(formData, token);
       loadDocuments();
-      setName(''); 
-      setFile(null); 
+      setName('');
+      setFile(null);
       setCustomType('');  // 👈 Clear custom type
       setType('Passport');
     } catch (err) {
-      console.error(err);
+      console.error('Upload Error:', err);
     }
     setLoading(false);
   };
@@ -64,10 +68,12 @@ export default function DocumentVault() {
   const handleDelete = async (id) => {
     if (deletingId === id) return;
     if (!confirm('Delete this document?')) return;
-    
+
     setDeletingId(id);
     try {
-      await deleteDocument(id);
+      const token = await getToken();
+      if (!token) throw new Error('No authentication token found');
+      await deleteDocument(id, token);
       loadDocuments();
     } catch (err) {
       console.error('Delete failed:', err.message);
@@ -76,6 +82,7 @@ export default function DocumentVault() {
       setDeletingId(null);
     }
   };
+
 
   if (!isLoaded) return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
   if (!isSignedIn) return <div className="flex items-center justify-center min-h-screen text-gray-600">Please sign in to access Document Wallet.</div>;
@@ -97,8 +104,8 @@ export default function DocumentVault() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {/* 👈 Document Type Dropdown */}
-          <select 
-            value={type} 
+          <select
+            value={type}
             onChange={(e) => {
               setType(e.target.value);
               if (e.target.value !== 'Other') setCustomType('');  // 👈 Clear when not Other
@@ -107,7 +114,7 @@ export default function DocumentVault() {
           >
             {documentTypes.map(t => <option key={t}>{t}</option>)}
           </select>
-          
+
           {/* 👈 FIXED: Shows ONLY when "Other" selected + "Document Type" placeholder */}
           {type === 'Other' && (
             <input
@@ -117,14 +124,14 @@ export default function DocumentVault() {
               className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
             />
           )}
-          
+
           <input
             type="file"
             onChange={(e) => setFile(e.target.files?.[0] || null)}
             accept="image/*,.pdf,.doc,.docx"
             className="p-3 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-emerald-500 file:text-white hover:file:bg-emerald-600"
           />
-          
+
           <div className="md:col-span-1 flex gap-2">
             <input
               placeholder="Document name"  // 👈 Separate from type
