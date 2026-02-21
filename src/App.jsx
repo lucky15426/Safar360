@@ -56,7 +56,7 @@ const ROUTES = {
 
 // Page titles for SEO
 const PAGE_TITLES = {
-  "/": "Safar360 - Discover India's Heritage",
+  "/": "Safar360 - Explore the World",
   "/360tour": "VR Previews - Safar360",
   "/itinerary": "Trip Planning - Safar360",
   "/gems": "Hidden Gems - Safar360",
