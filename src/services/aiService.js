@@ -28,7 +28,7 @@ export async function generateItinerary(params) {
   };
   const seasonalContext = getSeasonalContext(month);
 
-  const locationQuery = destination ? destination : (state === "any" || !state ? "Any suitable Indian State" : state);
+  const locationQuery = destination ? destination : (state === "any" || !state ? "Any destination worldwide" : state);
 
   // Construct Travelers String
   let travelersInfo = "Adults";
@@ -39,7 +39,7 @@ export async function generateItinerary(params) {
   const interestsStr = interests && interests.length > 0 ? interests.join(", ") : "General Sightseeing";
 
   const prompt = `
-    You are an expert travel planner. Create a detailed ${dayCount}-day trip itinerary for ${locationQuery} during ${seasonalContext}.
+    You are an expert global travel planner. Create a detailed ${dayCount}-day trip itinerary for ${locationQuery} during ${seasonalContext}.
     
     TRIP PARAMETERS:
     - Dates: ${startDate} to ${endDate} (${dayCount} days)
@@ -53,12 +53,12 @@ export async function generateItinerary(params) {
 
     REQUIREMENTS:
     1. Return ONLY valid JSON. No other text. Do not wrap in markdown code blocks.
-    2. If "Any suitable Indian State" is requested, randomly select ONE best state for the season.
+    2. If "Any destination worldwide" is requested, randomly select ONE best destination for the season.
     3. The itinerary MUST reflect the '${pace}' pace and '${interestsStr}' interests. 
     4. If traveling with children/seniors, ensure activities are age-appropriate and accessible.
     5. Structure the JSON exactly as follows:
     {
-      "selectedState": "Name of the state/location",
+      "selectedState": "Name of the destination/country",
       "recommendationReason": "Why this place is good for this season",
       "tripSummary": "Brief overview of the trip honoring the ${pace} pace and ${travelStyle} style.",
       "days": [

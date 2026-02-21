@@ -22,10 +22,10 @@ export async function generateItinerary(params) {
   // Get current month for season-based recommendations
   const month = new Date(startDate).getMonth() + 1;
   const getSeasonalContext = (m) => {
-    if ([12, 1, 2].includes(m)) return "winter (best for northern India, deserts, hill stations)";
-    if ([3, 4, 5].includes(m)) return "summer (hot - choose hill stations, beaches, water activities)";
-    if ([6, 7, 8, 9].includes(m)) return "monsoon (avoid plains - choose western ghats, northeast states)";
-    return "autumn (best for most of India)";
+    if ([12, 1, 2].includes(m)) return "winter (great for tropical destinations, ski resorts, Southern Hemisphere summer)";
+    if ([3, 4, 5].includes(m)) return "spring (ideal for Europe, cherry blossoms in Japan, mild weather worldwide)";
+    if ([6, 7, 8, 9].includes(m)) return "summer (peak season for Europe, avoid monsoon regions in Asia)";
+    return "autumn (beautiful foliage, shoulder season deals, mild weather)";
   };
 
   const seasonalContext = getSeasonalContext(month);
@@ -33,10 +33,10 @@ export async function generateItinerary(params) {
   const isAnyState = !state || state === "any";
 
   const prompt = `
-You are an expert Indian travel planner with deep knowledge of all 28 Indian states + 8 UTs, their geography, climate, culture, attractions, and accessibility.
+You are an expert global travel planner with deep knowledge of destinations worldwide — their geography, climate, culture, attractions, visa requirements, and accessibility.
 
 USER INPUT:
-- Preferred State: ${isAnyState ? "Any State (MUST pick ONE random suitable state)" : state}
+- Preferred Destination: ${isAnyState ? "Any Destination (MUST pick ONE random suitable country/region)" : state}
 - Trip Start Date: ${startDate}
 - Trip End Date: ${endDate}
 - Number of Days Available: ${dayCount} days
@@ -45,51 +45,50 @@ USER INPUT:
 - Daily End Time: ${endTime}
 - Hours Available Per Day: ${calculateHours(startTime, endTime)}
 
-CRITICAL INSTRUCTIONS FOR "ANY STATE" SELECTION:
-If user selected "Any State":
+CRITICAL INSTRUCTIONS FOR "ANY DESTINATION" SELECTION:
+If user selected "Any Destination":
 
-1. DO NOT ALWAYS CHOOSE THE SAME STATE.
-   - Each request should recommend a DIFFERENT state from previous recommendations.
+1. DO NOT ALWAYS CHOOSE THE SAME DESTINATION.
+   - Each request should recommend a DIFFERENT country/region from previous recommendations.
    - Treat this as a randomized recommendation system.
 
-2. FILTER STATES BY DURATION:
-   - 1-2 days: Choose nearby/quick-access states (Delhi, Punjab, Haryana, UP nearby regions)
-   - 3-4 days: Choose medium-distance states (Rajasthan, Gujarat, MP, Goa, states within 800km)
-   - 5-7 days: Can choose farther states (Kerala, Tamil Nadu, Karnataka, Northeast states)
-   - 8+ days: Can recommend iconic far destinations (Jammu & Kashmir, Ladakh, Northeast, South India)
+2. FILTER DESTINATIONS BY DURATION:
+   - 1-2 days: Choose city breaks or nearby weekend getaways
+   - 3-4 days: Choose medium-distance destinations (a single city or small region)
+   - 5-7 days: Can choose farther destinations (full country explorations, multi-city trips)
+   - 8+ days: Can recommend epic journeys (cross-country, multi-country tours)
 
 3. CONSIDER SEASON (${seasonalContext}):
-   - Winter months (Dec-Feb): Rajasthan, Goa, Delhi, Kerala, Punjab
-   - Summer (Mar-May): Himachal Pradesh, Uttarakhand, Kashmir, Darjeeling
-   - Monsoon (Jun-Sep): Western Ghats states (Karnataka, Kerala), Northeast (Assam, Meghalaya)
-   - Autumn (Oct-Nov): All regions good - pick diverse options
+   - Winter (Dec-Feb): Southeast Asia, Australia, New Zealand, Caribbean, Middle East
+   - Spring (Mar-May): Japan, Europe, Mediterranean, Morocco
+   - Summer (Jun-Aug): Northern Europe, Iceland, Canada, Patagonia
+   - Autumn (Sep-Nov): USA, China, Turkey, Greece, South America
 
 4. RANDOM SELECTION:
-   - Create a mental list of 4-5 suitable states based on days + season
+   - Create a mental list of 4-5 suitable destinations based on days + season
    - RANDOMLY pick ONE from that list (not always the first or "best")
    - This ensures variety across multiple calls
 
 5. AVOID REPETITION:
-   - If user keeps selecting "Any State", they should see DIFFERENT recommendations each time
-   - Example: If first call → Rajasthan, next call → Kerala, then → Himachal, etc.
+   - If user keeps selecting "Any Destination", they should see DIFFERENT recommendations each time
 
 ITINERARY GENERATION:
-For the SELECTED/RECOMMENDED state:
-1. Choose 1-2 main cities/regions in that state best suited for ${dayCount} days
+For the SELECTED/RECOMMENDED destination:
+1. Choose 1-2 main cities/regions best suited for ${dayCount} days
 2. Generate COMPLETE day-wise AND hour-wise itinerary:
    - Each day covers ${startTime} to ${endTime}
    - Activities realistic with actual travel times
    - Include breakfast/lunch/dinner breaks
-   - Mix cultural heritage, local experiences, nature, food
-3. For EVERY activity include realistic INR costs
-4. Add transport options (metro, local bus, auto, cab, walking, trains)
+   - Mix cultural landmarks, local experiences, nature, food
+3. For EVERY activity include realistic costs in local currency AND approximate USD
+4. Add transport options (metro, bus, taxi, walking, trains, rideshare)
 5. Include specific safety tips for that location
 6. Calculate realistic total costs
 
 RESPONSE FORMAT - STRICT JSON ONLY:
 {
-  "selectedState": "string (the randomly chosen state)",
-  "recommendationReason": "string (why this state for ${dayCount} days in ${seasonalContext})",
+  "selectedState": "string (the randomly chosen destination / country)",
+  "recommendationReason": "string (why this destination for ${dayCount} days in ${seasonalContext})",
   "recommendedCities": ["city1", "city2"],
   "tripSummary": "2-3 sentences about the trip",
   "days": [
@@ -122,14 +121,14 @@ RESPONSE FORMAT - STRICT JSON ONLY:
     "costPerDayAverage": number
   },
   "generalSafetyRecommendations": [
-    "string specific to this state"
+    "string specific to this destination"
   ],
   "bestTimeToVisit": "string",
   "travelTips": [
     "string with local knowledge"
   ],
   "packingRecommendations": [
-    "string based on climate of this state"
+    "string based on climate of this destination"
   ]
 }
 

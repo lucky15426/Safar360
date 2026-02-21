@@ -6,7 +6,7 @@ const API_BASE = "https://bharatverse11-new-recommender-system-nlp2.hf.space";
 
 // We can serve images directly from the API now since we mounted the static folder
 const FALLBACK_IMAGE =
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Flag_of_India.svg/640px-Flag_of_India.svg.png";
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Globe_icon.svg/640px-Globe_icon.svg.png";
 
 function getImageURL(item) {
   if (!item?.image) return FALLBACK_IMAGE;
@@ -60,77 +60,76 @@ export default function RecommendationsPage() {
   }, [results]);
 
   const ideaBank = [
-    "Spicy South Indian breakfast",
-    "Beautiful forts of Rajasthan",
-    "Best temples in Tamil Nadu",
-    "Traditional Indian sweets",
-    "Popular Indian street foods",
-    "UNESCO heritage sites of India",
-    "Ancient stepwells of Gujarat",
-    "Best Punjab Dhaba food",
-    "Indian tea trail destinations",
-    "Wildlife sanctuaries in India",
-    "Majestic waterfalls of India",
-    "Ayurvedic retreats in Kerala",
-    "Top beaches of Andaman",
-    "Traditional tribal art of India",
-    "Indian folk dances and origin",
-    "India's major silk weaving centres",
+    "Street food of Bangkok",
+    "Beautiful castles of Europe",
+    "Best temples in Kyoto",
+    "Traditional Italian desserts",
+    "Popular street foods worldwide",
+    "UNESCO World Heritage Sites",
+    "Ancient ruins of Greece",
+    "Best Christmas markets in Europe",
+    "Tea plantations around the world",
+    "Top African safari destinations",
+    "Majestic waterfalls worldwide",
+    "Wellness retreats in Bali",
+    "Top beaches of the Caribbean",
+    "Traditional folk art worldwide",
+    "Cultural dances of Latin America",
+    "Silk Road historic trade routes",
     "Best mountain monasteries",
-    "Ancient caves of Maharashtra",
-    "Best vegetarian Indian cuisine",
-    "Temple architecture styles",
-    "Lost kingdoms of India",
-    "Best Indian spices",
-    "Rare Indian recipes",
-    "Most unique Indian festivals",
-    "History of Mughal cuisine",
-    "Amazing science of Ayurveda",
-    "Best pilgrimage circuits",
-    "Sacred rivers of India",
-    "Iconic paintings of India",
-    "Traditional carpets of Kashmir",
-    "Indian miniature illustrations",
+    "Ancient caves of Cappadocia",
+    "Best vegetarian cuisine worldwide",
+    "Gothic cathedral architecture",
+    "Lost civilizations of the world",
+    "Exotic spices from around the world",
+    "Rare regional recipes",
+    "Most unique festivals worldwide",
+    "History of Turkish cuisine",
+    "Hot springs and onsen culture",
+    "Best pilgrimage circuits worldwide",
+    "Sacred rivers around the world",
+    "Iconic art museums of Europe",
+    "Traditional crafts of Morocco",
+    "Japanese woodblock prints",
     "Ancient astronomical observatories",
-    "Historic battle sites of India",
-    "Royal palaces of Jaipur",
-    "Colonial-era architecture",
-    "Handmade craft villages of India",
-    "Yoga origins and spiritual sites",
-    "Largest stepwells of Rajasthan",
-    "Food from the Himalayas",
-    "Top Indian rail journey experiences",
-    // New Additions
-    "Rishikesh Yoga and Rafting",
-    "Hornbill Festival Nagaland",
-    "Chettinad Chicken Spicy",
-    "Hampi Ancient Ruins",
-    "Varkala Beach Sunset",
-    "Mysore Palace Illumination",
-    "Khajuraho Temple Carvings",
-    "Ranthambore Tiger Safari",
-    "Konark Sun Temple",
-    "Hyderabadi Biryani",
-    "Kashmir Rogan Josh",
-    "Lonavala Weekend Trip",
-    "Darjeeling Toy Train",
-    "Ghoomar Dance Rajasthan",
-    "Kathakali Performance Kerala",
-    "Jim Corbett Wildlife",
-    "Golden Temple Amritsar",
-    "Vada Pav Mumbai Street Food",
-    "Dal Baati Churma Rajasthan",
-    "Sanchi Stupa History",
-    "Spiti Valley Adventure",
-    "Alleppey Houseboat Stay",
-    "Meenakshi Temple Madurai",
-    "Nagarhole Wildlife Safari",
-    "Tawang Monastery Arunachal",
-    "Pushkar Camel Fair",
-    "Goa Beach Party",
-    "Kolkata Durga Puja",
-    "Varanasi Ganga Aarti",
-    "Ladakh Bike Trip",
+    "Historic battle sites of Europe",
+    "Royal palaces of England",
+    "Colonial-era architecture worldwide",
+    "Artisan craft villages of Southeast Asia",
+    "Yoga and meditation retreats",
+    "Pyramid sites of the world",
+    "Himalayan food traditions",
+    "Top rail journeys worldwide",
+    "Northern Lights in Iceland",
+    "Cherry blossoms in Japan",
+    "Santorini sunset views",
+    "Machu Picchu hiking trails",
+    "Venice canal boat tours",
+    "Patagonia glacier trekking",
+    "Marrakech souks and markets",
+    "Havana vintage car tours",
+    "Great Wall of China trek",
+    "Safari in Serengeti",
+    "Angkor Wat sunrise tour",
+    "Petra rock city exploration",
+    "Fjords of Norway cruise",
+    "Amalfi Coast road trip",
+    "Galápagos Islands wildlife",
+    "Oktoberfest in Munich",
+    "Rio Carnival experience",
+    "Swiss Alps scenic train",
+    "New Zealand adventure sports",
+    "Aurora Borealis in Tromsø",
+    "Sahara Desert stargazing",
+    "Amazon Rainforest expedition",
+    "Greek island hopping",
+    "Dubai skyscraper observation decks",
+    "Prague castle district",
+    "Kyoto geisha district walk",
+    "Lisbon tram rides",
+    "Budapest thermal baths",
+    "Cinque Terre coastal hike",
+    "Maldives overwater bungalows",
   ];
 
   useEffect(() => {
@@ -318,7 +317,7 @@ export default function RecommendationsPage() {
                   className="text-2xl font-bold text-black"
                   style={{ fontFamily: "'Cinzel', serif" }}
                 >
-                  ✨ My Heritage Treasury
+                  ✨ My Travel Collection
                 </h2>
                 <button
                   onClick={() => setShowCollection(false)}
@@ -423,7 +422,7 @@ export default function RecommendationsPage() {
             className="text-[clamp(14px,4vw,19px)] font-bold tracking-wide leading-relaxed text-white"
             style={{ fontFamily: "'Georgia', serif" }}
           >
-            Discover the essence of Bharat — where timeless heritage meets
+            Discover the world's wonders — where timeless culture meets
             intelligent exploration
           </motion.p>
         </motion.div>
@@ -440,7 +439,7 @@ export default function RecommendationsPage() {
                 setTypingMode(true);
               }}
               onKeyDown={(e) => e.key === "Enter" && search()}
-              placeholder="Ask Salahkar (e.g., 'Peaceful temples in South India')"
+              placeholder="Ask Salahkar (e.g., 'Best temples in Kyoto')"
               className="relative w-full p-4 md:p-5 pl-8 pr-16 rounded-full bg-black/40 backdrop-blur-xl border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400/50 shadow-2xl text-base md:text-lg transition-all"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             />
@@ -525,7 +524,7 @@ export default function RecommendationsPage() {
               repeatDelay: 1,
             }}
           />
-          <span className="relative z-10 uppercase">Explore Divine Bharat</span>
+          <span className="relative z-10 uppercase">Explore the World</span>
         </motion.button>
 
         {/* Results Grid */}

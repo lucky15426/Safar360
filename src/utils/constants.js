@@ -13,57 +13,31 @@ export const API_ENDPOINTS = {
   SEARCH: "/search",
 };
 
-// Indian States and UTs
+// Popular Travel Destinations / Countries
 export const INDIAN_STATES = [
-  "Andhra Pradesh",
-  "Arunachal Pradesh",
-  "Assam",
-  "Bihar",
-  "Chhattisgarh",
-  "Goa",
-  "Gujarat",
-  "Haryana",
-  "Himachal Pradesh",
-  "Jharkhand",
-  "Karnataka",
-  "Kerala",
-  "Madhya Pradesh",
-  "Maharashtra",
-  "Manipur",
-  "Meghalaya",
-  "Mizoram",
-  "Nagaland",
-  "Odisha",
-  "Punjab",
-  "Rajasthan",
-  "Sikkim",
-  "Tamil Nadu",
-  "Telangana",
-  "Tripura",
-  "Uttar Pradesh",
-  "Uttarakhand",
-  "West Bengal",
-  "Delhi",
-  "Jammu and Kashmir",
-  "Ladakh",
-  "Chandigarh",
-  "Dadra and Nagar Haveli and Daman and Diu",
-  "Lakshadweep",
-  "Puducherry",
+  "France", "Italy", "Japan", "Thailand", "Spain",
+  "United States", "United Kingdom", "Australia",
+  "Turkey", "Greece", "Switzerland", "New Zealand",
+  "Iceland", "Morocco", "Peru", "South Korea",
+  "Brazil", "Egypt", "Portugal", "Norway",
+  "India", "Canada", "Mexico", "Indonesia",
+  "Vietnam", "Croatia", "South Africa", "Argentina",
+  "Czech Republic", "Ireland", "Netherlands", "Austria",
+  "Singapore", "Malaysia", "Colombia", "Chile",
 ];
 
-// Heritage Categories
+// Landmark Categories
 export const HERITAGE_CATEGORIES = [
   "UNESCO World Heritage Site",
   "Archaeological Site",
-  "Ancient Temple",
-  "Historical Fort",
+  "Ancient Wonder",
+  "Historic Landmark",
   "Royal Palace",
-  "Religious Site",
-  "Natural Heritage",
+  "Cultural Site",
+  "Natural Wonder",
   "Cultural Landscape",
   "Monument",
-  "Memorial",
+  "National Park",
   "Museum",
   "Gallery",
   "Library",
@@ -72,18 +46,18 @@ export const HERITAGE_CATEGORIES = [
 
 // Festival Categories
 export const FESTIVAL_CATEGORIES = [
-  "Hindu Festival",
-  "Islamic Festival",
-  "Christian Festival",
-  "Sikh Festival",
-  "Buddhist Festival",
-  "Jain Festival",
-  "Regional Festival",
+  "Music Festival",
+  "Cultural Celebration",
+  "Food & Drink Festival",
+  "Religious Festival",
+  "Art & Film Festival",
+  "Carnival",
   "Harvest Festival",
   "Seasonal Festival",
-  "Cultural Festival",
+  "National Holiday",
+  "Sports Event",
   "Folk Festival",
-  "National Festival",
+  "Light & Lantern Festival",
   "Other",
 ];
 
@@ -136,25 +110,25 @@ export const USER_ROLES = {
 export const APP_CONFIG = {
   NAME: "Safar360",
   VERSION: "1.0.0",
-  DESCRIPTION: "Digital Heritage & Culture Portal of India",
-  KEYWORDS: ["heritage", "culture", "india", "monuments", "festivals", "arts"],
+  DESCRIPTION: "Your Global Travel Companion",
+  KEYWORDS: ["travel", "explore", "world", "destinations", "adventure", "culture"],
   DEFAULT_LANGUAGE: "en",
-  SUPPORTED_LANGUAGES: ["en", "hi"],
+  SUPPORTED_LANGUAGES: ["en"],
   MAX_FILE_SIZE: 10 * 1024 * 1024, // 10MB
   MAX_IMAGES_PER_UPLOAD: 8,
   ITEMS_PER_PAGE: 20,
   SEARCH_DEBOUNCE_MS: 300,
   TOAST_DURATION: 5000,
-  MAP_CENTER: [20.5937, 78.9629], // Center of India
-  MAP_ZOOM: 6,
+  MAP_CENTER: [20.0, 0.0], // World center
+  MAP_ZOOM: 3,
 };
 
 // Color Themes
 export const COLORS = {
-  SAFFRON: "#FF9933",
+  SKY_BLUE: "#0EA5E9",
   WHITE: "#FFFFFF",
-  GREEN: "#138808",
-  HERITAGE_RED: "#DC2626",
+  OCEAN_TEAL: "#0D9488",
+  ACCENT_RED: "#DC2626",
   PEACOCK_BLUE: "#0EA5E9",
   GOLD: "#F59E0B",
 };

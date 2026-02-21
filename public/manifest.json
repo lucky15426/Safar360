@@ -1,8 +1,8 @@
 {
-  "name": "Safar360 - Discover India's Heritage",
+  "name": "Safar360 - Explore the World",
   "short_name": "Safar360",
-  "description": "Explore India's cultural heritage through immersive experiences",
-  "theme_color": "#f97316",
+  "description": "Your global travel companion — discover hidden gems, plan trips, and explore the world.",
+  "theme_color": "#0369a1",
   "background_color": "#ffffff",
   "display": "standalone",
   "start_url": "/",

@@ -443,7 +443,7 @@ const UploadPage = () => {
 
       const result = await insertHeritageGem(submissionData);
 
-      console.log("✅ Successfully submitted heritage gem:", result);
+      console.log("✅ Successfully submitted travel gem:", result);
       alert(`🎉 "${formData.title}" submitted for review!`);
 
       // reset
