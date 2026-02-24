@@ -17,6 +17,7 @@ const categories = ["All", "City", "Nature", "Heritage"];
 const PlayerModal = ({ tour, onClose }) => {
     const [isVRMode, setIsVRMode] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [isBuffering, setIsBuffering] = useState(true);
 
     // Player Instances
     const standardPlayerRef = useRef(null);
@@ -56,12 +57,33 @@ const PlayerModal = ({ tour, onClose }) => {
                     enablejsapi: 1,
                     start: tour.start || 0,
                     loop: 1,
-                    playlist: tour.videoId
+                    playlist: tour.videoId,
+                    vq: 'hd1080'
                 },
                 events: {
                     onReady: (event) => {
+                        setIsBuffering(false);
+                        event.target.setPlaybackQuality('hd1080');
                         if (isMuted) event.target.mute();
                         // If Left Eye (Master), we don't mute but we might need to handle click-to-play
+                    },
+                    onStateChange: (event) => {
+                        // Keep our React state in sync with actual YouTube state
+                        if (event.data === window.YT.PlayerState.PLAYING) {
+                            event.target.setPlaybackQuality('hd1080');
+                            setIsPlaying(true);
+                            setIsBuffering(false);
+                        } else if (event.data === window.YT.PlayerState.PAUSED) {
+                            setIsPlaying(false);
+                        } else if (event.data === window.YT.PlayerState.ENDED) {
+                            setIsPlaying(false);
+                            setIsBuffering(false); // Reset buffer state
+                            // Optional: Reset video to beginning so it's ready to replay
+                            event.target.seekTo(tour.start || 0, true);
+                            event.target.pauseVideo();
+                        } else if (event.data === window.YT.PlayerState.BUFFERING) {
+                            setIsBuffering(true);
+                        }
                     }
                 }
             });
@@ -130,9 +152,7 @@ const PlayerModal = ({ tour, onClose }) => {
 
 
     const togglePlay = () => {
-        const playing = !isPlaying;
-        setIsPlaying(playing);
-        const method = playing ? 'playVideo' : 'pauseVideo';
+        const method = !isPlaying ? 'playVideo' : 'pauseVideo';
 
         if (isVRMode) {
             leftPlayerRef.current?.[method]();
@@ -173,33 +193,69 @@ const PlayerModal = ({ tour, onClose }) => {
     return (
         <div className="relative w-full h-full bg-black overflow-hidden" onClick={(e) => e.stopPropagation()}>
             {/* STANDARD PLAYER CONTAINER */}
-            <div className={`absolute inset-0 transition-opacity duration-500 ${isVRMode ? 'opacity-0 pointer-events-none' : 'opacity-100 z-10'}`}>
-                <div id="player-standard" className="w-full h-full" />
+            <div className={`absolute inset-0 transition-opacity duration-500 overflow-hidden ${isVRMode ? 'opacity-0 pointer-events-none' : 'opacity-100 z-10'}`}>
+                <div className="absolute inset-0 transform scale-[1.35]">
+                    <div id="player-standard" className="w-full h-full pointer-events-auto" />
+                </div>
             </div>
 
             {/* VR PLAYER CONTAINER */}
-            <div className={`absolute inset-0 flex transition-opacity duration-500 ${isVRMode ? 'opacity-100 z-20' : 'opacity-0 pointer-events-none invisible'}`}>
+            <div className={`absolute inset-0 flex transition-opacity duration-500 bg-black ${isVRMode ? 'opacity-100 z-20' : 'opacity-0 pointer-events-none invisible'}`}>
                 {/* Left Eye (Master) - Pointer Events AUTO only in VR Mode */}
                 <div className="w-1/2 h-full border-r-2 border-black overflow-hidden relative" style={{ pointerEvents: isVRMode ? 'auto' : 'none' }}>
-                    <div id="player-left" className="w-full h-full" />
-                    <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-white/50 rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-difference" />
+                    <div className="absolute inset-0 transform scale-[1.40]">
+                        <div id="player-left" className="w-full h-full" />
+                    </div>
+                    <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-white/50 rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-difference z-10" />
                 </div>
 
                 {/* Right Eye (Slave) - Pointer Events NONE */}
                 <div className="w-1/2 h-full border-l-2 border-black overflow-hidden relative" style={{ pointerEvents: 'none' }}>
-                    <div id="player-right" className="w-full h-full" />
-                    <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-white/50 rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-difference" />
+                    <div className="absolute inset-0 transform scale-[1.40]">
+                        <div id="player-right" className="w-full h-full" />
+                    </div>
+                    <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-white/50 rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-difference z-10" />
                 </div>
 
                 {/* VR TAP TO PLAY OVERLAY */}
-                {!isPlaying && isVRMode && (
-                    <div className="absolute inset-0 flex items-center justify-center z-50 pointer-events-auto" onClick={togglePlay}>
-                        <div className="bg-black/60 backdrop-blur-md px-8 py-4 rounded-full border border-white/20 animate-pulse cursor-pointer">
-                            <p className="text-white font-bold tracking-widest">TAP SCREEN TO SYNC</p>
+                {(!isPlaying || isBuffering) && isVRMode && (
+                    <div className="absolute inset-0 flex items-center justify-center z-50 pointer-events-auto bg-black" onClick={!isPlaying ? togglePlay : undefined}>
+                        {/* Opaque Split Thumbnails */}
+                        <div className="absolute inset-0 flex pointer-events-none">
+                            <div className="w-1/2 h-full border-r-2 border-black overflow-hidden relative">
+                                <img src={tour.thumbnail} alt="VR Tour" className="absolute inset-0 w-full h-full object-cover blur-sm opacity-80" />
+                            </div>
+                            <div className="w-1/2 h-full border-l-2 border-black overflow-hidden relative">
+                                <img src={tour.thumbnail} alt="VR Tour" className="absolute inset-0 w-full h-full object-cover blur-sm opacity-80" />
+                            </div>
                         </div>
+
+                        {!isPlaying ? (
+                            <div className="bg-black/60 backdrop-blur-md px-8 py-4 rounded-full border border-white/20 animate-pulse cursor-pointer z-10 transition-transform hover:scale-105">
+                                <p className="text-white font-bold tracking-widest">TAP SCREEN TO SYNC</p>
+                            </div>
+                        ) : (
+                            <div className="bg-black/80 backdrop-blur-md px-8 py-4 rounded-full border border-cyan-500/30 z-10 flex items-center space-x-4 shadow-[0_0_30px_rgba(6,182,212,0.2)]">
+                                <div className="w-5 h-5 border-2 border-white/20 border-t-cyan-400 rounded-full animate-spin" />
+                                <p className="text-white font-bold tracking-widest text-sm">SYNCHRONIZING...</p>
+                            </div>
+                        )}
                     </div>
                 )}
             </div>
+
+            {/* THUMBNAIL OVERLAY (Hides YouTube Initial State) */}
+            {(!isPlaying || isBuffering) && !isVRMode && (
+                <div className="absolute inset-0 z-30 pointer-events-none select-none bg-black">
+                    <img src={tour.thumbnail} alt={tour.name} className="absolute inset-0 w-full h-full object-cover opacity-80" />
+                    <div className="absolute inset-0 bg-slate-950/40" />
+                    {isBuffering && isPlaying && (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-16 h-16 border-4 border-white/20 border-t-cyan-400 rounded-full animate-spin shadow-[0_0_30px_rgba(6,182,212,0.3)]" />
+                        </div>
+                    )}
+                </div>
+            )}
 
             {/* UI OVERLAY */}
             <AnimatePresence>
@@ -330,7 +386,7 @@ const WorldToursPage = ({ onPageChange, setIsImmersiveMode }) => { // Accept upd
                 <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none w-screen h-screen bg-black">
                     {/* YOUTUBE IFRAME */}
                     <iframe
-                        className="absolute top-[45%] left-1/2 w-[177.77vh] min-w-full min-h-[56.25vw] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                        className="absolute top-1/2 left-1/2 w-[200vw] h-[200vh] md:w-[150vw] md:h-[150vh] max-w-none max-h-none -translate-x-1/2 -translate-y-1/2 pointer-events-none"
                         src="https://www.youtube.com/embed/f6SwQAV4aDc?autoplay=1&mute=1&controls=0&loop=1&playlist=f6SwQAV4aDc&start=2&rel=0&modestbranding=1&playsinline=1"
                         title="VR Tours Background"
                         allow="autoplay; encrypted-media"
