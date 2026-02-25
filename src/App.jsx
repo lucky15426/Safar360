@@ -34,6 +34,7 @@ import ItineraryPlanner from "./pages/ItineraryPlanner";
 import PreTripChecklist from './components/PreTripChecklist';
 import DocumentVault from './pages/DocumentVault';
 import TourPage360 from './pages/TourPage360';
+import SocialPage from './pages/SocialPage';
 
 import { createOrUpdateUser } from "./services/userService";
 
@@ -52,6 +53,7 @@ const ROUTES = {
   "ask-safar": "/salahkar", // Alias for salahkar
   vault: "/vault",
   "360view": "/360view",
+  social: "/social",
 };
 
 // Page titles for SEO
@@ -166,7 +168,7 @@ export default function App() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
-          className="min-h-screen bg-slate-50"
+          className="min-h-screen bg-[#0B0E14]"
         >
           <GlobalMusicPlayer />
           {/* Hide Header on Salahkar & Story pages */}
@@ -199,6 +201,7 @@ export default function App() {
               <Route path="/salahkar" element={<RecommendationsPage />} />
               <Route path="/vault" element={<DocumentVault {...pageProps} />} />
               <Route path="/360view" element={<TourPage360 onPageChange={handlePageChange} />} />
+              <Route path="/social" element={<SocialPage onBack={() => handlePageChange("home")} />} />
               {/* Fallback to home for unknown routes */}
               <Route path="*" element={<HomePage {...pageProps} />} />
             </Routes>

@@ -42,9 +42,9 @@ const Newsletter = () => (
       <input
         type="email"
         placeholder="Enter your email"
-        className="w-full px-4 py-2 rounded-lg bg-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-amber-400"
+        className="w-full px-4 py-2 rounded-lg bg-black/40 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 transition-colors"
       />
-      <button className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-4 py-2 rounded-lg font-semibold transition-all">
+      <button className="w-full bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-2 rounded-lg font-bold transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)]">
         Subscribe
       </button>
     </div>
@@ -54,64 +54,78 @@ const Newsletter = () => (
 
 const Footer = () => {
   return (
-    <footer className="relative text-white mt-20 z-0">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 -z-10 w-full h-full">
-        <img
-          src="https://res.cloudinary.com/safar360/image/upload/v1770651419/travel-concept-with-paper-boats-frame_kobiwj.jpg"
-          alt="Footer background"
-          className="object-cover w-full h-full brightness-75"
-          draggable="false"
-        />
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/30"></div>
+    <footer className="relative text-white z-0 w-full overflow-hidden">
+      {/* Background with Beautiful Dark Gradient Merging Effect */}
+      <div className="absolute inset-0 -z-10 w-full h-full bg-gradient-to-b from-[#0B0E14] via-[#0b1727] to-[#040b16]">
 
+        {/* World Heritage Map Background Image */}
+        <div
+          className="absolute inset-0 opacity-40 mix-blend-screen pointer-events-none"
+          style={{
+            backgroundImage: `url('https://res.cloudinary.com/safar360/image/upload/v1709214736/world-map-dotted_yps28x.png')`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            maskImage: 'linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)'
+          }}
+        ></div>
+
+        {/* Glowing Ambient Orbs for a premium look */}
+        <div className="absolute top-0 left-1/4 w-[40rem] h-[20rem] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none transform -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-1/4 w-[40rem] h-[30rem] bg-sky-600/10 rounded-full blur-[120px] pointer-events-none transform translate-y-1/4"></div>
+
+        {/* Subtle grid pattern overlay fading down */}
+        <div className="absolute inset-0 opacity-40 mix-blend-overlay" style={{
+          backgroundImage: `radial-gradient(rgba(56, 189, 248, 0.4) 1px, transparent 1px)`,
+          backgroundSize: '40px 40px',
+          maskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)'
+        }}></div>
       </div>
 
-      <div className="container mx-auto px-4 py-16 bg-transparent">
+      <div className="container mx-auto px-4 py-16 pt-24 bg-transparent border-t border-white/5 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
 
           {/* Brand Section */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-3xl">🎒</span>
-              <h1 className="text-3xl font-extrabold bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent">
+              <span className="text-3xl">🌍</span>
+              <h1 className="text-3xl font-extrabold bg-gradient-to-r from-cyan-400 to-sky-400 bg-clip-text text-transparent font-cinzel tracking-wider">
                 Safar360
               </h1>
             </div>
-            <p className="text-white/85 mb-6 text-sm leading-relaxed">
+            <p className="text-white/70 mb-6 text-sm leading-relaxed font-light">
               Plan your perfect trips with our comprehensive pre-trip checklists and travel planning tools.
             </p>
-            <h3 className="font-bold text-lg text-amber-300 mb-3">Follow us</h3>
+            <h3 className="font-bold text-lg text-white mb-3">Follow us</h3>
             <SocialIcons />
           </div>
 
           {/* Quick Links */}
           <div>
-            <h2 className="text-xl font-bold mb-5 text-amber-300">Quick Links</h2>
+            <h2 className="text-xl font-bold mb-5 text-white">Quick Links</h2>
             <ul className="space-y-3 text-sm">
               <li>
-                <a href="#" className="text-white/85 hover:text-amber-300 transition-colors">
+                <a href="#" className="text-cyan-400 hover:text-cyan-300 transition-colors">
                   Heritage Sites
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/85 hover:text-amber-300 transition-colors">
+                <a href="#" className="text-cyan-400 hover:text-cyan-300 transition-colors">
                   Festivals
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/85 hover:text-amber-300 transition-colors">
+                <a href="#" className="text-cyan-400 hover:text-cyan-300 transition-colors">
                   Travel Planning
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/85 hover:text-amber-300 transition-colors">
+                <a href="#" className="text-cyan-400 hover:text-cyan-300 transition-colors">
                   Hidden Gems
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/85 hover:text-amber-300 transition-colors">
+                <a href="#" className="text-cyan-400 hover:text-cyan-300 transition-colors">
                   Packing Tips
                 </a>
               </li>
@@ -125,7 +139,7 @@ const Footer = () => {
 
           {/* QR Code Section */}
           <div className="flex flex-col items-center justify-center">
-            <h2 className="text-xl font-bold mb-4 text-amber-300">Scan to Chat</h2>
+            <h2 className="text-xl font-bold mb-4 text-white">Scan to Chat</h2>
             <div className="bg-white p-3 rounded-xl shadow-lg">
               <img
                 src={qrCode}
@@ -138,18 +152,18 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom */}
-        <div className="border-t border-white/30 mt-12 pt-8">
+        <div className="border-t border-white/10 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-            <div className="text-sm text-white/80">
-              <a href="#" className="hover:text-amber-300 transition-colors">Terms of Use</a>
+            <div className="text-sm text-gray-400">
+              <a href="#" className="hover:text-cyan-400 transition-colors">Terms of Use</a>
               <span className="mx-3">|</span>
-              <a href="#" className="hover:text-amber-300 transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-cyan-400 transition-colors">Privacy Policy</a>
               <span className="mx-3">|</span>
-              <a href="#" className="hover:text-amber-300 transition-colors">Contact Us</a>
+              <a href="#" className="hover:text-cyan-400 transition-colors">Contact Us</a>
             </div>
           </div>
-          <div className="text-center text-sm text-white/80 mt-4">
-            © 2026 Safar360. Made with <span className="text-red-400">❤️</span> by <span className="font-semibold text-amber-300">Netaji Ninjas</span>.
+          <div className="text-center text-sm text-gray-500 mt-4">
+            © 2026 Safar360. Made with <span className="text-red-500">❤️</span> by <span className="font-semibold text-cyan-500">Netaji Ninjas</span>.
           </div>
         </div>
       </div>

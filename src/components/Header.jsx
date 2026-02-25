@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import useSoundEffect from "../hooks/useSoundEffect";
-import { Menu, X, User, Globe, MapPin, Backpack, FolderOpen } from "lucide-react";
+import { Menu, X, User, Globe, MapPin, Backpack, FolderOpen, Users } from "lucide-react";
 import {
   useUser,
   SignInButton,
@@ -26,6 +26,7 @@ const ROUTES = {
   "ask-safar": "/salahkar",
   vault: "/vault",
   "360view": "/360view",
+  social: "/social",
 };
 
 // Helper to get page id from pathname
@@ -79,6 +80,7 @@ const Header = ({ searchQuery, onSearchChange }) => {
     { id: "tracker", label: "Flight Tracker", icon: "Plane" },
     { id: "checklist", label: "Checklist", icon: "Backpack" },
     { id: "vault", label: "Document Vault", icon: "FolderOpen" },
+    { id: "social", label: "Safar Groups", icon: "Users" },
     { id: "360view", label: "360° View", icon: "Globe" },
   ];
 
@@ -164,6 +166,21 @@ const Header = ({ searchQuery, onSearchChange }) => {
             </button>
             <button
               onClick={() => {
+                if (location.pathname === '/social') {
+                  // Already on the page, reset state to clear detail views & searches
+                  navigate('/social', { replace: true, state: { resetSocialPage: Date.now() } });
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                  handleNavigation("social");
+                }
+              }}
+              onMouseEnter={playHoverSound}
+              className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === 'social' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
+            >
+              Safar Groups
+            </button>
+            <button
+              onClick={() => {
                 if (location.pathname === '/' || location.pathname === '') {
                   const galleryEl = document.getElementById('explore-more-section');
                   if (galleryEl) galleryEl.scrollIntoView({ behavior: 'smooth' });
@@ -230,7 +247,12 @@ const Header = ({ searchQuery, onSearchChange }) => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: idx * 0.1 }}
                       onClick={() => {
-                        handleNavigation(link.id);
+                        if (link.id === 'social' && location.pathname === '/social') {
+                          navigate('/social', { replace: true, state: { resetSocialPage: Date.now() } });
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        } else {
+                          handleNavigation(link.id);
+                        }
                         setIsMenuOpen(false);
                         playClickSound();
                       }}
