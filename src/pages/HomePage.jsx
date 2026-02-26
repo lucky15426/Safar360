@@ -23,7 +23,6 @@ import {
   Facebook,
   Twitter,
 } from "lucide-react";
-import ctaBg from "../assets/cta-bg.webp";
 import PanoViewer from "../components/PanoViewer";
 import SearchWidget from "../components/SearchWidget";
 
