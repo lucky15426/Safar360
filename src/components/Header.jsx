@@ -165,88 +165,88 @@ const Header = ({ searchQuery, onSearchChange }) => {
             >
               Vault
             </button>
-            
-            {/* Explore More Dropdown */}
-             <div className="relative">
-               <button
-                 onClick={() => {
-                   setShowMoreDropdown(!showMoreDropdown);
-                   playClickSound();
-                 }}
-                 onMouseEnter={playHoverSound}
-                 className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${showMoreDropdown ? 'text-sky-300' : 'text-sky-400/80 hover:text-sky-300'}`}
-               >
-                 Explore More
-               </button>
 
-               <AnimatePresence>
-                 {showMoreDropdown && (
-                   <>
-                     {/* Transparent backdrop for hover closure */}
-                     <div 
-                       className="fixed inset-0 z-[-1]" 
-                       onMouseEnter={() => setShowMoreDropdown(false)}
-                     />
-                     <motion.div
-                       initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                       animate={{ opacity: 1, y: 0, scale: 1 }}
-                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                       onMouseLeave={() => setShowMoreDropdown(false)}
-                       className="absolute right-0 top-full mt-4 w-72 bg-black/90 backdrop-blur-3xl border border-white/10 rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden z-[60] p-4"
-                     >
-                       <div className="space-y-1">
-                         {[
-                           { id: "social", label: "Safar Groups", icon: Users, desc: "Connect with travelers" },
-                           { id: "gems", label: "Hidden Gems", icon: Sparkles, desc: "Secret local spots" },
-                           { id: "map", label: "Local Insights", icon: MapPin, desc: "Navigate like a native" },
-                           { id: "upload", label: "Share a Gem", icon: Play, desc: "Contribute to Safar" },
-                           { id: "checklist", label: "Trip Checklist", icon: CheckCircle, desc: "Essential travel items" },
-                         ].map((item) => (
-                           <button
-                             key={item.id}
-                             onClick={() => {
-                               handleNavigation(item.id);
-                               setShowMoreDropdown(false);
-                               playClickSound();
-                             }}
-                             className="w-full flex items-center gap-4 p-4 rounded-2xl hover:bg-white/5 transition-all text-left group"
-                           >
-                             <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-sky-500/10 transition-colors">
-                               <item.icon size={18} className="text-white group-hover:text-sky-400 transition-colors" />
-                             </div>
-                             <div>
-                               <p className="text-xs font-bold text-white tracking-widest uppercase mb-0.5">{item.label}</p>
-                               <p className="text-[10px] text-white/40 uppercase tracking-tighter">{item.desc}</p>
-                             </div>
-                           </button>
-                         ))}
-                       </div>
-                       
-                       <div className="mt-4 pt-4 border-t border-white/5 flex flex-col items-center">
-                         <button 
-                           onClick={() => {
-                              if (location.pathname === '/' || location.pathname === '') {
-                                const galleryEl = document.getElementById('explore-more-section');
-                                if (galleryEl) galleryEl.scrollIntoView({ behavior: 'smooth' });
-                              } else {
-                                navigate('/#explore-more-section');
-                                setTimeout(() => {
-                                  const el = document.getElementById('explore-more-section');
-                                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                                }, 500);
-                              }
+            {/* Explore More Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => {
+                  setShowMoreDropdown(!showMoreDropdown);
+                  playClickSound();
+                }}
+                onMouseEnter={playHoverSound}
+                className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${showMoreDropdown ? 'text-sky-300' : 'text-sky-400/80 hover:text-sky-300'}`}
+              >
+                Explore More
+              </button>
+
+              <AnimatePresence>
+                {showMoreDropdown && (
+                  <>
+                    {/* Transparent backdrop for hover closure */}
+                    <div
+                      className="fixed inset-0 z-[-1]"
+                      onMouseEnter={() => setShowMoreDropdown(false)}
+                    />
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      onMouseLeave={() => setShowMoreDropdown(false)}
+                      className="absolute right-0 top-full mt-4 w-72 bg-black/90 backdrop-blur-3xl border border-white/10 rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden z-[60] p-4"
+                    >
+                      <div className="space-y-1">
+                        {[
+                          { id: "social", label: "Safar Groups", icon: Users, desc: "Connect with travelers" },
+
+                          { id: "map", label: "Local Insights", icon: MapPin, desc: "Navigate like a native" },
+                          { id: "upload", label: "Share a Gem", icon: Play, desc: "Contribute to Safar" },
+                          { id: "checklist", label: "Trip Checklist", icon: CheckCircle, desc: "Essential travel items" },
+                        ].map((item) => (
+                          <button
+                            key={item.id}
+                            onClick={() => {
+                              handleNavigation(item.id);
                               setShowMoreDropdown(false);
-                           }}
-                           className="text-[9px] font-black tracking-[0.3em] uppercase text-white/30 hover:text-sky-400 transition-colors py-2"
-                         >
-                           View all tools
-                         </button>
-                       </div>
-                     </motion.div>
-                   </>
-                 )}
-               </AnimatePresence>
-             </div>
+                              playClickSound();
+                            }}
+                            className="w-full flex items-center gap-4 p-4 rounded-2xl hover:bg-white/5 transition-all text-left group"
+                          >
+                            <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-sky-500/10 transition-colors">
+                              <item.icon size={18} className="text-white group-hover:text-sky-400 transition-colors" />
+                            </div>
+                            <div>
+                              <p className="text-xs font-bold text-white tracking-widest uppercase mb-0.5">{item.label}</p>
+                              <p className="text-[10px] text-white/40 uppercase tracking-tighter">{item.desc}</p>
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+
+                      <div className="mt-4 pt-4 border-t border-white/5 flex flex-col items-center">
+                        <button
+                          onClick={() => {
+                            if (location.pathname === '/' || location.pathname === '') {
+                              const galleryEl = document.getElementById('explore-more-section');
+                              if (galleryEl) galleryEl.scrollIntoView({ behavior: 'smooth' });
+                            } else {
+                              navigate('/#explore-more-section');
+                              setTimeout(() => {
+                                const el = document.getElementById('explore-more-section');
+                                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                              }, 500);
+                            }
+                            setShowMoreDropdown(false);
+                          }}
+                          className="text-[9px] font-black tracking-[0.3em] uppercase text-white/30 hover:text-sky-400 transition-colors py-2"
+                        >
+                          View all tools
+                        </button>
+                      </div>
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
+            </div>
           </nav>
 
           <div className="flex items-center space-x-6">

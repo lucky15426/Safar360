@@ -509,7 +509,6 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 { id: "social", title: "Safar Groups", desc: "Connect with fellow travelers", icon: Users, color: "bg-pink-500" },
-                { id: "gems", title: "Hidden Gems", desc: "Discover secret local spots", icon: MapPin, color: "bg-emerald-500" },
                 { id: "map", title: "Local Insights", desc: "Navigate like a local", icon: GlobeIcon, color: "bg-amber-500" },
                 { id: "checklist", title: "Trip Checklist", desc: "Never leave essentials behind", icon: CheckCircle, color: "bg-rose-500" },
                 { id: "upload", title: "Share a Gem", desc: "Contribute to the community", icon: Play, color: "bg-teal-500" },
@@ -903,42 +902,8 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
         </section>
 
 
-        {/* Newsletter */}
-        {!user && (
-          <section className="py-16 bg-gray-50">
-            <div className="container mx-auto px-4">
-              <div className="max-w-2xl mx-auto text-center">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Get Travel Tips & Updates
-                </h3>
-                <p className="text-gray-600 mb-8">
-                  Weekly travel guides, destination insights, and exclusive offers
-                </p>
-                <form
-                  className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
-                  onSubmit={(e) => e.preventDefault()}
-                >
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    aria-label="Email address"
-                    required
-                    className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-transparent outline-none"
-                  />
-                  <button
-                    type="submit"
-                    className="bg-gradient-to-r from-sky-500 to-blue-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
-                  >
-                    Subscribe
-                  </button>
-                </form>
-                <p className="text-xs text-gray-500 mt-4">
-                  No spam. Unsubscribe anytime. Privacy respected.
-                </p>
-              </div>
-            </div>
-          </section>
-        )}
+
+
       </div> {/* End explore-more-section */}
     </div >
   );
