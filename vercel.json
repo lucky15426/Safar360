@@ -1,13 +1,32 @@
 {
     "buildCommand": "npm run build",
     "outputDirectory": "dist",
+    "cleanUrls": true,
+    "trailingSlash": false,
     "rewrites": [
+        {
+            "source": "/assets/(.*)",
+            "destination": "/assets/$1"
+        },
+        {
+            "source": "/favicon.ico",
+            "destination": "/favicon.ico"
+        },
         {
             "source": "/(.*)",
             "destination": "/index.html"
         }
     ],
     "headers": [
+        {
+            "source": "/(.*)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+                }
+            ]
+        },
         {
             "source": "/index.html",
             "headers": [
