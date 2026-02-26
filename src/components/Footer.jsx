@@ -52,11 +52,11 @@ const Newsletter = () => (
   </div>
 );
 
-const Footer = () => {
+const Footer = ({ onPageChange }) => {
   return (
     <footer className="relative text-white z-0 w-full overflow-hidden">
       {/* Background with Beautiful Dark Gradient Merging Effect */}
-      <div className="absolute inset-0 -z-10 w-full h-full bg-gradient-to-b from-[#0B0E14] via-[#0b1727] to-[#040b16]">
+      <div className="absolute inset-0 -z-10 w-full h-full bg-gradient-to-b from-[#1a202c] via-[#101827] to-[#0b0f1a]">
 
         {/* World Heritage Map Background Image */}
         <div
@@ -105,29 +105,52 @@ const Footer = () => {
             <h2 className="text-xl font-bold mb-5 text-white">Quick Links</h2>
             <ul className="space-y-3 text-sm">
               <li>
-                <a href="#" className="text-cyan-400 hover:text-cyan-300 transition-colors">
-                  Heritage Sites
-                </a>
+                <button
+                  onClick={() => onPageChange("360tour")}
+                  className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                >
+                  VR Tours
+                </button>
               </li>
               <li>
-                <a href="#" className="text-cyan-400 hover:text-cyan-300 transition-colors">
-                  Festivals
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-cyan-400 hover:text-cyan-300 transition-colors">
-                  Travel Planning
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-cyan-400 hover:text-cyan-300 transition-colors">
+                <button
+                  onClick={() => onPageChange("gems")}
+                  className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                >
                   Hidden Gems
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#" className="text-cyan-400 hover:text-cyan-300 transition-colors">
-                  Packing Tips
-                </a>
+                <button
+                  onClick={() => onPageChange("itinerary")}
+                  className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                >
+                  Itinerary Planner
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onPageChange("tracker")}
+                  className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                >
+                  Flight Tracker
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onPageChange("vault")}
+                  className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                >
+                  Document Vault
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onPageChange("chat")}
+                  className="text-cyan-400 hover:text-cyan-300 transition-colors"
+                >
+                  Support Chat
+                </button>
               </li>
             </ul>
           </div>

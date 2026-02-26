@@ -90,13 +90,13 @@ export default function DocumentVault() {
   };
 
   if (!isLoaded) return (
-    <div className="flex items-center justify-center min-h-screen bg-slate-50">
+    <div className="flex items-center justify-center min-h-screen bg-white">
       <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-sky-600"></div>
     </div>
   );
 
   if (!isSignedIn) return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-slate-50 p-6 text-center">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white p-6 text-center">
       <div className="w-20 h-20 bg-sky-100 rounded-full flex items-center justify-center mb-6">
         <Lock className="w-10 h-10 text-sky-600" />
       </div>
@@ -106,7 +106,7 @@ export default function DocumentVault() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-50/50 pb-20">
+    <div className="min-h-screen bg-white pb-20">
       {/* 🚀 Top Marquee */}
       <div className="bg-sky-600 text-white overflow-hidden shadow-lg mb-8">
         <CurvedLoop

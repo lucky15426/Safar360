@@ -503,18 +503,15 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
                 <div className="w-8 h-[1px] bg-sky-500" />
                 <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-slate-400">Features Hub</h2>
               </div>
-              <h3 className="text-4xl font-bold text-slate-900 font-heritage italic">Explore Everything</h3>
+              <h3 className="text-4xl font-bold text-slate-900 font-heritage italic">Explore More</h3>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
-                { id: "360tour", title: "VR Previews", desc: "Experience destinations in 360°", icon: Camera, color: "bg-blue-500" },
+                { id: "social", title: "Safar Groups", desc: "Connect with fellow travelers", icon: Users, color: "bg-pink-500" },
                 { id: "gems", title: "Hidden Gems", desc: "Discover secret local spots", icon: MapPin, color: "bg-emerald-500" },
-                { id: "itinerary", title: "Itinerary Planner", desc: "Plan your trip with certainty", icon: Calendar, color: "bg-purple-500" },
-                // { id: "chat", title: "Real-time Support", desc: "24/7 AI-powered travel help", icon: MessageCircle, color: "bg-sky-500" },
                 { id: "map", title: "Local Insights", desc: "Navigate like a local", icon: GlobeIcon, color: "bg-amber-500" },
                 { id: "checklist", title: "Trip Checklist", desc: "Never leave essentials behind", icon: CheckCircle, color: "bg-rose-500" },
-                { id: "360view", title: "360° View", desc: "Immersive panoramic experiences", icon: RotateCcw, color: "bg-cyan-600" },
                 { id: "upload", title: "Share a Gem", desc: "Contribute to the community", icon: Play, color: "bg-teal-500" },
               ].map((feat, idx) => (
                 <motion.button
@@ -943,7 +940,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
           </section>
         )}
       </div> {/* End explore-more-section */}
-    </div>
+    </div >
   );
 };
 

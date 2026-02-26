@@ -221,7 +221,7 @@ export default function App() {
             }}
           />
           {!hideHeaderFooter && (
-            <Footer />
+            <Footer onPageChange={handlePageChange} />
           )}
 
           {/* ✨ DIVINE SKY-BLUE SAFAR BUTTON - The Click Magnet ✨ */}
