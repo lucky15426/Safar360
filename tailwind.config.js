@@ -101,6 +101,7 @@ export default {
         "scale-in": "scaleIn 0.5s ease-out",
         "bounce-slow": "bounceSlow 3s ease-in-out infinite",
         "pulse-soft": "pulseSoft 2s ease-in-out infinite",
+        "spin-slow": "spin 8s linear infinite",
       },
 
       keyframes: {

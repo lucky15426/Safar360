@@ -29,6 +29,10 @@ import SearchWidget from "../components/SearchWidget";
 
 // 3D Components
 import Globe from "../components/3d/Globe";
+import Aurora from "../components/animations/Aurora";
+import CurvedLoop from "../components/animations/CurvedLoop";
+import MagicBento from "../components/animations/MagicBento";
+import ChromaGrid from "../components/animations/ChromaGrid";
 
 
 const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
@@ -148,36 +152,42 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
   // Travel Support Features (Instead of Heritage Topics)
   const travelFeatures = [
     {
+      id: "360view",
       icon: GlobeIcon,
       name: "360° Previews",
       count: "2.5K destinations",
       color: "text-blue-600",
     },
     {
+      id: "itinerary",
       icon: Calendar,
       name: "Trip Planning",
       count: "1.8K itineraries",
       color: "text-purple-600",
     },
     {
+      id: "chat",
       icon: MessageCircle,
       name: "24/7 Support",
       count: "5K+ queries solved",
       color: "text-green-600",
     },
     {
+      id: "map",
       icon: MapPin,
       name: "Local Insights",
       count: "3.2K places",
       color: "text-orange-600",
     },
     {
+      id: "checklist",
       icon: CheckCircle,
       name: "Checklists",
       count: "4.5K travelers",
       color: "text-cyan-600",
     },
     {
+      id: "social",
       icon: Users,
       name: "Community",
       count: "10K+ members",
@@ -185,30 +195,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
     },
   ];
 
-  // Quick Discoveries (Updated)
-  const quickDiscoveries = [
-    {
-      title: "VR Destination Tours",
-      subtitle: "Explore Before You Book",
-      image: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=600&auto=format&fit=crop",
-      action: () => onPageChange("360tour"),
-      icon: Camera,
-    },
-    {
-      title: "Smart Trip Planning",
-      subtitle: "AI-Powered Itineraries",
-      image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600",
-      action: () => onPageChange("itinerary"),
-      icon: MapPin,
-    },
-    {
-      title: "Local Discoveries",
-      subtitle: "Hidden Gems & Insider Tips",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600",
-      action: () => onPageChange("gems"),
-      icon: Sparkles,
-    },
-  ];
+
 
   // 360 degree viewer handlers
   const handleMouseDown = (e) => {
@@ -383,7 +370,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
               ].map((vr, i) => (
                 <button
                   key={i}
-                  onClick={() => onPageChange("360tour")}
+                  onClick={() => onPageChange("360view")}
                   onMouseEnter={playHoverSound}
                   className="group relative"
                 >
@@ -502,47 +489,120 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
                 <div className="w-8 h-[1px] bg-sky-500" />
                 <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-slate-400">Features Hub</h2>
               </div>
-              <h3 className="text-4xl font-bold text-slate-900 font-heritage italic">Explore More</h3>
+              <h3 className="text-4xl font-bold text-slate-900 font-heritage italic">
+                Explore More
+              </h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {[
-                { id: "social", title: "Safar Groups", desc: "Connect with fellow travelers", icon: Users, color: "bg-pink-500" },
-                { id: "map", title: "Local Insights", desc: "Navigate like a local", icon: GlobeIcon, color: "bg-amber-500" },
-                { id: "checklist", title: "Trip Checklist", desc: "Never leave essentials behind", icon: CheckCircle, color: "bg-rose-500" },
-                { id: "upload", title: "Share a Gem", desc: "Contribute to the community", icon: Play, color: "bg-teal-500" },
-              ].map((feat, idx) => (
-                <motion.button
-                  key={feat.id}
-                  whileHover={{ y: -10 }}
-                  onClick={() => onPageChange(feat.id)}
-                  onMouseEnter={playHoverSound}
-                  className="group bg-white p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col items-start text-left transition-all hover:shadow-xl hover:border-sky-200"
-                >
-                  <div className={`p-4 rounded-2xl ${feat.color} text-white mb-6 transform group-hover:rotate-12 transition-transform`}>
-                    <feat.icon size={24} />
+
+            <MagicBento
+              className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+              glowColor="56, 189, 248" // Sky-400 equivalent
+              cardData={[
+                {
+                  id: "social",
+                  title: "Safar Groups",
+                  desc: "Connect with fellow travelers",
+                  icon: Users,
+                  color: "rgba(15, 23, 42, 0.5)",
+                  iconColor: "text-white",
+                  image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&auto=format&fit=crop&q=80",
+                  action: () => onPageChange("social")
+                },
+                {
+                  id: "map",
+                  title: "Local Insights",
+                  desc: "Navigate like a local",
+                  icon: GlobeIcon,
+                  color: "rgba(29, 78, 216, 0.6)",
+                  iconColor: "text-blue-200",
+                  image: "https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9?w=800&auto=format&fit=crop&q=80",
+                  action: () => onPageChange("map")
+                },
+                {
+                  id: "checklist",
+                  title: "Trip Checklist",
+                  desc: "Never leave essentials behind",
+                  icon: CheckCircle,
+                  color: "rgba(255, 255, 255, 0.1)",
+                  iconColor: "text-white",
+                  image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&auto=format&fit=crop&q=80",
+                  action: () => onPageChange("checklist")
+                },
+                {
+                  id: "upload",
+                  title: "Share a Gem",
+                  desc: "Contribute to the community",
+                  icon: Play,
+                  color: "rgba(30, 41, 59, 0.6)",
+                  iconColor: "text-sky-300",
+                  image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&auto=format&fit=crop&q=80",
+                  action: () => onPageChange("upload")
+                },
+              ].map(feat => ({
+                ...feat,
+                content: (
+                  <div className="group h-full w-full">
+                    {/* Background Image */}
+                    <div className="absolute inset-0 z-0">
+                      <img
+                        src={feat.image}
+                        alt={feat.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent transition-opacity duration-500 group-hover:opacity-80" />
+                    </div>
+
+                    {/* Content Overlay */}
+                    <div className="absolute inset-0 z-10 p-8 flex flex-col justify-between h-full border border-white/5 rounded-3xl">
+                      {/* Top Section: Icon */}
+                      <div className="flex justify-start">
+                        <div className={`p-4 rounded-2xl bg-gradient-to-br ${feat.color.includes('rgba') ? '' : feat.color} ${feat.iconColor} backdrop-blur-xl border border-white/10 shadow-lg transform group-hover:rotate-6 transition-all duration-500`} style={feat.color.includes('rgba') ? { background: feat.color } : {}}>
+                          <feat.icon size={26} strokeWidth={1.5} />
+                        </div>
+                      </div>
+
+                      {/* Bottom Section: Text */}
+                      <div className="flex flex-col items-start text-left">
+                        <h4 className="text-2xl font-bold text-white mb-2 tracking-tight group-hover:text-sky-300 transition-colors">
+                          {feat.title}
+                        </h4>
+                        <p className="text-white/60 text-sm leading-relaxed mb-4 line-clamp-2 group-hover:text-white/90 transition-colors">
+                          {feat.desc}
+                        </p>
+
+                        <div className="flex items-center text-sky-400 font-bold text-xs tracking-widest uppercase transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                          <span>Explore</span>
+                          <ArrowRight size={14} className="ml-2 group-hover:translate-x-2 transition-transform" />
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <h4 className="text-xl font-bold text-slate-900 mb-2">{feat.title}</h4>
-                  <p className="text-slate-500 text-sm leading-relaxed">{feat.desc}</p>
-                  <div className="mt-6 flex items-center text-sky-500 font-bold text-xs tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span>Open Tool</span>
-                    <ArrowRight size={14} className="ml-2" />
-                  </div>
-                </motion.button>
-              ))}
-            </div>
+                )
+              }))}
+            />
           </div>
         </div>
 
         {/* Virtual Destination Preview Section - 360° VR */}
-        <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
-          <div className="container mx-auto px-4">
+        <section className="relative py-20 overflow-hidden">
+          {/* Aurora Background Effect */}
+          <div className="absolute inset-0 z-0">
+            <Aurora
+              colorStops={["#0ea5e9", "#6366f1", "#0284c7"]}
+              amplitude={1.2}
+              blend={0.6}
+            />
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px]" />
+          </div>
+
+          <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 flex items-center justify-center">
-                <RotateCcw className="mr-4 text-sky-600" size={48} />
+                <RotateCcw className="mr-4 text-sky-600 animate-spin-slow" size={48} />
                 360° VR Destination Previews
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8 font-medium">
                 Explore hotels, landmarks, and neighborhoods in immersive VR before you book. Make confident travel decisions with high-fidelity previews.
               </p>
             </div>
@@ -553,9 +613,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
                 title="360° Destination Preview"
                 width="100%"
                 height="600"
-                frameBorder="0"
-                marginHeight="0"
-                marginWidth="0"
+
                 scrolling="no"
                 allowFullScreen
               />
@@ -563,7 +621,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
 
             <div className="flex justify-center my-12">
               <button
-                onClick={() => onPageChange("360tour")}
+                onClick={() => onPageChange("360view")}
                 className="bg-gradient-to-r from-sky-500 to-blue-600 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 inline-flex items-center"
               >
                 <span>Explore More Destinations</span>
@@ -585,99 +643,42 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-              {[
-                {
-                  icon: GlobeIcon,
-                  title: "VR Previews",
-                  description:
-                    "Explore destinations in high-fidelity 360° VR before booking. Reduce travel uncertainty.",
-                  features: [
-                    "High-Res Panoramas",
-                    "Virtual Walkthroughs",
-                    "Real-time Audio",
-                  ],
-                  color: "text-blue-600",
-                  bgColor: "from-blue-50 to-blue-100",
-                  borderColor: "border-blue-200",
-                  linkId: "360tour",
-                  linkText: "Explore VR",
-                },
-                {
-                  icon: Cpu,
-                  title: "Smart Planning",
-                  description:
-                    "AI-powered itineraries tailored to your travel style. Discover hidden gems and local insights.",
-                  features: [
-                    "Smart Itineraries",
-                    "Route Optimization",
-                    "Local Recommendations",
-                  ],
-                  color: "text-purple-600",
-                  bgColor: "from-purple-50 to-purple-100",
-                  borderColor: "border-purple-200",
-                  linkId: "itinerary",
-                  linkText: "Plan Trip",
-                },
-                {
-                  icon: Shield,
-                  title: "24/7 Support",
-                  description:
-                    "Real-time assistance. Our AI Copilot provides on-ground help and instant answers anytime.",
-                  features: [
-                    "24/7 AI Help",
-                    "Local Insights",
-                    "Emergency Support",
-                  ],
-                  color: "text-green-600",
-                  bgColor: "from-green-50 to-green-100",
-                  borderColor: "border-green-200",
-                  linkId: "chat",
-                  linkText: "Get Help",
-                },
-              ].map((pillar, idx) => {
-                const IconComponent = pillar.icon;
-                return (
-                  <div
-                    key={idx}
-                    className={`relative group cursor-pointer bg-gradient-to-br ${pillar.bgColor} border ${pillar.borderColor} rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2`}
-                  >
-                    <div className="flex flex-col items-center text-center">
-                      <div className={`${pillar.color} mb-6`}>
-                        <IconComponent size={56} strokeWidth={1.5} />
-                      </div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                        {pillar.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm mb-6 leading-relaxed min-h-[60px]">
-                        {pillar.description}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2 mb-6 justify-center">
-                        {pillar.features.map((feature, featureIdx) => (
-                          <span
-                            key={featureIdx}
-                            className="text-xs bg-white/80 text-gray-700 px-3 py-1 rounded-full font-medium border border-gray-200"
-                          >
-                            ✓ {feature}
-                          </span>
-                        ))}
-                      </div>
-
-                      <button
-                        onClick={() => onPageChange(pillar.linkId)}
-                        className={`${pillar.color} hover:${pillar.color.replace('600', '700')} font-semibold flex items-center space-x-2 group/btn px-6 py-3 rounded-lg bg-white border ${pillar.borderColor} hover:shadow-md transition-all`}
-                      >
-                        <span className="text-sm">{pillar.linkText}</span>
-                        <ArrowRight
-                          size={16}
-                          className="group-hover/btn:translate-x-1 transition-transform"
-                        />
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
+            <div className="min-h-[600px] mt-12 relative">
+              <ChromaGrid
+                radius={350}
+                items={[
+                  {
+                    image: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=800",
+                    title: "VR Previews",
+                    subtitle: "Explore destinations in high-fidelity 360° VR before booking. Reduce travel uncertainty.",
+                    handle: "Immersive",
+                    borderColor: "#0ea5e9",
+                    gradient: "linear-gradient(145deg, #0ea5e9, #000)",
+                    url: "#",
+                    action: () => onPageChange("360view")
+                  },
+                  {
+                    image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800",
+                    title: "Smart Planning",
+                    subtitle: "AI-powered itineraries tailored to your travel style. Discover hidden gems and local insights.",
+                    handle: "AI Powered",
+                    borderColor: "#9333ea",
+                    gradient: "linear-gradient(180deg, #9333ea, #000)",
+                    url: "#",
+                    action: () => onPageChange("itinerary")
+                  },
+                  {
+                    image: "https://images.unsplash.com/photo-1534536281715-e28d76689b4d?w=800",
+                    title: "24/7 Support",
+                    subtitle: "Real-time assistance. Our AI Copilot provides on-ground help and instant answers anytime.",
+                    handle: "Real-time",
+                    borderColor: "#16a34a",
+                    gradient: "linear-gradient(210deg, #16a34a, #000)",
+                    url: "#",
+                    action: () => onPageChange("chat")
+                  }
+                ]}
+              />
             </div>
 
             {/* Pre-Trip Checklist CTA */}
@@ -715,7 +716,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
                   <div
                     key={index}
                     className="bg-white rounded-xl p-6 border-2 border-gray-100 hover:border-sky-400 hover:shadow-lg transition-all text-center group cursor-pointer"
-                    onClick={() => handleSearch(feature.name)}
+                    onClick={() => onPageChange(feature.id)}
                     role="button"
                     tabIndex={0}
                     aria-label={`Explore ${feature.name}`}
@@ -735,54 +736,19 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
               })}
             </div>
 
-            {/* Quick Discoveries */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {quickDiscoveries.map((discovery, index) => {
-                const IconComponent = discovery.icon;
-                return (
-                  <div
-                    key={index}
-                    className="bg-white rounded-2xl overflow-hidden cursor-pointer group hover:shadow-2xl transition-all duration-500 border border-gray-100"
-                    onClick={discovery.action}
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`Discover ${discovery.title}`}
-                  >
-                    <div className="aspect-[16/9] overflow-hidden relative">
-                      <img
-                        src={discovery.image}
-                        alt={discovery.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                      <div className="absolute top-4 left-4">
-                        <div className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm">
-                          <IconComponent size={20} className="text-sky-600" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-sky-600 transition-colors">
-                        {discovery.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm mb-4">
-                        {discovery.subtitle}
-                      </p>
-                      <button className="text-sky-600 hover:text-sky-700 font-medium flex items-center space-x-1 group/btn">
-                        <span>Explore More</span>
-                        <ArrowRight
-                          size={16}
-                          className="group-hover/btn:translate-x-1 transition-transform"
-                        />
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+
           </div>
         </section>
+
+        {/* Trending Ticker */}
+        <div className="bg-slate-900 text-sky-400 py-2 border-y border-white/5">
+          <CurvedLoop
+            marqueeText="PARIS • TOKYO • BALI • LONDON • NEW YORK • DUBAI • ROME • SYDNEY • SINGAPORE • "
+            speed={1.5}
+            curveAmount={30}
+            className="text-2xl opacity-50 font-black tracking-widest"
+          />
+        </div>
 
         {/* Featured Destinations */}
         <section className="py-20 bg-white">
