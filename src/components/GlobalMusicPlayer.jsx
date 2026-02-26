@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { Volume2, VolumeX } from "lucide-react";
 
 const GlobalMusicPlayer = () => {
   const audioRef = useRef(null);
@@ -9,7 +10,7 @@ const GlobalMusicPlayer = () => {
   const playlist = [
     "/aud-1.mp3",
     "/aud-2.mp3",
-    "/audio.mpeg",
+
     "/indian-hindi-song-music-467340.mp3.mpeg",
   ];
 
@@ -82,19 +83,17 @@ const GlobalMusicPlayer = () => {
       <div className="fixed top-28 right-6 z-50 select-none">
         <button
           onClick={togglePlay}
-          className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md text-white shadow-xl flex items-center justify-center hover:bg-sky-500/80 transition-all duration-500 hover:scale-110 border border-white/20"
+          className="w-10 h-10 rounded-full bg-slate-900/80 backdrop-blur-md text-white shadow-2xl flex items-center justify-center hover:bg-sky-500/90 transition-all duration-500 hover:scale-110 border border-white/10"
           aria-label={
             isPlaying ? "Pause background music" : "Play background music"
           }
         >
           {isPlaying ? (
-            <div className="flex items-center space-x-0.5">
-              {[1, 2, 3].map(i => (
-                <div key={i} className="w-0.5 h-3 bg-sky-400 animate-pulse rounded-full" style={{ animationDelay: `${i * 0.2}s` }} />
-              ))}
+            <div className="flex items-center justify-center relative">
+              <Volume2 size={16} className="text-sky-400" />
             </div>
           ) : (
-            <span className="text-[10px] uppercase font-bold tracking-tighter opacity-70 italic">Play</span>
+            <VolumeX size={16} className="text-white/70" />
           )}
         </button>
       </div>
