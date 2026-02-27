@@ -4,14 +4,15 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
+  base: "/", // ← Add this explicitly
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
   server: {
-    host: true, // or '0.0.0.0' to listen on all interfaces
-    port: 3000, // keep your current port
+    host: true,
+    port: 3000,
     open: true,
     proxy: {
       "/api": {
