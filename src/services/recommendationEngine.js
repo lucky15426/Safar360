@@ -25,7 +25,7 @@ const getDistanceKm = (lat1, lon1, lat2, lon2) => {
         Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const d = R * c; // Distance in km
-    return Math.round(d);
+    return Number(d.toFixed(1));
 };
 
 const deg2rad = (deg) => {
@@ -99,8 +99,8 @@ export const getHiddenGems = ({ userLat, userLon, selectedCountry, preference = 
         };
     });
 
-    // Sort by Match Score (Descending)
-    gems.sort((a, b) => b.match_score - a.match_score);
+    // Sort by Distance (Ascending) so nearest gems show first
+    gems.sort((a, b) => a.distance_km - b.distance_km);
 
     // 3. ENRICHMENT (Why Hidden? & Image Query)
     gems = gems.map(gem => {
