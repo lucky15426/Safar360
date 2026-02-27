@@ -16,6 +16,23 @@
   <meta property="og:image" content="/og-image.jpg" />
   <meta property="og:type" content="website" />
 
+  <!-- CRITICAL: Kill stale service workers BEFORE anything loads -->
+  <!-- This fixes blank page on normal reload after redeployment -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+      caches.keys().then(function (cacheNames) {
+        cacheNames.forEach(function (cacheName) {
+          caches.delete(cacheName);
+        });
+      });
+    }
+  </script>
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
