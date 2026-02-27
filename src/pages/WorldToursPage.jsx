@@ -18,6 +18,7 @@ const PlayerModal = ({ tour, onClose }) => {
     const [isVRMode, setIsVRMode] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isBuffering, setIsBuffering] = useState(true);
+    const [showSyncOverlay, setShowSyncOverlay] = useState(false);
 
     // Player Instances
     const standardPlayerRef = useRef(null);
@@ -63,10 +64,14 @@ const PlayerModal = ({ tour, onClose }) => {
                 events: {
                     onReady: (event) => {
                         setIsBuffering(false);
-                        // Start playing instantly in highest currently available quality without rebuffering
-                        event.target.playVideo();
-                        if (isMuted) event.target.mute();
-                        // If Left Eye (Master), we don't mute but we might need to handle click-to-play
+                        if (isLeft || isMuted) {
+                            // VR players: start paused & muted until VR mode is activated
+                            event.target.mute();
+                            event.target.pauseVideo();
+                        } else {
+                            // Standard player: autoplay
+                            event.target.playVideo();
+                        }
                     },
                     onStateChange: (event) => {
                         // Keep our React state in sync with actual YouTube state
@@ -78,8 +83,8 @@ const PlayerModal = ({ tour, onClose }) => {
                             setIsPlaying(false);
                         } else if (event.data === window.YT.PlayerState.ENDED) {
                             setIsPlaying(false);
-                            setIsBuffering(false); // Reset buffer state
-                            event.target.playVideo(); // Auto replay
+                            setIsBuffering(false);
+                            event.target.playVideo();
                         } else if (event.data === window.YT.PlayerState.BUFFERING) {
                             setIsBuffering(true);
                         }
@@ -151,30 +156,55 @@ const PlayerModal = ({ tour, onClose }) => {
 
 
     const togglePlay = () => {
-        const method = !isPlaying ? 'playVideo' : 'pauseVideo';
-
-        if (isVRMode) {
-            leftPlayerRef.current?.[method]();
-            rightPlayerRef.current?.[method]();
+        if (!isPlaying) {
+            // Play only active mode's players
+            if (isVRMode) {
+                leftPlayerRef.current?.unMute();
+                leftPlayerRef.current?.playVideo();
+                rightPlayerRef.current?.playVideo();
+                // Hide sync overlay once playback starts
+                setShowSyncOverlay(false);
+            } else {
+                standardPlayerRef.current?.playVideo();
+            }
         } else {
-            standardPlayerRef.current?.[method]();
+            // Pause ALL players to prevent audio bleed
+            standardPlayerRef.current?.pauseVideo();
+            leftPlayerRef.current?.pauseVideo();
+            rightPlayerRef.current?.pauseVideo();
         }
     };
 
     const toggleVRMode = () => {
         const newMode = !isVRMode;
         setIsVRMode(newMode);
-        setIsPlaying(false); // Pause on switch to allow manual sync start
+        setIsPlaying(false);
+
+        // Pause ALL players first to prevent audio bleed
+        standardPlayerRef.current?.pauseVideo();
+        leftPlayerRef.current?.pauseVideo();
+        rightPlayerRef.current?.pauseVideo();
 
         if (newMode) { // Enter VR
-            standardPlayerRef.current?.pauseVideo();
-            // Optional: seek VR players to match standard player time?
-            // const time = standardPlayerRef.current?.getCurrentTime() || 0;
-            // leftPlayerRef.current?.seekTo(time);
-            // rightPlayerRef.current?.seekTo(time);
+            setShowSyncOverlay(true);
+            // Sync VR players to standard player's current time
+            const time = standardPlayerRef.current?.getCurrentTime?.() || 0;
+            if (time > 0) {
+                leftPlayerRef.current?.seekTo(time, true);
+                rightPlayerRef.current?.seekTo(time, true);
+            }
+            // Unmute left (master) for VR audio
+            leftPlayerRef.current?.unMute();
+            // Ensure right stays muted
+            rightPlayerRef.current?.mute();
+            // Mute standard player
+            standardPlayerRef.current?.mute();
         } else { // Exit VR
-            leftPlayerRef.current?.pauseVideo();
-            rightPlayerRef.current?.pauseVideo();
+            setShowSyncOverlay(false);
+            // Mute VR players, unmute standard
+            leftPlayerRef.current?.mute();
+            rightPlayerRef.current?.mute();
+            standardPlayerRef.current?.unMute();
         }
     };
 
@@ -217,8 +247,11 @@ const PlayerModal = ({ tour, onClose }) => {
                 </div>
 
                 {/* VR TAP TO PLAY OVERLAY */}
-                {(!isPlaying || isBuffering) && isVRMode && (
-                    <div className="absolute inset-0 flex items-center justify-center z-50 pointer-events-auto bg-black" onClick={!isPlaying ? togglePlay : undefined}>
+                {isVRMode && showSyncOverlay && (
+                    <div
+                        className="absolute inset-0 flex items-center justify-center z-50 pointer-events-auto bg-black cursor-pointer"
+                        onClick={togglePlay}
+                    >
                         {/* Opaque Split Thumbnails */}
                         <div className="absolute inset-0 flex pointer-events-none">
                             <div className="w-1/2 h-full border-r-2 border-black overflow-hidden relative">
@@ -290,14 +323,6 @@ const PlayerModal = ({ tour, onClose }) => {
                         </div>
 
                         {/* Center Play Button Removed to Support Autoplay */}
-
-                        {/* Instructions */}
-                        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 pointer-events-none">
-                            <div className="flex items-center space-x-2 text-white/50 text-xs uppercase tracking-widest bg-black/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                                <Monitor className="w-4 h-4" />
-                                <span>Drag to pan 360°</span>
-                            </div>
-                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -372,19 +397,30 @@ const WorldToursPage = ({ onPageChange, setIsImmersiveMode }) => { // Accept upd
                 </div>
                  */}
 
-                {/* YouTube Video Background - User Requested ID: ueeTs3BINtA */}
+                {/* YouTube Background Video - tuned to minimize recommendations/overlays */}
                 <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none w-screen h-screen bg-black">
+                    {/* Lightweight thumbnail so hero isn't blank before YouTube boots */}
+                    <img
+                        src={vrTours[0]?.thumbnail}
+                        alt="VR Tours Background"
+                        className="absolute inset-0 w-full h-full object-cover opacity-80"
+                        loading="eager"
+                        decoding="async"
+                    />
+
                     {/* YOUTUBE IFRAME */}
                     <iframe
-                        className="absolute top-1/2 left-1/2 w-[200vw] h-[200vh] md:w-[150vw] md:h-[150vh] max-w-none max-h-none -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-                        src="https://www.youtube.com/embed/f6SwQAV4aDc?autoplay=1&mute=1&controls=0&loop=1&playlist=f6SwQAV4aDc&start=2&rel=0&modestbranding=1&playsinline=1"
+                        className="absolute top-1/2 left-1/2 w-[180vw] h-[180vh] md:w-[150vw] md:h-[150vh] max-w-none max-h-none -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                        src="https://www.youtube.com/embed/f6SwQAV4aDc?autoplay=1&mute=1&controls=0&loop=1&playlist=f6SwQAV4aDc&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&showinfo=0&fs=0&disablekb=1&start=4"
                         title="VR Tours Background"
                         allow="autoplay; encrypted-media"
-                        style={{ aspectRatio: "16/9" }}
+                        style={{ aspectRatio: '16/9' }}
                     />
 
                     {/* TOP MASK (HIDES TITLE BAR) */}
                     <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-950 to-transparent z-10" />
+                    {/* BOTTOM MASK (HIDES RECOMMENDATIONS BAR) */}
+                    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950 to-transparent z-10" />
                 </div>
 
                 {/* Light Gradient Overlays (Reduced opacity for better visibility) */}
