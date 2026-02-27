@@ -23,20 +23,21 @@ const queryClient = new QueryClient({
   },
 });
 
-// Register Service Worker (optional, for PWA)
+// ❌ REMOVED: Old SW registration that was causing blank page
+// ✅ ADDED: Kill any stale service workers
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("/sw.js")
-      .then((registration) => {
-        console.log("✅ Service Worker registered:", registration);
-      })
-      .catch((registrationError) => {
-        console.warn(
-          "⚠️ Service Worker registration failed:",
-          registrationError
-        );
-      });
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    registrations.forEach((registration) => {
+      registration.unregister();
+      console.log("🗑️ Stale Service Worker removed:", registration);
+    });
+  });
+
+  caches.keys().then((cacheNames) => {
+    cacheNames.forEach((cacheName) => {
+      caches.delete(cacheName);
+      console.log("🗑️ Cache cleared:", cacheName);
+    });
   });
 }
 
