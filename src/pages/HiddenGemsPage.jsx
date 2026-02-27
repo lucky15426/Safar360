@@ -19,14 +19,37 @@ console.log("Hidden Gems Page Loaded - v2.2 (Descriptions Updated)");
 // Engine Imports
 import { getHiddenGems } from "../services/recommendationEngine";
 import destinations from "../data/destinations.json";
+import { useBookmarks } from "../hooks/useBookmarks";
+import OsrmDistance from "../components/OsrmDistance";
 
-const HiddenGemsPage = ({ onPageChange, addBookmark }) => {
+const HiddenGemsPage = ({ onPageChange }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCountry, setSelectedCountry] = useState("All");
   const [userLocation, setUserLocation] = useState(null);
   const [recommendations, setRecommendations] = useState([]);
   const [loadingLocation, setLoadingLocation] = useState(true);
   const [detectedCity, setDetectedCity] = useState(null);
+
+  const { addBookmark, removeBookmark, isBookmarked } = useBookmarks();
+
+  const handleBookmarkToggle = (e, gem) => {
+    e.stopPropagation(); // prevent parent clicks if any
+    const gemId = `gem-${gem.id}`;
+    if (isBookmarked(gemId, 'hidden_gem')) {
+      removeBookmark(gemId, 'hidden_gem');
+    } else {
+      addBookmark({
+        id: gemId,
+        type: 'hidden_gem',
+        title: gem.city,
+        description: gem.why_hidden,
+        state: gem.country,
+        images: [gem.image],
+        rating: gem.safety_index,
+        originalGem: gem
+      });
+    }
+  };
 
   // Dynamic Countries List from Dataset - Sorted Alphabetically
   const countries = ["All", ...new Set(destinations.map(d => d.country))].sort();
@@ -273,10 +296,13 @@ const HiddenGemsPage = ({ onPageChange, addBookmark }) => {
                   {/* Actions Overlay */}
                   <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-[-10px] group-hover:translate-y-0">
                     <button
-                      onClick={() => addBookmark && addBookmark(gem)}
-                      className="p-2 bg-black/40 backdrop-blur-md rounded-full text-white hover:bg-red-500 hover:text-white transition-colors border border-white/10"
+                      onClick={(e) => handleBookmarkToggle(e, gem)}
+                      className={`p-2 backdrop-blur-md rounded-full transition-colors border ${isBookmarked(`gem-${gem.id}`, 'hidden_gem')
+                        ? 'bg-red-500/80 text-white border-red-500/50'
+                        : 'bg-black/40 text-white hover:bg-red-500 hover:text-white border-white/10'
+                        }`}
                     >
-                      <Heart className="w-4 h-4" />
+                      <Heart className={`w-4 h-4 ${isBookmarked(`gem-${gem.id}`, 'hidden_gem') ? 'fill-current' : ''}`} />
                     </button>
                     <button className="p-2 bg-black/40 backdrop-blur-md rounded-full text-white hover:bg-cyan-500 transition-colors border border-white/10">
                       <Share2 className="w-4 h-4" />
@@ -290,8 +316,16 @@ const HiddenGemsPage = ({ onPageChange, addBookmark }) => {
                     <h3 className="text-sm font-bold text-cyan-400 uppercase tracking-widest flex items-center gap-1">
                       <Globe className="w-3 h-3" /> {gem.destination_type}
                     </h3>
-                    <div className="flex items-center text-slate-400 text-xs font-mono">
-                      <Navigation className="w-3 h-3 mr-1" /> {gem.distance_km} km away
+                    <div className="flex items-center text-slate-400 text-xs font-mono whitespace-nowrap overflow-hidden text-ellipsis">
+                      <Navigation className="w-3 h-3 mr-1 flex-shrink-0" />
+                      <OsrmDistance
+                        userLat={userLocation?.lat}
+                        userLon={userLocation?.lon}
+                        destLat={gem.coordinates?.lat}
+                        destLon={gem.coordinates?.lon}
+                        fallbackKm={gem.distance_km}
+                        type={gem.destination_type}
+                      />
                     </div>
                   </div>
 
