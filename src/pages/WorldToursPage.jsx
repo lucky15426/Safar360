@@ -45,7 +45,7 @@ const PlayerModal = ({ tour, onClose }) => {
             const playerConfig = (id, isMuted = false, isLeft = false) => ({
                 videoId: tour.videoId,
                 playerVars: {
-                    autoplay: 0,
+                    autoplay: 1,
                     controls: 0,
                     disablekb: 1,
                     fs: 0,
@@ -63,7 +63,8 @@ const PlayerModal = ({ tour, onClose }) => {
                 events: {
                     onReady: (event) => {
                         setIsBuffering(false);
-                        event.target.setPlaybackQuality('hd1080');
+                        // Start playing instantly in highest currently available quality without rebuffering
+                        event.target.playVideo();
                         if (isMuted) event.target.mute();
                         // If Left Eye (Master), we don't mute but we might need to handle click-to-play
                     },
@@ -78,9 +79,7 @@ const PlayerModal = ({ tour, onClose }) => {
                         } else if (event.data === window.YT.PlayerState.ENDED) {
                             setIsPlaying(false);
                             setIsBuffering(false); // Reset buffer state
-                            // Optional: Reset video to beginning so it's ready to replay
-                            event.target.seekTo(tour.start || 0, true);
-                            event.target.pauseVideo();
+                            event.target.playVideo(); // Auto replay
                         } else if (event.data === window.YT.PlayerState.BUFFERING) {
                             setIsBuffering(true);
                         }
@@ -245,15 +244,13 @@ const PlayerModal = ({ tour, onClose }) => {
             </div>
 
             {/* THUMBNAIL OVERLAY (Hides YouTube Initial State) */}
-            {(!isPlaying || isBuffering) && !isVRMode && (
+            {isBuffering && !isPlaying && !isVRMode && (
                 <div className="absolute inset-0 z-30 pointer-events-none select-none bg-black">
                     <img src={tour.thumbnail} alt={tour.name} className="absolute inset-0 w-full h-full object-cover opacity-80" />
                     <div className="absolute inset-0 bg-slate-950/40" />
-                    {isBuffering && isPlaying && (
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-16 h-16 border-4 border-white/20 border-t-cyan-400 rounded-full animate-spin shadow-[0_0_30px_rgba(6,182,212,0.3)]" />
-                        </div>
-                    )}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-16 h-16 border-4 border-white/20 border-t-cyan-400 rounded-full animate-spin shadow-[0_0_30px_rgba(6,182,212,0.3)]" />
+                    </div>
                 </div>
             )}
 
@@ -292,14 +289,7 @@ const PlayerModal = ({ tour, onClose }) => {
                             </div>
                         </div>
 
-                        {/* Center Play Button */}
-                        {!isPlaying && (
-                            <div className="absolute inset-0 flex items-center justify-center pointer-events-auto">
-                                <button onClick={togglePlay} className="w-24 h-24 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:scale-110 transition-transform shadow-2xl">
-                                    <Play className="w-10 h-10 text-white fill-white ml-2" />
-                                </button>
-                            </div>
-                        )}
+                        {/* Center Play Button Removed to Support Autoplay */}
 
                         {/* Instructions */}
                         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 pointer-events-none">
@@ -531,10 +521,10 @@ const WorldToursPage = ({ onPageChange, setIsImmersiveMode }) => { // Accept upd
                                 <motion.div
                                     key={tour.id}
                                     layout
-                                    initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.9 }}
-                                    transition={{ duration: 0.5, delay: index * 0.05 }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
                                     onClick={() => setActiveTour(tour)}
                                     className="group relative rounded-3xl overflow-hidden cursor-pointer bg-slate-900/50 border border-white/5 hover:border-cyan-500/50 transition-all duration-500 hover:shadow-[0_0_60px_rgba(6,182,212,0.15)] hover:-translate-y-2"
                                 >
@@ -579,7 +569,6 @@ const WorldToursPage = ({ onPageChange, setIsImmersiveMode }) => { // Accept upd
                                                 <MapPin className="w-3 h-3 text-cyan-400" />
                                                 <span className="text-xs text-cyan-300 uppercase tracking-wider font-medium">{tour.country}</span>
                                             </div>
-                                            <span className="text-xs text-slate-500">{tour.views} views</span>
                                         </div>
 
                                         {/* Title */}
