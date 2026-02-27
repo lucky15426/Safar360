@@ -162,16 +162,19 @@ const HiddenGemsPage = ({ onPageChange }) => {
       <div className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         {/* Cinematic Video Background */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none w-full h-full bg-slate-900">
-          <iframe
-            className="absolute top-1/2 left-1/2 w-[177.77vh] min-w-full min-h-[56.25vw] -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-100" // Opacity 100 for Ultra HD pop
-            src={`https://www.youtube.com/embed/-IkEMMKSqcw?autoplay=1&mute=1&controls=0&loop=1&playlist=-IkEMMKSqcw&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&enablejsapi=1&origin=${window.location.origin}&vq=hd2160`}
-
-            title="Hidden Gems Background"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            style={{ aspectRatio: '16/9' }}
-          ></iframe>
+          {/* Cloudinary Background Video – replace YOUR_VIDEO_ID with your Cloudinary public ID */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute top-1/2 left-1/2 w-[177.77vh] min-w-full min-h-[56.25vw] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none opacity-100 filter brightness-[1.25] saturate-[1.45] contrast-[1.05]"
+          >
+            <source src="https://res.cloudinary.com/dnmhqosoa/video/upload/v1772206428/hidden_gems_z6iwmc.mp4" type="video/mp4" />
+          </video>
           {/* Subtle cinematic vignette instead of heavy wash */}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/20 to-slate-950/40" />
+          {/* Lighter cinematic vignette for more visibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/30" />
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-10">
@@ -183,17 +186,17 @@ const HiddenGemsPage = ({ onPageChange }) => {
             <span className="inline-block py-1.5 px-4 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-bold tracking-[0.2em] mb-6 backdrop-blur-md shadow-lg shadow-cyan-500/20">
               AI-POWERED DISCOVERY
             </span>
-            <h1 className="text-6xl md:text-8xl font-heritage font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-slate-300 mb-6 drop-shadow-2xl filter">
+            <h1 className="text-6xl md:text-8xl font-heritage font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-slate-200 mb-6 drop-shadow-[0_4px_30px_rgba(0,0,0,0.8)] filter">
               Hidden Gems of the World
             </h1>
-            <p className="text-xl md:text-2xl text-cyan-50/90 font-light tracking-wide max-w-3xl mx-auto mb-2 drop-shadow-md">
+            <p className="text-xl md:text-2xl text-white font-medium tracking-wide max-w-3xl mx-auto mb-2 drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]">
               Unearth the most breathtaking secret spots beyond the ordinary path.
             </p>
 
             {/* Status Text & Country Selector Helper */}
             {userLocation && (
               <div className="flex flex-col items-center gap-2 mt-4">
-                <p className="text-sm md:text-base text-cyan-400/80 font-mono">
+                <p className="text-sm md:text-base text-cyan-400 font-bold font-mono drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] uppercase">
                   — FOUND {displayGems.length} DESTINATIONS {selectedCountry !== 'All' ? `IN ${selectedCountry.toUpperCase()}` : 'WORLDWIDE'} —
                 </p>
 
@@ -250,7 +253,7 @@ const HiddenGemsPage = ({ onPageChange }) => {
               <input
                 type="text"
                 placeholder="Search by city, vibe, or adventure..."
-                className="flex-1 bg-transparent text-lg text-white placeholder-slate-400 outline-none border-none ring-0 focus:ring-0 focus:border-none font-light tracking-wide"
+                className="flex-1 bg-transparent text-lg text-white placeholder-slate-300 outline-none border-none ring-0 focus:ring-0 focus:border-none font-light tracking-wide"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />

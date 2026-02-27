@@ -103,14 +103,16 @@ const FlightTrackerPage = () => {
 
                 {/* VIDEO BACKGROUND */}
                 <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden bg-slate-900">
-                    <iframe
+                    {/* Cloudinary Background Video – replace YOUR_VIDEO_ID with your Cloudinary public ID */}
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
                         className="absolute top-1/2 left-1/2 w-[177.77vh] h-[100vw] min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover scale-110 pointer-events-none opacity-85"
-                        src="https://www.youtube-nocookie.com/embed/GiXi58i7UEs?autoplay=1&mute=1&controls=0&loop=1&playlist=GiXi58i7UEs&playsinline=1&start=5&end=251&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&vq=hd4320&vq=highres&hd=1"
-                        title="Flight Tracker Background"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    ></iframe>
+                    >
+                        <source src="https://res.cloudinary.com/dnmhqosoa/video/upload/v1772188206/bgvideo_rzovxb.mp4" type="video/mp4" />
+                    </video>
                     {/* Multi-layered Overlays for depth and readability */}
                     <div className="absolute inset-0 bg-gradient-to-b from-slate-950/10 via-transparent to-slate-950/10" />
                     <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay" />

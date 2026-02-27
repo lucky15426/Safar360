@@ -408,24 +408,26 @@ const WorldToursPage = ({ onPageChange, setIsImmersiveMode }) => { // Accept upd
                         decoding="async"
                     />
 
-                    {/* YOUTUBE IFRAME */}
-                    <iframe
-                        className="absolute top-1/2 left-1/2 w-[180vw] h-[180vh] md:w-[150vw] md:h-[150vh] max-w-none max-h-none -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-                        src="https://www.youtube.com/embed/f6SwQAV4aDc?autoplay=1&mute=1&controls=0&loop=1&playlist=f6SwQAV4aDc&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&showinfo=0&fs=0&disablekb=1&start=4"
-                        title="VR Tours Background"
-                        allow="autoplay; encrypted-media"
-                        style={{ aspectRatio: '16/9' }}
-                    />
+                    {/* Cloudinary Background Video – replace YOUR_VIDEO_ID with your Cloudinary public ID */}
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute top-1/2 left-1/2 w-[180vw] h-[180vh] md:w-[150vw] md:h-[150vh] max-w-none max-h-none -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none filter brightness-[1.25] saturate-[1.3] contrast-[1.05]"
+                    >
+                        <source src="https://res.cloudinary.com/dnmhqosoa/video/upload/v1772206804/bg7-optimized-4k_blfunq.mp4" type="video/mp4" />
+                    </video>
 
-                    {/* TOP MASK (HIDES TITLE BAR) */}
-                    <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-950 to-transparent z-10" />
-                    {/* BOTTOM MASK (HIDES RECOMMENDATIONS BAR) */}
-                    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950 to-transparent z-10" />
+                    {/* TOP MASK (HIDES TITLE BAR) - Lightened */}
+                    <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-950/60 to-transparent z-10" />
+                    {/* BOTTOM MASK (HIDES RECOMMENDATIONS BAR) - Lightened */}
+                    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950/60 to-transparent z-10" />
                 </div>
 
-                {/* Light Gradient Overlays (Reduced opacity for better visibility) */}
-                <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-transparent to-slate-950/80 z-[2]" />
-                <div className="absolute inset-0 bg-gradient-to-r from-slate-950/30 via-transparent to-slate-950/30 z-[2]" />
+                {/* Lightened Gradient Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-b from-slate-950/20 via-transparent to-slate-950/60 z-[2]" />
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-950/20 via-transparent to-slate-950/20 z-[2]" />
 
                 {/* Main Hero Content */}
                 <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
@@ -446,7 +448,7 @@ const WorldToursPage = ({ onPageChange, setIsImmersiveMode }) => { // Accept upd
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.2 }}
-                        className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight mb-6"
+                        className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight mb-6 drop-shadow-[0_4px_30px_rgba(0,0,0,0.8)]"
                     >
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-white to-blue-500 font-heritage">
                             VR Tours
@@ -458,10 +460,10 @@ const WorldToursPage = ({ onPageChange, setIsImmersiveMode }) => { // Accept upd
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.4 }}
-                        className="text-xl md:text-2xl text-slate-300 font-light tracking-wide max-w-3xl mx-auto leading-relaxed mb-12"
+                        className="text-xl md:text-2xl text-white font-medium tracking-wide max-w-3xl mx-auto leading-relaxed mb-12 drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]"
                     >
                         Immersive 360° virtual reality experiences.
-                        <span className="text-cyan-400 font-medium"> Connect your VR headset</span> and explore the world like never before.
+                        <span className="text-cyan-400 font-bold"> Connect your VR headset</span> and explore the world like never before.
                     </motion.p>
 
                     {/* Stats Bar */}

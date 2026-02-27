@@ -71,16 +71,20 @@ const ItineraryPlanner = ({ selectedItem }) => {
         <div className="absolute inset-0 z-0">
           {/* Dark overlay for text readability */}
           <div className="absolute inset-0 bg-slate-950/10 z-10 transition-opacity duration-300 hover:bg-slate-950/10"></div>
-          <iframe
-            className="absolute top-1/2 left-1/2 w-[177.77%] h-[150%] min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
-            src="https://www.youtube.com/embed/G5RpJwCJDqc?autoplay=1&mute=1&loop=1&playlist=G5RpJwCJDqc&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&vq=hd4320&vq=highres&hd=1&enablejsapi=1"
-            title="Background Video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            style={{ pointerEvents: 'none' }}
-          ></iframe>
+          {/* Cloudinary Background Video – replace YOUR_VIDEO_ID with your Cloudinary public ID */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute top-1/2 left-1/2 w-[177.77%] h-[150%] min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none filter brightness-[1.25] saturate-[1.35] contrast-[1.05]"
+          >
+            <source src="https://res.cloudinary.com/dnmhqosoa/video/upload/v1772188196/itenary_oajmr2.mp4" type="video/mp4" />
+          </video>
           {/* Custom Video Suggestion Overlay - REMOVED */}
           {/* Gradient fade at bottom to blend into next section */}
-          <div className="absolute bottom-0 w-full h-40 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent z-20"></div>
+          {/* Lighter Gradient fade at bottom for better visibility */}
+          <div className="absolute bottom-0 w-full h-40 bg-gradient-to-t from-slate-950/60 via-slate-950/20 to-transparent z-20"></div>
         </div>
 
         {/* Hero Content Overlay */}
@@ -91,7 +95,7 @@ const ItineraryPlanner = ({ selectedItem }) => {
             transition={{ duration: 0.8 }}
           >
             {/* Main Heading */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-heritage font-bold mb-6 text-white drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] leading-tight">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-heritage font-bold mb-6 text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.8)] leading-tight filter">
               {itinerary ? "Your Curated Journey" : "Explore the Unseen"}
             </h1>
 
