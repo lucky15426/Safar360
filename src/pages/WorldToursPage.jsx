@@ -79,8 +79,21 @@ const PlayerModal = ({ tour, onClose }) => {
                             event.target.setPlaybackQuality('hd1080');
                             setIsPlaying(true);
                             setIsBuffering(false);
+
+                            // Cross-player sync when master plays
+                            if (id === 'player-left' && rightPlayerRef.current && typeof rightPlayerRef.current.getPlayerState === 'function') {
+                                if (rightPlayerRef.current.getPlayerState() !== window.YT.PlayerState.PLAYING) {
+                                    rightPlayerRef.current.playVideo();
+                                }
+                            }
                         } else if (event.data === window.YT.PlayerState.PAUSED) {
                             setIsPlaying(false);
+                            // Cross-player sync when master pauses
+                            if (id === 'player-left' && rightPlayerRef.current && typeof rightPlayerRef.current.pauseVideo === 'function') {
+                                if (rightPlayerRef.current.getPlayerState() !== window.YT.PlayerState.PAUSED) {
+                                    rightPlayerRef.current.pauseVideo();
+                                }
+                            }
                         } else if (event.data === window.YT.PlayerState.ENDED) {
                             setIsPlaying(false);
                             setIsBuffering(false);
@@ -223,16 +236,18 @@ const PlayerModal = ({ tour, onClose }) => {
         <div className="relative w-full h-full bg-black overflow-hidden" onClick={(e) => e.stopPropagation()}>
             {/* STANDARD PLAYER CONTAINER */}
             <div className={`absolute inset-0 transition-opacity duration-500 overflow-hidden ${isVRMode ? 'opacity-0 pointer-events-none' : 'opacity-100 z-10'}`}>
-                <div className="absolute inset-0 transform scale-[1.35]">
+                <div className="absolute inset-0 transform scale-[1.50]">
                     <div id="player-standard" className="w-full h-full pointer-events-auto" />
                 </div>
+                {/* Bottom mask to hide YT progress bar & recommendations on pause */}
+                <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-b from-transparent via-black/70 to-black z-10 pointer-events-none" />
             </div>
 
             {/* VR PLAYER CONTAINER */}
             <div className={`absolute inset-0 flex transition-opacity duration-500 bg-black ${isVRMode ? 'opacity-100 z-20' : 'opacity-0 pointer-events-none invisible'}`}>
                 {/* Left Eye (Master) - Pointer Events AUTO only in VR Mode */}
                 <div className="w-1/2 h-full border-r-2 border-black overflow-hidden relative" style={{ pointerEvents: isVRMode ? 'auto' : 'none' }}>
-                    <div className="absolute inset-0 transform scale-[1.40]">
+                    <div className="absolute inset-0 transform scale-[1.55]">
                         <div id="player-left" className="w-full h-full" />
                     </div>
                     <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-white/50 rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-difference z-10" />
@@ -240,7 +255,7 @@ const PlayerModal = ({ tour, onClose }) => {
 
                 {/* Right Eye (Slave) - Pointer Events NONE */}
                 <div className="w-1/2 h-full border-l-2 border-black overflow-hidden relative" style={{ pointerEvents: 'none' }}>
-                    <div className="absolute inset-0 transform scale-[1.40]">
+                    <div className="absolute inset-0 transform scale-[1.55]">
                         <div id="player-right" className="w-full h-full" />
                     </div>
                     <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-white/50 rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-difference z-10" />
@@ -331,7 +346,10 @@ const PlayerModal = ({ tour, onClose }) => {
             {isVRMode && (
                 <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 pointer-events-auto">
                     <button
-                        onClick={toggleVRMode}
+                        onClick={() => {
+                            toggleVRMode();
+                            onClose();
+                        }}
                         className="bg-red-600/80 hover:bg-red-600 text-white px-6 py-2 rounded-full font-bold backdrop-blur-md border border-white/20 shadow-lg text-sm flex items-center space-x-2"
                     >
                         <ArrowLeft className="w-4 h-4" />
@@ -343,11 +361,9 @@ const PlayerModal = ({ tour, onClose }) => {
     );
 };
 
-const WorldToursPage = ({ onPageChange, selectedItem, setIsImmersiveMode }) => { // Accept updated prop
+const WorldToursPage = ({ onPageChange, setIsImmersiveMode }) => {
     const [activeTour, setActiveTour] = useState(null);
     const [activeCategory, setActiveCategory] = useState("All");
-    // const [isMuted, setIsMuted] = useState(true); // Removed unused local state
-    // const [isFullscreen, setIsFullscreen] = useState(false); // Removed unused local state
     const heroRef = useRef(null);
     const modalRef = useRef(null);
 
@@ -372,13 +388,6 @@ const WorldToursPage = ({ onPageChange, selectedItem, setIsImmersiveMode }) => {
         return () => clearTimeout(timer);
     }, []);
 
-    // Deep Link Support: If a tour was passed from HomePage, open it automatically
-    useEffect(() => {
-        if (selectedItem && selectedItem.videoId) {
-            setActiveTour(selectedItem);
-        }
-    }, [selectedItem]);
-
     return (
         <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-purple-500 selection:text-white overflow-x-hidden">
 
@@ -389,24 +398,9 @@ const WorldToursPage = ({ onPageChange, selectedItem, setIsImmersiveMode }) => {
                 ref={heroRef}
                 className="relative h-screen flex items-center justify-center overflow-hidden"
             >
-                {/* Animated Globe Background - REMOVED PER USER REQUEST */}
-                {/* 
-                <div className="absolute inset-0 z-0 opacity-30">
-                    <Globe
-                        autoRotate={true}
-                        rotationSpeed={0.003}
-                        showStars={true}
-                        cameraPosition={[0, 0, 3.5]}
-                        markers={[]}
-                        globeColor="#0f172a"
-                        atmosphereColor="#0ea5e9"
-                    />
-                </div>
-                 */}
-
-                {/* YouTube Background Video - tuned to minimize recommendations/overlays */}
+                {/* Cloudinary Background Video */}
                 <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none w-screen h-screen bg-black">
-                    {/* Lightweight thumbnail so hero isn't blank before YouTube boots */}
+                    {/* Lightweight thumbnail so hero isn't blank before video boots */}
                     <img
                         src={vrTours[0]?.thumbnail}
                         alt="VR Tours Background"
@@ -415,7 +409,7 @@ const WorldToursPage = ({ onPageChange, selectedItem, setIsImmersiveMode }) => {
                         decoding="async"
                     />
 
-                    {/* Cloudinary Background Video – replace YOUR_VIDEO_ID with your Cloudinary public ID */}
+                    {/* Cloudinary Background Video */}
                     <video
                         autoPlay
                         loop
@@ -428,7 +422,7 @@ const WorldToursPage = ({ onPageChange, selectedItem, setIsImmersiveMode }) => {
 
                     {/* TOP MASK (HIDES TITLE BAR) - Lightened */}
                     <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-950/60 to-transparent z-10" />
-                    {/* BOTTOM MASK (HIDES RECOMMENDATIONS BAR) - Lightened */}
+                    {/* BOTTOM MASK */}
                     <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950/60 to-transparent z-10" />
                 </div>
 
@@ -485,8 +479,7 @@ const WorldToursPage = ({ onPageChange, selectedItem, setIsImmersiveMode }) => {
                             { label: "Countries", value: stats.countries + "+", icon: MapPin, color: "text-blue-400" },
                             { label: "Hours of VR", value: stats.hours + "+", icon: Eye, color: "text-sky-300" },
                         ].map((stat, idx) => (
-                            <div key={idx} className="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 backdrop-blur-sm"
-                            >
+                            <div key={idx} className="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 backdrop-blur-sm">
                                 <stat.icon className={`w-6 h-6 ${stat.color}`} />
                                 <div className="text-left">
                                     <div className="text-2xl font-bold text-white">{stat.value}</div>
@@ -662,8 +655,7 @@ const WorldToursPage = ({ onPageChange, selectedItem, setIsImmersiveMode }) => {
                 )}
             </AnimatePresence>
 
-
-        </div >
+        </div>
     );
 };
 
