@@ -149,7 +149,7 @@ const Footer = ({ onPageChange }) => {
                   onClick={() => onPageChange("chat")}
                   className="text-cyan-400 hover:text-cyan-300 transition-colors"
                 >
-                  Support Chat
+                  SafarX Agent
                 </button>
               </li>
             </ul>
@@ -170,7 +170,7 @@ const Footer = ({ onPageChange }) => {
                 className="w-32 h-32"
               />
             </div>
-            <p className="text-xs text-white/70 mt-2">Ask Safar - Chat Support</p>
+            <p className="text-xs text-white/70 mt-2">Ask Safar - SafarX Agent</p>
           </div>
         </div>
 
