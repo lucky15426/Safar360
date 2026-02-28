@@ -87,7 +87,7 @@ const Header = ({ searchQuery, onSearchChange }) => {
 
   return (
     <>
-      <header className="fixed top-0 w-full z-[9999] transition-all duration-500 bg-black/80 backdrop-blur-xl border-b border-white/10">
+      <header className="fixed top-0 w-full z-[50] transition-all duration-500 bg-black/80 backdrop-blur-xl border-b border-white/10">
         <div className="flex items-center justify-between h-24 px-10 relative">
 
           {/* Logo Section */}
