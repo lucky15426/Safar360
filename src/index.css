@@ -174,15 +174,15 @@ body {
   box-shadow: 0 8px 20px rgba(6, 182, 212, 0.4);
 }
 
-/* Heritage button - now purple & water themed */
-.btn-heritage {
+/* Premium button - now purple & water themed */
+.btn-premium {
   @apply px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105;
   background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
   color: white;
   box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
 }
 
-.btn-heritage:hover {
+.btn-premium:hover {
   box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
   transform: scale(1.05) translateY(-2px);
 }

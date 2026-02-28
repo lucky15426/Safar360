@@ -7,7 +7,9 @@
     "category": "temple",
     "region": "north",
     "description": "A mesmerizing 10th-century stepwell with geometric precision featuring 3,500 narrow steps arranged in perfect symmetry. This architectural marvel descends 13 stories into the earth.",
-    "images": ["chand-baori.jpg"],
+    "images": [
+      "chand-baori.jpg"
+    ],
     "difficulty": "easy",
     "visitors": "Few tourists",
     "rating": 4.8,
@@ -19,7 +21,10 @@
     "local_tips": "Visit early morning to avoid crowds and heat. Carry water and wear comfortable shoes.",
     "accessibility": "Moderate walking required, steep steps",
     "connectivity": "Limited mobile network in the village",
-    "nearby_attractions": ["Harshat Mata Temple", "Dausa Fort"],
+    "nearby_attractions": [
+      "Harshat Mata Temple",
+      "Dausa Fort"
+    ],
     "submittedAt": "2024-01-15",
     "createdAt": "2024-01-15"
   },
@@ -31,7 +36,9 @@
     "category": "village",
     "region": "northeast",
     "description": "Asia's cleanest village with living root bridges, bamboo dustbins, and pristine natural beauty. Experience sustainable living at its finest.",
-    "images": ["mawlynnong.jpg"],
+    "images": [
+      "mawlynnong.jpg"
+    ],
     "difficulty": "moderate",
     "visitors": "Off the beaten path",
     "rating": 4.9,
@@ -43,7 +50,11 @@
     "local_tips": "Stay overnight in homestays to experience village life. Respect local customs and maintain cleanliness.",
     "accessibility": "Moderate trekking required for root bridges",
     "connectivity": "Good mobile network coverage",
-    "nearby_attractions": ["Living Root Bridge", "Sky Walk", "Dawki River"],
+    "nearby_attractions": [
+      "Living Root Bridge",
+      "Sky Walk",
+      "Dawki River"
+    ],
     "submittedAt": "2024-01-20",
     "createdAt": "2024-01-20"
   },
@@ -55,7 +66,9 @@
     "category": "temple",
     "region": "south",
     "description": "Architectural marvel with a hanging pillar that defies gravity, intricate stone carvings, and the world's largest monolithic Nandi sculpture.",
-    "images": ["lepakshi.jpg"],
+    "images": [
+      "lepakshi.jpg"
+    ],
     "difficulty": "easy",
     "visitors": "Underexplored",
     "rating": 4.7,
@@ -67,7 +80,10 @@
     "local_tips": "Don't miss the hanging pillar demonstration. Photography allowed but be respectful.",
     "accessibility": "Easy access, suitable for all age groups",
     "connectivity": "Good mobile network coverage",
-    "nearby_attractions": ["Penukonda Fort", "Puttaparthi"],
+    "nearby_attractions": [
+      "Penukonda Fort",
+      "Puttaparthi"
+    ],
     "submittedAt": "2024-01-25",
     "createdAt": "2024-01-25"
   },
@@ -79,7 +95,9 @@
     "category": "village",
     "region": "south",
     "description": "Abandoned town at India's southernmost tip, destroyed by 1964 cyclone. Now a hauntingly beautiful landscape where Bay of Bengal meets Indian Ocean.",
-    "images": ["dhanushkodi.avif"],
+    "images": [
+      "dhanushkodi.avif"
+    ],
     "difficulty": "moderate",
     "visitors": "Growing popularity",
     "rating": 4.6,
@@ -91,7 +109,10 @@
     "local_tips": "Carry water and snacks. Respect the ruins and natural environment. Check weather conditions.",
     "accessibility": "Requires 4WD vehicle for final approach, sandy terrain",
     "connectivity": "No mobile network in the area",
-    "nearby_attractions": ["Rameshwaram Temple", "Adam's Bridge remains"],
+    "nearby_attractions": [
+      "Rameshwaram Temple",
+      "Adam's Bridge remains"
+    ],
     "submittedAt": "2024-02-01",
     "createdAt": "2024-02-01"
   },
@@ -103,7 +124,9 @@
     "category": "fort",
     "region": "north",
     "description": "India's most haunted fort with stunning architecture. ASI prohibited entry after sunset, adding to its mysterious allure and historical significance.",
-    "images": ["bhangarh.webp"],
+    "images": [
+      "bhangarh.webp"
+    ],
     "difficulty": "easy",
     "visitors": "Popular but restricted",
     "rating": 4.3,
@@ -115,7 +138,10 @@
     "local_tips": "Entry only during daylight hours. Carry water and wear sturdy shoes for exploring ruins.",
     "accessibility": "Moderate walking on uneven terrain",
     "connectivity": "Limited mobile network",
-    "nearby_attractions": ["Ajabgarh Fort", "Sariska Tiger Reserve"],
+    "nearby_attractions": [
+      "Ajabgarh Fort",
+      "Sariska Tiger Reserve"
+    ],
     "submittedAt": "2024-02-05",
     "createdAt": "2024-02-05"
   },
@@ -127,7 +153,9 @@
     "category": "nature",
     "region": "northeast",
     "description": "UNESCO World Heritage site with pine-covered hills, bamboo groves, and Apatani tribal culture. Home to unique agricultural practices and festivals.",
-    "images": ["ziro-valley.jpg"],
+    "images": [
+      "ziro-valley.jpg"
+    ],
     "difficulty": "moderate",
     "visitors": "Limited tourists",
     "rating": 4.8,
@@ -154,7 +182,9 @@
     "category": "nature",
     "region": "north",
     "description": "Mini Switzerland of India with lush meadows, dense forests, and pristine lake. Perfect blend of natural beauty and adventure activities.",
-    "images": ["khajjiar.jpg"],
+    "images": [
+      "khajjiar.jpg"
+    ],
     "difficulty": "easy",
     "visitors": "Moderate crowds",
     "rating": 4.5,
@@ -182,7 +212,9 @@
     "category": "nature",
     "region": "south",
     "description": "India's Grand Canyon with stunning gorge formations carved by Pennar River. Ancient fort ruins add historical charm to natural beauty.",
-    "images": ["gandikota.jpeg"],
+    "images": [
+      "gandikota.jpeg"
+    ],
     "difficulty": "moderate",
     "visitors": "Growing popularity",
     "rating": 4.6,
@@ -194,7 +226,10 @@
     "local_tips": "Camping allowed with permission. Carry enough water and food. Be careful near cliff edges.",
     "accessibility": "Moderate trekking required for best viewpoints",
     "connectivity": "Limited mobile network coverage",
-    "nearby_attractions": ["Belum Caves", "Yaganti Temple"],
+    "nearby_attractions": [
+      "Belum Caves",
+      "Yaganti Temple"
+    ],
     "submittedAt": "2024-02-20",
     "createdAt": "2024-02-20"
   },
@@ -206,7 +241,9 @@
     "category": "village",
     "region": "east",
     "description": "World's largest river island in Brahmaputra River, famous for Vaishnavite monasteries, traditional crafts, and unique culture of Mising tribe.",
-    "images": ["majuli.jpg"],
+    "images": [
+      "majuli.jpg"
+    ],
     "difficulty": "easy",
     "visitors": "Limited infrastructure",
     "rating": 4.7,
@@ -234,7 +271,9 @@
     "category": "nature",
     "region": "central",
     "description": "India's Niagara Falls with horseshoe-shaped cascade. Most spectacular during monsoons when Indravati River is in full flow.",
-    "images": ["chitrakote.jpeg"],
+    "images": [
+      "chitrakote.jpeg"
+    ],
     "difficulty": "easy",
     "visitors": "Seasonal crowds",
     "rating": 4.4,
@@ -246,7 +285,10 @@
     "local_tips": "Visit during monsoon for full water flow. Be careful during rainy season due to slippery rocks.",
     "accessibility": "Easy walk to viewpoints, stairs to base require moderate fitness",
     "connectivity": "Good mobile network coverage",
-    "nearby_attractions": ["Kanger Valley National Park", "Tirathgarh Falls"],
+    "nearby_attractions": [
+      "Kanger Valley National Park",
+      "Tirathgarh Falls"
+    ],
     "submittedAt": "2024-03-01",
     "createdAt": "2024-03-01"
   },
@@ -258,7 +300,9 @@
     "category": "temple",
     "region": "south",
     "description": "UNESCO World Heritage site with magnificent ruins of Vijayanagara Empire. Boulder landscape creates surreal setting for ancient temples.",
-    "images": ["hampi.jpg"],
+    "images": [
+      "hampi.jpg"
+    ],
     "difficulty": "easy",
     "visitors": "Popular destination",
     "rating": 4.8,
@@ -286,7 +330,9 @@
     "category": "nature",
     "region": "north",
     "description": "UNESCO World Heritage site with endemic alpine flowers, pristine meadows, and Himalayan wildlife. A trekker's paradise in Garhwal Himalayas.",
-    "images": ["valley-of-flowers.jpg"],
+    "images": [
+      "valley-of-flowers.jpg"
+    ],
     "difficulty": "difficult",
     "visitors": "Restricted season",
     "rating": 4.9,
@@ -298,7 +344,10 @@
     "local_tips": "Book permits in advance. Stay at Ghangaria base camp. Carry warm clothes and rain gear.",
     "accessibility": "Difficult trek requiring good fitness level",
     "connectivity": "No mobile network in the valley",
-    "nearby_attractions": ["Hemkund Sahib", "Badrinath Temple"],
+    "nearby_attractions": [
+      "Hemkund Sahib",
+      "Badrinath Temple"
+    ],
     "submittedAt": "2024-03-10",
     "createdAt": "2024-03-10"
   },
@@ -310,7 +359,9 @@
     "category": "nature",
     "region": "west",
     "description": "World's largest salt desert with white crystalline landscape. Experience unique culture of Kutchi people and vibrant Rann Utsav festival.",
-    "images": ["rann-of-kutch.jpg"],
+    "images": [
+      "rann-of-kutch.jpg"
+    ],
     "difficulty": "easy",
     "visitors": "Seasonal tourism",
     "rating": 4.7,
@@ -322,7 +373,11 @@
     "local_tips": "Stay in tent city during festival. Carry warm clothes for night. Respect local customs.",
     "accessibility": "Easy access, 4WD recommended for some areas",
     "connectivity": "Limited mobile network coverage",
-    "nearby_attractions": ["Kala Dungar", "Wild Ass Sanctuary", "Bhuj Palace"],
+    "nearby_attractions": [
+      "Kala Dungar",
+      "Wild Ass Sanctuary",
+      "Bhuj Palace"
+    ],
     "submittedAt": "2024-03-15",
     "createdAt": "2024-03-15"
   },
@@ -334,7 +389,9 @@
     "category": "village",
     "region": "north",
     "description": "Cold desert mountain valley with ancient Tibetan Buddhist monasteries, barren landscapes that resemble moonscape, and resilient local culture.",
-    "images": ["spiti-valley.jpg"],
+    "images": [
+      "spiti-valley.jpg"
+    ],
     "difficulty": "difficult",
     "visitors": "Adventure seekers",
     "rating": 4.8,
@@ -346,7 +403,11 @@
     "local_tips": "Acclimatize properly. Carry medicines and warm clothes. Respect Buddhist customs.",
     "accessibility": "Challenging high-altitude terrain, good fitness required",
     "connectivity": "Very limited mobile network",
-    "nearby_attractions": ["Key Monastery", "Chandratal Lake", "Pin Valley"],
+    "nearby_attractions": [
+      "Key Monastery",
+      "Chandratal Lake",
+      "Pin Valley"
+    ],
     "submittedAt": "2024-03-20",
     "createdAt": "2024-03-20"
   },
@@ -358,7 +419,9 @@
     "category": "nature",
     "region": "south",
     "description": "Cherrapunji of South India with dense rainforests, king cobra research station, and stunning sunset views from Western Ghats hilltop.",
-    "images": ["agumbe.jpg"],
+    "images": [
+      "agumbe.jpg"
+    ],
     "difficulty": "moderate",
     "visitors": "Nature enthusiasts",
     "rating": 4.6,
@@ -386,7 +449,9 @@
     "category": "temple",
     "region": "northeast",
     "description": "India's largest monastery and world's second-largest, perched at 10,000 feet. Birthplace of 6th Dalai Lama with 300-year-old Buddhist heritage.",
-    "images": ["tawang.jpeg"],
+    "images": [
+      "tawang.jpeg"
+    ],
     "difficulty": "moderate",
     "visitors": "Pilgrims and tourists",
     "rating": 4.9,
@@ -398,7 +463,11 @@
     "local_tips": "Respect monastery rules. Photography restrictions apply. Dress modestly.",
     "accessibility": "High altitude, some walking required",
     "connectivity": "Limited mobile network coverage",
-    "nearby_attractions": ["Sela Pass", "Madhuri Lake", "War Memorial"],
+    "nearby_attractions": [
+      "Sela Pass",
+      "Madhuri Lake",
+      "War Memorial"
+    ],
     "submittedAt": "2024-03-30",
     "createdAt": "2024-03-30"
   },
@@ -410,7 +479,9 @@
     "category": "nature",
     "region": "north",
     "description": "High-altitude cold desert with sand dunes, double-humped camels, and ancient Silk Route history. Valley of flowers surrounded by snow-capped peaks.",
-    "images": ["nubra-valley.jpg"],
+    "images": [
+      "nubra-valley.jpg"
+    ],
     "difficulty": "difficult",
     "visitors": "Adventure travelers",
     "rating": 4.8,
@@ -438,7 +509,9 @@
     "category": "nature",
     "region": "northeast",
     "description": "Valley of flowers in Northeast India with rolling hills, seasonal blooms, and pristine natural beauty. Paradise for trekkers and nature lovers.",
-    "images": ["dzukou-valley.jpeg"],
+    "images": [
+      "dzukou-valley.jpeg"
+    ],
     "difficulty": "moderate",
     "visitors": "Limited access",
     "rating": 4.7,
@@ -450,7 +523,10 @@
     "local_tips": "Carry camping gear. Respect tribal customs. No plastic allowed in the valley.",
     "accessibility": "Moderate to difficult trekking required",
     "connectivity": "No mobile network coverage",
-    "nearby_attractions": ["Kohima War Cemetery", "Khonoma Village"],
+    "nearby_attractions": [
+      "Kohima War Cemetery",
+      "Khonoma Village"
+    ],
     "submittedAt": "2024-04-05",
     "createdAt": "2024-04-05"
   },
@@ -462,7 +538,9 @@
     "category": "nature",
     "region": "west",
     "description": "World's third-largest natural saltwater crater lake formed by meteor impact 52,000 years ago. Unique ecosystem with alkaline water and rare microorganisms.",
-    "images": ["lonar-crater.jpeg"],
+    "images": [
+      "lonar-crater.jpeg"
+    ],
     "difficulty": "easy",
     "visitors": "Scientific interest",
     "rating": 4.5,
@@ -474,7 +552,11 @@
     "local_tips": "Visit interpretation center first. Carry water and snacks. Best photographed during sunrise/sunset.",
     "accessibility": "Easy walk around crater rim, steep path to lake",
     "connectivity": "Good mobile network coverage",
-    "nearby_attractions": ["Ajanta Caves", "Ellora Caves", "Daulatabad Fort"],
+    "nearby_attractions": [
+      "Ajanta Caves",
+      "Ellora Caves",
+      "Daulatabad Fort"
+    ],
     "submittedAt": "2024-04-10",
     "createdAt": "2024-04-10"
   },
@@ -486,7 +568,9 @@
     "category": "nature",
     "region": "north",
     "description": "Mysterious hill where vehicles appear to roll uphill defying gravity. Optical illusion created by landscape layout attracts curious visitors worldwide.",
-    "images": ["magnetic-hill.jpg"],
+    "images": [
+      "magnetic-hill.jpg"
+    ],
     "difficulty": "easy",
     "visitors": "Tourist attraction",
     "rating": 4.2,
@@ -498,7 +582,10 @@
     "local_tips": "Test the magnetic effect with your vehicle. Carry warm clothes even in summer.",
     "accessibility": "Roadside attraction, no trekking required",
     "connectivity": "Limited mobile network coverage",
-    "nearby_attractions": ["Gurudwara Pathar Sahib", "Sangam Point"],
+    "nearby_attractions": [
+      "Gurudwara Pathar Sahib",
+      "Sangam Point"
+    ],
     "submittedAt": "2024-04-15",
     "createdAt": "2024-04-15"
   },
@@ -510,7 +597,9 @@
     "category": "nature",
     "region": "northeast",
     "description": "Bioengineered bridges made from rubber tree roots, grown over decades by Khasi tribe. UNESCO-worthy example of indigenous sustainable architecture.",
-    "images": ["root-bridges.jpg"],
+    "images": [
+      "root-bridges.jpg"
+    ],
     "difficulty": "difficult",
     "visitors": "Adventure seekers",
     "rating": 4.9,
@@ -522,7 +611,10 @@
     "local_tips": "Start early morning. Carry water and energy bars. Wear good trekking shoes.",
     "accessibility": "Very difficult trek, excellent fitness required",
     "connectivity": "No mobile network coverage",
-    "nearby_attractions": ["Double Decker Root Bridge", "Rainbow Falls"],
+    "nearby_attractions": [
+      "Double Decker Root Bridge",
+      "Rainbow Falls"
+    ],
     "submittedAt": "2024-04-20",
     "createdAt": "2024-04-20"
   },
@@ -534,7 +626,9 @@
     "category": "nature",
     "region": "south",
     "description": "World's highest organic tea plantation at 8000 feet elevation. Spectacular views of Western Ghats and traditional tea processing methods.",
-    "images": ["kolukkumalai.jpg"],
+    "images": [
+      "kolukkumalai.jpg"
+    ],
     "difficulty": "moderate",
     "visitors": "Tea enthusiasts",
     "rating": 4.6,
@@ -546,7 +640,11 @@
     "local_tips": "Book jeep safari in advance. Carry warm clothes for early morning. Try fresh tea tasting.",
     "accessibility": "Requires 4WD vehicle or trekking",
     "connectivity": "Limited mobile network coverage",
-    "nearby_attractions": ["Top Station", "Echo Point", "Mattupetty Dam"],
+    "nearby_attractions": [
+      "Top Station",
+      "Echo Point",
+      "Mattupetty Dam"
+    ],
     "submittedAt": "2024-04-25",
     "createdAt": "2024-04-25"
   }

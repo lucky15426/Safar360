@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Upload, X, Image, MapPin, Calendar, Type } from "lucide-react";
 import { toast } from "react-hot-toast";
-import { uploadFileToStorage, insertHeritageGem } from "../lib/supabaseClient";
+import { uploadFileToStorage, insertHeritageGem as insertPremiumGem } from "../lib/supabaseClient";
 
 const UploadForm = ({ user, onSubmit, onCancel }) => {
   const [formData, setFormData] = useState({
@@ -268,7 +268,7 @@ const UploadForm = ({ user, onSubmit, onCancel }) => {
       console.log("Prepared submission data:", submissionData);
 
       // STEP 3: Insert into database
-      const result = await insertHeritageGem(submissionData);
+      const result = await insertPremiumGem(submissionData);
 
       console.log("Successfully submitted heritage gem:", result);
 
@@ -326,58 +326,45 @@ const UploadForm = ({ user, onSubmit, onCancel }) => {
     }
   };
 
-  const indianStates = [
-    "Andhra Pradesh",
-    "Arunachal Pradesh",
-    "Assam",
-    "Bihar",
-    "Chhattisgarh",
-    "Goa",
-    "Gujarat",
-    "Haryana",
-    "Himachal Pradesh",
-    "Jharkhand",
-    "Karnataka",
-    "Kerala",
-    "Madhya Pradesh",
-    "Maharashtra",
-    "Manipur",
-    "Meghalaya",
-    "Mizoram",
-    "Nagaland",
-    "Odisha",
-    "Punjab",
+  const destinations = [
+    "France",
+    "Italy",
+    "Japan",
+    "India",
+    "USA",
+    "Greece",
+    "UAE",
+    "Switzerland",
+    "Australia",
+    "United Kingdom",
+    "Germany",
+    "Canada",
+    "Mexico",
+    "Brazil",
+    "South Africa",
+    "Thailand",
+    "Vietnam",
     "Rajasthan",
-    "Sikkim",
-    "Tamil Nadu",
-    "Telangana",
-    "Tripura",
-    "Uttar Pradesh",
-    "Uttarakhand",
-    "West Bengal",
-    "Delhi",
-    "Jammu and Kashmir",
-    "Ladakh",
+    "Kerala",
+    "Goa",
+    "Bali",
+    "Santorini",
+    "Dubai",
+    "New York"
   ];
 
   const categories = [
-    "Hidden Tourist Place",
-    "Ancient Temple",
-    "Historical Fort",
-    "Royal Palace",
-    "Archaeological Site",
-    "Natural Heritage",
-    "Folk Art Tradition",
+    "Historic Landmark",
+    "Natural Wonder",
+    "Modern Architecture",
+    "Cultural Experience",
+    "Hidden Gem",
+    "National Park",
+    "Museum & Gallery",
+    "UNESCO World Heritage",
     "Traditional Craft",
-    "Festival Site",
-    "Architectural Marvel",
-    "Cultural Landscape",
-    "Hidden Village",
-    "Sacred Grove",
-    "Stepwell",
-    "Cave Complex",
-    "Rock Art",
-    "Living Heritage",
+    "Island Paradise",
+    "Ancient Monument",
     "Other",
   ];
 
@@ -385,12 +372,11 @@ const UploadForm = ({ user, onSubmit, onCancel }) => {
     <div className="max-w-4xl mx-auto">
       <div className="heritage-card p-8">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-heritage font-bold heritage-text-gradient mb-4">
-            Share a Hidden Heritage Gem
+          <h2 className="text-3xl font-premium font-bold premium-text-gradient mb-4">
+            Share a Hidden Global Gem
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Help preserve India's cultural heritage by sharing lesser-known
-            sites, traditions, or cultural practices from your region.
+            Help explorers discover unique destinations, landmarks, or cultural practices from around the world.
           </p>
         </div>
 
@@ -473,7 +459,7 @@ const UploadForm = ({ user, onSubmit, onCancel }) => {
 
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="form-label">State *</label>
+                <label className="form-label">Destination/State *</label>
                 <select
                   name="state"
                   value={formData.state}
@@ -481,10 +467,10 @@ const UploadForm = ({ user, onSubmit, onCancel }) => {
                   className="form-input"
                   required
                 >
-                  <option value="">Select state</option>
-                  {indianStates.map((state) => (
-                    <option key={state} value={state}>
-                      {state}
+                  <option value="">Select destination</option>
+                  {destinations.map((dest) => (
+                    <option key={dest} value={dest}>
+                      {dest}
                     </option>
                   ))}
                 </select>

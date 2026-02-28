@@ -20,15 +20,15 @@ export function formatDate(dateString, options = {}) {
     day: "numeric",
     ...options,
   };
-  return date.toLocaleDateString("en-IN", defaultOptions);
+  return date.toLocaleDateString("en-US", defaultOptions);
 }
 
-// Format number with Indian numbering system
+// Format number with international suffixes
 export function formatNumber(num) {
-  if (num >= 10000000) {
-    return (num / 10000000).toFixed(1) + "Cr";
-  } else if (num >= 100000) {
-    return (num / 100000).toFixed(1) + "L";
+  if (num >= 1000000000) {
+    return (num / 1000000000).toFixed(1) + "B";
+  } else if (num >= 1000000) {
+    return (num / 1000000).toFixed(1) + "M";
   } else if (num >= 1000) {
     return (num / 1000).toFixed(1) + "K";
   }
@@ -76,9 +76,9 @@ export function isValidEmail(email) {
   return emailRegex.test(email);
 }
 
-// Validate Indian mobile number
+// Validate mobile number (International format)
 export function isValidMobile(mobile) {
-  const mobileRegex = /^[6-9]\d{9}$/;
+  const mobileRegex = /^\+?[1-9]\d{1,14}$/;
   return mobileRegex.test(mobile);
 }
 

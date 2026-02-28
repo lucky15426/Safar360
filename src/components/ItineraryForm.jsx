@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
-  indianStates,
-  culturalSites,
+  globalDestinations,
+  premiumSites,
   months,
   transportModes,
   durationDays,
@@ -23,8 +23,8 @@ const ItineraryForm = ({ onItineraryGenerated }) => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const selectedState = indianStates.find((s) => s.name === formData.state);
-  const availableSites = selectedState ? culturalSites[selectedState.name] : [];
+  const selectedDestination = globalDestinations.find((s) => s.name === formData.state);
+  const availableSites = selectedDestination ? premiumSites[selectedDestination.name] : [];
 
   const handleStateChange = (e) => {
     setFormData({ ...formData, state: e.target.value, selectedSites: [] });
@@ -106,7 +106,7 @@ const ItineraryForm = ({ onItineraryGenerated }) => {
         {/* State Selection */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Select State
+            Select Destination
           </label>
           <select
             name="state"
@@ -114,10 +114,10 @@ const ItineraryForm = ({ onItineraryGenerated }) => {
             onChange={handleStateChange}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
           >
-            <option value="">Choose a state...</option>
-            {indianStates.map((state) => (
-              <option key={state.id} value={state.name}>
-                {state.name}
+            <option value="">Choose a destination...</option>
+            {globalDestinations.map((dest) => (
+              <option key={dest.id} value={dest.name}>
+                {dest.name}
               </option>
             ))}
           </select>
@@ -128,7 +128,7 @@ const ItineraryForm = ({ onItineraryGenerated }) => {
         {availableSites.length > 0 && (
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Select Cultural Sites (choose one or more)
+              Select Signature Experiences
             </label>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {availableSites.map((site) => (
@@ -206,11 +206,10 @@ const ItineraryForm = ({ onItineraryGenerated }) => {
             {transportModes.map((mode) => (
               <label
                 key={mode.id}
-                className={`relative flex items-center p-3 border rounded-lg cursor-pointer transition ${
-                  formData.transport === mode.name
+                className={`relative flex items-center p-3 border rounded-lg cursor-pointer transition ${formData.transport === mode.name
                     ? 'border-yellow-500 bg-yellow-50'
                     : 'border-gray-300 hover:border-yellow-300'
-                }`}
+                  }`}
               >
                 <input
                   type="radio"
@@ -236,11 +235,10 @@ const ItineraryForm = ({ onItineraryGenerated }) => {
             {Object.entries(accommodation).map(([type, details]) => (
               <label
                 key={type}
-                className={`relative flex items-center p-3 border rounded-lg cursor-pointer transition ${
-                  formData.accommodation === type
+                className={`relative flex items-center p-3 border rounded-lg cursor-pointer transition ${formData.accommodation === type
                     ? 'border-yellow-500 bg-yellow-50'
                     : 'border-gray-300 hover:border-yellow-300'
-                }`}
+                  }`}
               >
                 <input
                   type="radio"

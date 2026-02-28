@@ -1,10 +1,10 @@
 // API Configuration
 export const API_ENDPOINTS = {
-  HERITAGE_SITES: "/heritage-sites",
+  PREMIUM_SITES: "/premium-sites",
   FESTIVALS: "/festivals",
   ARTS: "/arts",
-  HIDDEN_GEMS: "/hidden-gems",
-  STATES: "/states",
+  GLOBAL_GEMS: "/global-gems",
+  DESTINATIONS: "/destinations",
   REVIEWS: "/reviews",
   AUTH: "/auth",
   USERS: "/users",
@@ -14,7 +14,7 @@ export const API_ENDPOINTS = {
 };
 
 // Popular Travel Destinations / Countries
-export const INDIAN_STATES = [
+export const GLOBAL_DESTINATIONS = [
   "France", "Italy", "Japan", "Thailand", "Spain",
   "United States", "United Kingdom", "Australia",
   "Turkey", "Greece", "Switzerland", "New Zealand",
@@ -27,7 +27,7 @@ export const INDIAN_STATES = [
 ];
 
 // Landmark Categories
-export const HERITAGE_CATEGORIES = [
+export const PREMIUM_CATEGORIES = [
   "UNESCO World Heritage Site",
   "Archaeological Site",
   "Ancient Wonder",
@@ -152,8 +152,8 @@ export const API_KEYS = {
 // Regular Expressions
 export const REGEX = {
   EMAIL: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-  MOBILE: /^[6-9]\d{9}$/,
-  PINCODE: /^[1-9][0-9]{5}$/,
+  MOBILE: /^\+?[1-9]\d{1,14}$/,
+  POSTCODE: /^[a-zA-Z0-9\s-]{3,10}$/,
   COORDINATES: /^-?([1-8]?[0-9](\.[0-9]+)?|90(\.0+)?)$/,
 };
 

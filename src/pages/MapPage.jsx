@@ -1049,12 +1049,12 @@ const MapPage = () => {
     <ClientOnly>
       <div className="h-screen w-full bg-gray-50 relative flex flex-col">
         {/* Header */}
-        <div className="bg-white shadow-sm border-b border-gray-200 p-4 z-[1000]">
+        <div className="bg-white shadow-sm border-b border-gray-200 p-4 z-[10]">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-between gap-4 mb-4">
               <div>
                 <h1 className="text-2xl font-bold text-gray-800">
-                  India Heritage & Hidden Gems Map
+                  Local Heritage & Hidden Gems Map
                 </h1>
                 <p className="text-sm text-gray-600">
                   Explore 49 destinations across 7 regions
@@ -1285,7 +1285,7 @@ const MapPage = () => {
         </div>
 
         {/* Legend */}
-        <div className="absolute bottom-6 left-6 bg-white rounded-lg shadow-md border border-gray-200 p-4 z-[500] max-h-80 overflow-y-auto">
+        <div className="absolute bottom-6 left-6 bg-white rounded-lg shadow-md border border-gray-200 p-4 z-[10] max-h-80 overflow-y-auto">
           <h3 className="font-bold text-sm mb-3 text-gray-800">Legend</h3>
           <div className="space-y-2">
             <div>
@@ -1326,7 +1326,7 @@ const MapPage = () => {
         </div>
 
         {/* Zoom Controls */}
-        <div className="absolute bottom-6 right-6 flex flex-col gap-2 bg-white rounded-lg shadow-md border border-gray-200 z-[500]">
+        <div className="absolute bottom-6 right-6 flex flex-col gap-2 bg-white rounded-lg shadow-md border border-gray-200 z-[10]">
           <button
             onClick={() =>
               mapRef.current &&
@@ -1350,7 +1350,7 @@ const MapPage = () => {
 
         {/* Route Panel - UPDATED WITH LIVE LOCATION FEATURE */}
         {isRouteMode && (
-          <div className="absolute top-20 right-6 bottom-6 w-96 bg-white rounded-lg shadow-lg border border-gray-200 flex flex-col z-[500]">
+          <div className="absolute top-20 right-6 bottom-6 w-96 bg-white rounded-lg shadow-lg border border-gray-200 flex flex-col z-[10]">
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200">
               <h2 className="font-bold text-gray-800">Route Planner</h2>

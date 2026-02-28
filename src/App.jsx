@@ -123,7 +123,7 @@ export default function App() {
 
   // Update document title based on current route
   useEffect(() => {
-    document.title = PAGE_TITLES[location.pathname] || "Safar360 - Discover India's Heritage";
+    document.title = PAGE_TITLES[location.pathname] || "Safar360 - Discover The World";
   }, [location.pathname]);
 
   // Navigation handler - now uses router
