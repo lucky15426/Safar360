@@ -24,7 +24,7 @@ import WorldToursPage from "./pages/WorldToursPage";
 
 import HiddenGemsPage from "./pages/HiddenGemsPage";
 
-import ChatPage from "./pages/ChatPage";
+import AgentPage from "./pages/AgentPage/App";
 import MapPage from "./pages/MapPage";
 import UploadPage from "./pages/UploadPage";
 
@@ -62,7 +62,7 @@ const PAGE_TITLES = {
   "/360tour": "VR Previews - Safar360",
   "/itinerary": "Trip Planning - Safar360",
   "/gems": "Hidden Gems - Safar360",
-  "/chat": "Real-time Support - Safar360",
+  "/chat": "SafarX Agent - Safar360",
   "/map": "Local Insights - Safar360",
   "/checklist": "🎒 Pre-trip Checklist - Safar360",
   "/upload": "Upload Hidden Gem - Safar360",
@@ -155,7 +155,7 @@ export default function App() {
   }, [isLoaded]);
 
   // Hide header/footer on certain pages
-  const hideHeaderFooter = currentPage === "salahkar" || currentPage === "storytelling";
+  const hideHeaderFooter = currentPage === "salahkar" || currentPage === "storytelling" || currentPage === "chat";
 
   return (
     <AnimatePresence mode="wait">
@@ -193,7 +193,7 @@ export default function App() {
               <Route path="/360tour" element={<WorldToursPage {...pageProps} />} />
               <Route path="/gems" element={<HiddenGemsPage {...pageProps} />} />
               <Route path="/itinerary" element={<ItineraryPlanner {...pageProps} />} />
-              <Route path="/chat" element={<ChatPage {...pageProps} />} />
+              <Route path="/chat" element={<AgentPage {...pageProps} />} />
               <Route path="/map" element={<MapPage {...pageProps} />} />
               <Route path="/checklist" element={<PreTripChecklist />} />
               <Route path="/upload" element={<UploadPage {...pageProps} />} />
@@ -358,5 +358,3 @@ export default function App() {
     </AnimatePresence>
   );
 }
-
-
