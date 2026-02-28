@@ -1,4 +1,6 @@
-const BASE_URL = 'http://localhost:8000/api/hotels';
+const BASE_URL = import.meta.env.VITE_API_URL
+    ? `${import.meta.env.VITE_API_URL}/api/hotels`
+    : 'https://bharatverse11-safarx.hf.space/api/hotels';
 
 const handleResponse = async (response) => {
     if (!response.ok) {
