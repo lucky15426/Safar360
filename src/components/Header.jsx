@@ -149,7 +149,7 @@ const Header = ({ searchQuery, onSearchChange }) => {
               onMouseEnter={playHoverSound}
               className={`text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentPage === 'chat' ? 'text-sky-400' : 'text-white/70 hover:text-white'}`}
             >
-              Support
+              SafarX Agent
             </button>
             <button
               onClick={() => handleNavigation("360view")}
