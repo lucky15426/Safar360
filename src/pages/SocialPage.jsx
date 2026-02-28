@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Filter, Sparkles, Plus, X, ArrowLeft, Users, Home } from 'lucide-react';
@@ -406,22 +406,20 @@ const SocialPage = ({ onBack }) => {
 
                         {/* Results Section */}
                         <AnimatePresence>
-                            {isSearchActive && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 50 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ delay: 0.3, duration: 0.5 }}
-                                    className="w-full max-w-7xl mx-auto px-4 py-8"
-                                >
-                                    <GroupExplorer
-                                        headless={true}
-                                        onGroupClick={handleGroupClick}
-                                        externalSearchQuery={searchQuery}
-                                        externalFilters={filters}
-                                    />
-                                </motion.div>
-                            )}
+                            <motion.div
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ delay: 0.3, duration: 0.5 }}
+                                className={`w-full max-w-7xl mx-auto px-4 py-8 ${!isSearchActive ? 'mt-8' : ''}`}
+                            >
+                                <GroupExplorer
+                                    headless={true}
+                                    onGroupClick={handleGroupClick}
+                                    externalSearchQuery={searchQuery}
+                                    externalFilters={filters}
+                                />
+                            </motion.div>
                         </AnimatePresence>
                     </>
                 )}
