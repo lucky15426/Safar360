@@ -33,6 +33,7 @@ import Aurora from "../components/animations/Aurora";
 import CurvedLoop from "../components/animations/CurvedLoop";
 import MagicBento from "../components/animations/MagicBento";
 import ChromaGrid from "../components/animations/ChromaGrid";
+import vrToursData from "../data/vrTours.json";
 
 
 const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
@@ -106,7 +107,6 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
   const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
   const contentScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
 
-  // Featured Travel Destinations
   const featuredDestinations = [
     {
       id: 1,
@@ -120,6 +120,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
       highlights: ["Beaches", "Temples", "Water Sports"],
       bestTime: "April-October",
       avgCost: "$50-100/day",
+      vrTourId: "bali"
     },
     {
       id: 2,
@@ -133,6 +134,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
       highlights: ["Museums", "Dining", "Architecture"],
       bestTime: "April-June",
       avgCost: "$100-150/day",
+      vrTourId: "paris"
     },
     {
       id: 3,
@@ -146,6 +148,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
       highlights: ["Tech", "Culture", "Food"],
       bestTime: "March-May",
       avgCost: "$60-120/day",
+      vrTourId: "tokyo"
     },
   ];
 
@@ -653,7 +656,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
                     subtitle: "Explore destinations in high-fidelity 360° VR before booking. Reduce travel uncertainty.",
                     handle: "Immersive",
                     borderColor: "#0ea5e9",
-                    gradient: "linear-gradient(145deg, #0ea5e9, #000)",
+                    gradient: "linear-gradient(145deg, #122831, #1e3c4a)",
                     url: "#",
                     action: () => onPageChange("360view")
                   },
@@ -663,7 +666,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
                     subtitle: "AI-powered itineraries tailored to your travel style. Discover hidden gems and local insights.",
                     handle: "AI Powered",
                     borderColor: "#9333ea",
-                    gradient: "linear-gradient(180deg, #9333ea, #000)",
+                    gradient: "linear-gradient(180deg, #2d1b4d, #3c2a5c)",
                     url: "#",
                     action: () => onPageChange("itinerary")
                   },
@@ -673,7 +676,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
                     subtitle: "Real-time assistance. Our AI Copilot provides on-ground help and instant answers anytime.",
                     handle: "Real-time",
                     borderColor: "#16a34a",
-                    gradient: "linear-gradient(210deg, #16a34a, #000)",
+                    gradient: "linear-gradient(210deg, #0f2e1b, #1a3d28)",
                     url: "#",
                     action: () => onPageChange("chat")
                   }
@@ -766,6 +769,10 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
               {featuredDestinations.map((dest, index) => (
                 <div
                   key={index}
+                  onClick={() => {
+                    const tour = vrToursData.find(t => t.id === dest.vrTourId);
+                    onPageChange("360tour", tour);
+                  }}
                   className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2"
                 >
                   <div className="relative h-80">

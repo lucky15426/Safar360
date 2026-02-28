@@ -343,7 +343,7 @@ const PlayerModal = ({ tour, onClose }) => {
     );
 };
 
-const WorldToursPage = ({ onPageChange, setIsImmersiveMode }) => { // Accept updated prop
+const WorldToursPage = ({ onPageChange, selectedItem, setIsImmersiveMode }) => { // Accept updated prop
     const [activeTour, setActiveTour] = useState(null);
     const [activeCategory, setActiveCategory] = useState("All");
     // const [isMuted, setIsMuted] = useState(true); // Removed unused local state
@@ -371,6 +371,13 @@ const WorldToursPage = ({ onPageChange, setIsImmersiveMode }) => { // Accept upd
         }, 500);
         return () => clearTimeout(timer);
     }, []);
+
+    // Deep Link Support: If a tour was passed from HomePage, open it automatically
+    useEffect(() => {
+        if (selectedItem && selectedItem.videoId) {
+            setActiveTour(selectedItem);
+        }
+    }, [selectedItem]);
 
     return (
         <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-purple-500 selection:text-white overflow-x-hidden">
