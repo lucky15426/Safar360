@@ -318,7 +318,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
                 muted
                 loop
                 playsInline
-                className="w-full h-full object-cover brightness-[0.75]"
+                className="w-full h-full object-cover brightness-[0.85]"
                 src={videos[activeVideoIndex].url}
               />
             </motion.div>
