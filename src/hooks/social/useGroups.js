@@ -33,9 +33,9 @@ export const useGroups = () => {
   const fetchGroups = async (filters = {}) => {
     if (!imagesAssigned) setLoading(true);
 
-    // 1. Initial Data Merge (Including Custom Local Storage Groups)
-    const customGroups = getCustomGroups();
-    let allGroups = [...customGroups, ...REAL_WORLD_GROUPS, ...MOCK_GROUPS];
+    // 1. Initial Data Merge (Disabled Custom Local Storage Groups for Demo purity)
+    // Only return the 6 demo mock groups
+    let allGroups = [...MOCK_GROUPS.slice(0, 6)];
 
     // 2. Assign Images from Static Cache (NO API CALLS!)
     if (!imagesAssigned) {
@@ -87,7 +87,14 @@ export const useGroups = () => {
             // Assign Hero Image (pick 1st from shuffled)
             const heroIndex = indices[0];
             const heroImage = cityImages[heroIndex];
-            group.image = heroImage?.url || heroImage || group.image;
+
+            // Prioritize the group's predefined image if it's an external URL (like unsplash), 
+            // otherwise use the city image, otherwise fallback to existing
+            if (group.image && group.image.includes('unsplash.com')) {
+              // Keep the existing high-quality image
+            } else {
+              group.image = heroImage?.url || heroImage || group.image;
+            }
 
             // Assign Gallery (pick next 8 from shuffled)
             // If we run out of unique images, we loop back
