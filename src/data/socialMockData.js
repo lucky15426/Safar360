@@ -1,6 +1,150 @@
 
 export const MOCK_GROUPS = [
   {
+    groupId: "grp_demo_aurora_chasers",
+    name: "Aurora Chasers Expedition 🌌",
+    description: "Join our exclusive small-group expedition to chase the Northern Lights. We provide professional photography gear, cozy cabins, and expert guides.",
+    destination: {
+      city: "Tromso",
+      country: "Norway",
+      coordinates: { lat: 69.6492, lng: 18.9553 }
+    },
+    travelDates: {
+      startDate: "2026-11-10",
+      endDate: "2026-11-18"
+    },
+    type: "public",
+    category: "adventure",
+    maxMembers: 15,
+    language: "en",
+    image: "https://images.unsplash.com/photo-1579033461380-adb47c3eb938?q=80&w=3864&auto=format&fit=crop",
+    members: [],
+    memberCount: 12,
+    upcomingMeetups: [],
+    stats: { totalMessages: 450, activeMembers: 10 },
+    verified: true
+  },
+  {
+    groupId: "grp_demo_tuscany_retreat",
+    name: "Tuscany Wine & Culinary Retreat 🍷",
+    description: "Experience the pure essence of Italy. Private villa stays, authentic cooking classes, truffle hunting, and tasting the finest Chianti wines.",
+    destination: {
+      city: "Florence",
+      country: "Italy",
+      coordinates: { lat: 43.7696, lng: 11.2558 }
+    },
+    travelDates: {
+      startDate: "2026-06-05",
+      endDate: "2026-06-12"
+    },
+    type: "public",
+    category: "food",
+    maxMembers: 20,
+    language: "en",
+    image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=3800&auto=format&fit=crop",
+    members: [],
+    memberCount: 18,
+    upcomingMeetups: [],
+    stats: { totalMessages: 320, activeMembers: 15 },
+    verified: true
+  },
+  {
+    groupId: "grp_demo_kyoto_blossoms",
+    name: "Kyoto Sakura Photography Tour 🌸",
+    description: "Capture the ephemeral beauty of cherry blossoms in ancient Kyoto. Early access to temples, traditional tea ceremonies, and geisha district walks.",
+    destination: {
+      city: "Kyoto",
+      country: "Japan",
+      coordinates: { lat: 35.0116, lng: 135.7681 }
+    },
+    travelDates: {
+      startDate: "2026-03-25",
+      endDate: "2026-04-05"
+    },
+    type: "public",
+    category: "photography",
+    maxMembers: 12,
+    language: "en",
+    image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=3870&auto=format&fit=crop",
+    members: [],
+    memberCount: 10,
+    upcomingMeetups: [],
+    stats: { totalMessages: 510, activeMembers: 9 },
+    verified: true
+  },
+  {
+    groupId: "grp_demo_sahara_glamping",
+    name: "Sahara Desert Glamping Safari 🐪",
+    description: "Luxury camping under the Saharan stars. Camel treks, 4x4 dune bashing, traditional Berber music, and spectacular golden sunsets.",
+    destination: {
+      city: "Merzouga",
+      country: "Morocco",
+      coordinates: { lat: 31.0968, lng: -4.0125 }
+    },
+    travelDates: {
+      startDate: "2026-10-15",
+      endDate: "2026-10-22"
+    },
+    type: "public",
+    category: "adventure",
+    maxMembers: 25,
+    language: "en",
+    image: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?q=80&w=3800&auto=format&fit=crop",
+    members: [],
+    memberCount: 22,
+    upcomingMeetups: [],
+    stats: { totalMessages: 280, activeMembers: 18 },
+    verified: true
+  },
+  {
+    groupId: "grp_demo_swiss_alps",
+    name: "Swiss Alps Luxury Ski Week ⛷️",
+    description: "Heliskiing, luxury chalets, and après-ski in Zermatt. For advanced skiers seeking the ultimate alpine thrill with a view of the Matterhorn.",
+    destination: {
+      city: "Zermatt",
+      country: "Switzerland",
+      coordinates: { lat: 46.0207, lng: 7.7491 }
+    },
+    travelDates: {
+      startDate: "2027-01-20",
+      endDate: "2027-01-27"
+    },
+    type: "public",
+    category: "sports",
+    maxMembers: 10,
+    language: "en",
+    image: "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?q=80&w=3800&auto=format&fit=crop",
+    members: [],
+    memberCount: 8,
+    upcomingMeetups: [],
+    stats: { totalMessages: 190, activeMembers: 8 },
+    verified: true
+  },
+  {
+    groupId: "grp_demo_maldives_dive",
+    name: "Maldives Manta Ray Dive 🤿",
+    description: "Sail on a luxury liveaboard and dive with majestic manta rays and whale sharks in the crystal-clear waters of the Baa Atoll.",
+    destination: {
+      city: "Malé",
+      country: "Maldives",
+      coordinates: { lat: 4.1755, lng: 73.5093 }
+    },
+    travelDates: {
+      startDate: "2026-08-10",
+      endDate: "2026-08-20"
+    },
+    type: "public",
+    category: "adventure",
+    maxMembers: 16,
+    language: "en",
+    image: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?q=80&w=3870&auto=format&fit=crop",
+    members: [],
+    memberCount: 14,
+    upcomingMeetups: [],
+    stats: { totalMessages: 410, activeMembers: 12 },
+    verified: true
+  },
+  {
     groupId: "grp_paris_art",
     name: "Art Lovers in Paris 🎨",
     description: "Exploring museums, galleries, and street art together. We plan to visit the Louvre, Orsay, and some hidden gems in Montmartre.",
@@ -196,7 +340,7 @@ export const MOCK_GROUPS = [
     stats: { totalMessages: 60, activeMembers: 4 },
     verified: true
   },
-   {
+  {
     groupId: "grp_iceland_roadtrip",
     name: "Iceland Ring Road 🚗",
     description: "Epic road trip around Iceland chasing waterfalls, geysers, and the Northern Lights.",
