@@ -23,23 +23,14 @@ function App() {
   const [appReady, setAppReady] = useState(false);
 
   /* Determine when to dismiss the loader:
-     - document is fully loaded (or already was)
-     - AND at least MIN_LOADER_DURATION has elapsed */
+     - Just wait for MIN_LOADER_DURATION since the document is already loaded
+       when routing to this page from the main App.jsx */
   useEffect(() => {
-    const start = Date.now();
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, MIN_LOADER_DURATION);
 
-    const dismiss = () => {
-      const elapsed = Date.now() - start;
-      const remaining = Math.max(0, MIN_LOADER_DURATION - elapsed);
-      setTimeout(() => setIsLoading(false), remaining);
-    };
-
-    if (document.readyState === 'complete') {
-      dismiss();
-    } else {
-      window.addEventListener('load', dismiss, { once: true });
-      return () => window.removeEventListener('load', dismiss);
-    }
+    return () => clearTimeout(timer);
   }, []);
 
   /* Called after the loader exit animation finishes */
