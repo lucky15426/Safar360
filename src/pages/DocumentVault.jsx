@@ -245,7 +245,7 @@ export default function DocumentVault() {
                           <span className="text-slate-200">|</span>
                           <a
                             href={doc.url}
-                            download
+                            download={doc.name}
                             target="_blank"
                             rel="noreferrer"
                             onClick={(e) => e.stopPropagation()}

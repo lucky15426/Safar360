@@ -60,9 +60,9 @@ const Footer = ({ onPageChange }) => {
 
         {/* World Heritage Map Background Image */}
         <div
-          className="absolute inset-0 opacity-40 mix-blend-screen pointer-events-none"
+          className="absolute inset-0 opacity-20 mix-blend-screen pointer-events-none"
           style={{
-            backgroundImage: `url('https://res.cloudinary.com/safar360/image/upload/v1709214736/world-map-dotted_yps28x.png')`,
+            backgroundImage: `url('https://res.cloudinary.com/dgl970vof/image/upload/v1710114050/world-map-dotted_ms9h3c.png')`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',

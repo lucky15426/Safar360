@@ -22,8 +22,6 @@ const ROUTES = {
   checklist: "/checklist",
   upload: "/upload",
   tracker: "/tracker",
-  salahkar: "/salahkar",
-  "ask-safar": "/salahkar",
   vault: "/vault",
   "360view": "/360view",
   social: "/social",
@@ -74,7 +72,6 @@ const Header = ({ searchQuery, onSearchChange }) => {
   const navLinks = [
     { id: "home", label: "Home" },
     { id: "360tour", label: "VR Tours" },
-    // { id: "ask-safar", label: "Ask Safar" },
     { id: "itinerary", label: "Trip Planning", icon: "MapPin" },
     { id: "gems", label: "Hidden Gems" },
     // { id: "chat", label: "Support" },
