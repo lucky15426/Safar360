@@ -17,7 +17,6 @@
     -   **AI Chat**: Google Gemini-powered natural language queries.
     -   **Flight Booking**: Real-time search and booking via **TBO API**.
     -   **Hotel Discovery**: Live listings and details via **Rapid API x TripAdvisor**.
-    -   **VR & 3D Previews**: Immersive destination previews directly in the chat interface.
     -   **Smart Web Search**: Tavily-integrated discovery for alternative stays & trains.
     -   **Itinerary Gen**: Automated, personalized day-by-day travel planning.
 -   **🗺️ Interactive Maps**: Visual exploration of destinations with real-time OSRM routing and distance calculation.

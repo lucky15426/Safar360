@@ -165,12 +165,12 @@ const TourPage360 = ({ onPageChange }) => {
   const currentLocation = locations[activeLocation];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-white via-cyan-50/50 to-slate-50">
       {/* Hero Section */}
       <section className="relative h-screen w-full overflow-hidden flex flex-col justify-center items-center">
         {/* Video Background */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-black/20 z-10"></div>
+          <div className="absolute inset-0 bg-black/10 z-10"></div>
           <video
             autoPlay
             muted
@@ -447,7 +447,7 @@ const TourPage360 = ({ onPageChange }) => {
       <section className="relative py-24 text-white overflow-hidden">
         {/* Video Background Layer */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80 z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/60 z-10"></div>
           <video
             autoPlay
             muted

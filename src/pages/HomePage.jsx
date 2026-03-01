@@ -373,7 +373,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
               ].map((vr, i) => (
                 <button
                   key={i}
-                  onClick={() => onPageChange("360view")}
+                  onClick={() => onPageChange("360tour")}
                   onMouseEnter={playHoverSound}
                   className="group relative"
                 >
@@ -658,7 +658,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
                     borderColor: "#0ea5e9",
                     gradient: "linear-gradient(145deg, #122831, #1e3c4a)",
                     url: "#",
-                    action: () => onPageChange("360view")
+                    action: () => onPageChange("360tour")
                   },
                   {
                     image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800",
