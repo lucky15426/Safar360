@@ -19,7 +19,7 @@ import { useJsApiLoader, GoogleMap } from "@react-google-maps/api";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 
 // The API key provided by the user
-const GOOGLE_MAPS_API_KEY = "AIzaSyD_OqcIbVnaaTJJe5-h2e7lYUc4BTSX2Lg";
+const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 const libraries = ["places"];
 
 const SUGGESTED_PLACES = [
