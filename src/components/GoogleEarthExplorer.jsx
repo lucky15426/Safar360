@@ -205,41 +205,62 @@ const GoogleEarthExplorer = () => {
     setMap(null);
   }, []);
 
-  return (
-    <div className="min-h-screen bg-slate-950 text-white">
-      {/* Hero Section */}
-      <section className="relative py-20 px-6 pb-48">
-        {/* Background Effects */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-600/5 rounded-full blur-[150px]" />
-        </div>
+  const BG_VIDEO_URL = "https://res.cloudinary.com/dnmhqosoa/video/upload/v1772876636/1851190-hd_1920_1080_25fps_remdew.mp4";
 
-        <div className="relative z-10 max-w-5xl mx-auto text-center">
-          {/* Badge */}
+  return (
+    <div className="min-h-screen bg-[#020617] text-white font-sans overflow-hidden">
+      {/* ── Background Layer ── */}
+      <div className="absolute inset-0 z-0">
+        {/* Video Background */}
+        {BG_VIDEO_URL && (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover opacity-[1] brightness-[1.3] transition-opacity duration-1000"
+            src={BG_VIDEO_URL}
+          />
+        )}
+
+        {/* Cinematic Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/30 via-transparent to-[#020617]/70" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.12)_0%,transparent_70%)]" />
+
+        {/* Mesh Gradient overlay */}
+        <div className="absolute inset-0 opacity-20" style={{
+          backgroundImage: `radial-gradient(at 0% 0%, hsla(199,100%,33%,1) 0, transparent 50%), 
+                             radial-gradient(at 50% 0%, hsla(187,100%,42%,1) 0, transparent 50%), 
+                             radial-gradient(at 100% 0%, hsla(242,100%,70%,1) 0, transparent 50%)`
+        }} />
+      </div>
+
+      {/* Hero Section */}
+      <section className="relative z-10 py-20 px-6 pb-48">
+        <div className="max-w-5xl mx-auto text-center">
+          {/* Premium Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-5 py-2 mb-8 backdrop-blur-md"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="inline-flex items-center space-x-2.5 bg-white/5 border border-white/10 rounded-full px-5 py-2 mb-8 backdrop-blur-md"
           >
-            <Globe className="w-4 h-4 text-cyan-400" />
-            <span className="text-sm font-medium text-slate-200 tracking-wide uppercase">
+            <Sparkles className="w-4 h-4 text-cyan-400" />
+            <span className="text-xs font-bold text-white/70 tracking-[0.2em] uppercase">
               Google Earth Explorer
             </span>
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
           </motion.div>
 
-          {/* Title */}
+          {/* Cinematic Title */}
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-4xl md:text-6xl font-bold mb-4"
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-5xl md:text-8xl font-black tracking-tighter mb-6 leading-[0.9]"
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-teal-400">
-              Explore Earth in 3D
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500 animate-gradient-x">
+              Explore Earth <br /> in 3D
             </span>
           </motion.h2>
 
@@ -247,7 +268,7 @@ const GoogleEarthExplorer = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg text-slate-400 max-w-2xl mx-auto mb-10"
+            className="text-base sm:text-lg text-white/40 max-w-2xl mx-auto mb-12 font-medium leading-relaxed"
           >
             Search any place on the planet — see immersive 3D imagery and launch the full Google Earth experience.
           </motion.p>
@@ -259,10 +280,13 @@ const GoogleEarthExplorer = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="max-w-2xl mx-auto mb-6"
           >
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-teal-500 rounded-2xl opacity-30 group-hover:opacity-50 blur-lg transition-opacity duration-500" />
-              <div className="relative flex items-center bg-slate-900/90 border border-white/10 rounded-2xl backdrop-blur-xl">
-                <div className="pl-5 pr-2 text-slate-500">
+            <div className="relative w-full max-w-2xl mx-auto group">
+              {/* Shadow layer for depth */}
+              <div className="absolute inset-0 rounded-[22px] transition-opacity duration-700 pointer-events-none group-focus-within:opacity-10 shadow-[0_0_40px_rgba(6,182,212,0.2)]" />
+
+              {/* Main search capsule */}
+              <div className="relative flex items-center p-2 bg-white/5 border border-white/10 rounded-[22px] backdrop-blur-2xl transition-all duration-500 group-focus-within:bg-white/10 group-focus-within:border-white/20 group-focus-within:shadow-[0_0_20px_rgba(6,182,212,0.1)]">
+                <div className="pl-4 pr-2 text-white/30 group-focus-within:text-cyan-400 transition-colors">
                   <Search className="w-5 h-5" />
                 </div>
                 <input
@@ -274,7 +298,8 @@ const GoogleEarthExplorer = () => {
                     if (e.key === "Enter") handleSearch();
                   }}
                   placeholder="Search any place... (e.g. Eiffel Tower, Taj Mahal)"
-                  className="flex-1 py-4 px-3 bg-transparent text-white placeholder-slate-500 outline-none text-lg"
+                  className="flex-1 py-4 px-3 bg-transparent text-white placeholder-white/20 outline-none focus:outline-none focus:ring-0 border-none text-lg font-medium"
+                  style={{ outline: "none", boxShadow: "none" }}
                   autoComplete="off"
                 />
                 {searchQuery && (
@@ -283,19 +308,21 @@ const GoogleEarthExplorer = () => {
                       setSearchQuery("", false);
                       clearSuggestions();
                     }}
-                    className="p-2 text-slate-500 hover:text-white transition-colors"
+                    className="p-2 text-white/20 hover:text-white transition-colors"
                   >
                     <X className="w-4 h-4" />
                   </button>
                 )}
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={() => handleSearch()}
                   disabled={!searchQuery.trim()}
-                  className="m-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 disabled:opacity-40 disabled:cursor-not-allowed rounded-xl font-bold text-sm tracking-wide flex items-center space-x-2 transition-all hover:scale-105 active:scale-95"
+                  className="mx-1 px-8 py-3.5 bg-white text-black hover:bg-white/90 disabled:opacity-20 disabled:cursor-not-allowed rounded-[16px] font-bold text-sm tracking-wide flex items-center space-x-2 transition-all"
                 >
                   <Navigation className="w-4 h-4" />
                   <span>Explore</span>
-                </button>
+                </motion.button>
               </div>
 
               {/* Autocomplete Dropdown - Google Places */}
@@ -306,7 +333,7 @@ const GoogleEarthExplorer = () => {
                     animate={{ opacity: 1, y: 0, scaleY: 1 }}
                     exit={{ opacity: 0, y: -8, scaleY: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute left-0 right-0 top-full mt-2 z-50 bg-slate-900/95 border border-white/10 rounded-2xl backdrop-blur-xl overflow-hidden shadow-2xl shadow-black/50"
+                    className="absolute left-0 right-0 top-full mt-3 z-50 bg-[#0d1117]/80 backdrop-blur-3xl border border-white/10 rounded-3xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.8)] overflow-hidden p-2"
                     style={{ transformOrigin: "top" }}
                   >
                     {autocompleteData.map((place, idx) => {
@@ -318,17 +345,18 @@ const GoogleEarthExplorer = () => {
                         <button
                           key={place_id}
                           onClick={() => handleSelectSuggestion(place)}
-                          className={`w-full flex items-center space-x-3 px-4 py-3 text-left transition-all duration-150 text-slate-300 hover:bg-white/5 hover:text-white border-b border-white/5 last:border-0`}
+                          className="w-full flex items-center space-x-4 px-5 py-4 text-left transition-all duration-200 text-white/70 hover:bg-white/5 hover:text-white rounded-2xl group/item"
                         >
-                          <div className={`w-9 h-9 rounded-lg flex-shrink-0 flex items-center justify-center border bg-white/5 border-white/10`}>
-                            <MapPin className={`w-4 h-4 text-slate-500`} />
+                          <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/5 group-hover/item:bg-cyan-500/10 group-hover/item:border-cyan-500/20 transition-colors">
+                            <MapPin className="w-4 h-4 text-white/40 group-hover/item:text-cyan-400 transition-all" />
                           </div>
                           <div className="min-w-0 flex-1">
                             <div className="text-sm font-semibold truncate">{main_text}</div>
                             {secondary_text && (
-                              <div className="text-[11px] text-slate-500 truncate">{secondary_text}</div>
+                              <div className="text-[11px] text-white/30 truncate font-medium">{secondary_text}</div>
                             )}
                           </div>
+                          <ArrowRight className="w-4 h-4 text-white/0 group-hover/item:text-white/20 transition-all" />
                         </button>
                       );
                     })}

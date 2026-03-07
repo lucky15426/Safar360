@@ -747,6 +747,15 @@ body {
   outline-offset: 2px;
 }
 
+/* Global input focus reset to remove annoying browser outlines */
+input:focus, 
+textarea:focus, 
+select:focus,
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 /* Selection styles */
 ::selection {
   background: rgba(139, 92, 246, 0.2);
