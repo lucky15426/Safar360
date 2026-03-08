@@ -154,7 +154,7 @@ export const SearchBar = ({ onSearch, isLoading }) => {
                         </span>
                     </h1>
 
-                    <p className="text-base sm:text-lg text-white/40 max-w-xl mx-auto mb-10 font-medium leading-relaxed">
+                    <p className="text-base sm:text-lg text-white/80 max-w-xl mx-auto mb-10 font-medium leading-relaxed">
                         Teleport to any destination instantly. High-fidelity street views
                         and virtual tours powered by global imagery.
                     </p>
@@ -268,25 +268,7 @@ export const SearchBar = ({ onSearch, isLoading }) => {
                 </motion.div>
 
                 {/* Quick Shortcuts */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1 }}
-                    className="mt-12 flex flex-wrap justify-center gap-3"
-                >
-                    {["Eiffel Tower", "Taj Mahal", "Grand Canyon"].map((place) => (
-                        <button
-                            key={place}
-                            onClick={() => {
-                                setQ(place);
-                                onSearch(place, null);
-                            }}
-                            className="text-[11px] font-bold uppercase tracking-widest text-white/20 hover:text-cyan-400 hover:bg-white/5 px-4 py-1.5 rounded-full transition-all"
-                        >
-                            {place}
-                        </button>
-                    ))}
-                </motion.div>
+
 
             </div>
         </div>
