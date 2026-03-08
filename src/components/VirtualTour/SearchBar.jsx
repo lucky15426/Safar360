@@ -231,36 +231,55 @@ export const SearchBar = ({ onSearch, isLoading }) => {
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
-                                className="absolute w-full mt-3 bg-[#0d1117]/80 backdrop-blur-3xl border border-white/10 rounded-3xl shadow-xl overflow-hidden z-50 p-2"
+                                transition={{ duration: 0.2, ease: "easeOut" }}
+                                className="absolute w-full mt-3 bg-[#0d1117]/90 backdrop-blur-3xl border border-white/10 rounded-3xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.8)] overflow-hidden z-50 p-2"
                             >
-
                                 {suggestions.map((s, i) => (
                                     <button
                                         key={s.place_id || i}
                                         onClick={() => selectSuggestion(s)}
-                                        className="w-full text-left px-5 py-4 hover:bg-white/5 rounded-2xl flex items-center gap-4"
+                                        className="w-full text-left px-5 py-4 hover:bg-white/5 rounded-2xl flex items-center gap-4 transition-all duration-200 group/item"
                                     >
-                                        <MapPin className="w-4 h-4 text-white/40" />
-
-                                        <div className="min-w-0">
-                                            <p className="text-sm font-semibold text-white truncate">
-                                                {s.structured_formatting?.main_text || s.description}
-                                            </p>
-
-                                            <p className="text-[11px] text-white/30 truncate">
+                                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-colors ${s._source === "landmark_db"
+                                            ? "bg-amber-500/10 border-amber-500/20 group-hover/item:bg-amber-500/15"
+                                            : "bg-white/5 border-white/5 group-hover/item:bg-cyan-500/10 group-hover/item:border-cyan-500/20"
+                                            }`}>
+                                            {s._source === "landmark_db" ? (
+                                                <Sparkles className="w-4 h-4 text-amber-400" />
+                                            ) : (
+                                                <MapPin className="w-4 h-4 text-white/40 group-hover/item:text-cyan-400 group-hover/item:scale-110 transition-all" />
+                                            )}
+                                        </div>
+                                        <div className="min-w-0 flex-1">
+                                            <div className="flex items-center gap-2">
+                                                <p className="text-sm font-semibold text-white/90 truncate group-hover/item:text-white">
+                                                    {s.structured_formatting?.main_text || s.description}
+                                                </p>
+                                                {s._source === "landmark_db" && (
+                                                    <span className="shrink-0 text-[8px] font-black uppercase tracking-wider bg-amber-500/15 text-amber-400 px-1.5 py-0.5 rounded-md border border-amber-500/20">
+                                                        Best View
+                                                    </span>
+                                                )}
+                                                {s._quality >= 8 && s._source !== "landmark_db" && (
+                                                    <span className="shrink-0 text-[8px] font-black uppercase tracking-wider bg-cyan-500/15 text-cyan-400 px-1.5 py-0.5 rounded-md border border-cyan-500/20">
+                                                        HD
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <p className="text-[11px] text-white/30 truncate font-medium">
                                                 {s.structured_formatting?.secondary_text || "Explore location"}
                                             </p>
                                         </div>
-
+                                        <ArrowRight className="w-3.5 h-3.5 ml-auto text-white/0 group-hover/item:text-white/20 transition-all" />
                                     </button>
                                 ))}
 
+                                {/* Attribution */}
                                 <div className="px-5 py-2 border-t border-white/5">
                                     <p className="text-[9px] text-white/15 text-center">
-                                        Powered by OpenStreetMap via Photon
+                                        Powered by OpenStreetMap • Landmark coordinates hand-verified
                                     </p>
                                 </div>
-
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -268,7 +287,6 @@ export const SearchBar = ({ onSearch, isLoading }) => {
                 </motion.div>
 
                 {/* Quick Shortcuts */}
-
 
             </div>
         </div>

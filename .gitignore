@@ -19,6 +19,9 @@ dist-ssr
 .supabase/
 
 
+# SSL certificates
+*.pem
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
