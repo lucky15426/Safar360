@@ -19,18 +19,36 @@ const WorldToursPage = ({ onPageChange, setIsImmersiveMode }) => {
         }
     }, [step, activeTab, setIsImmersiveMode]);
 
-    const handleSearch = useCallback(async (q) => {
+    /**
+     * handleSearch
+     * supports Photon coordinates optimization
+     */
+    const handleSearch = useCallback(async (q, directCoords = null) => {
         setIsLoading(true);
         setError(null);
+
         try {
-            const result = await geocode(q);
+            let result;
+
+            if (directCoords && directCoords.lat && directCoords.lng) {
+                result = {
+                    lat: directCoords.lat,
+                    lng: directCoords.lng,
+                    name: q,
+                    displayName: q,
+                };
+            } else {
+                result = await geocode(q);
+            }
+
             if (result) {
                 setPlace(result);
                 setStep(2);
             } else {
                 setError("Location not found. Try a different search.");
             }
-        } catch {
+        } catch (err) {
+            console.error("Search error:", err);
             setError("Search failed. Please check your connection.");
         } finally {
             setIsLoading(false);
@@ -42,9 +60,9 @@ const WorldToursPage = ({ onPageChange, setIsImmersiveMode }) => {
         setPlace(null);
     }, []);
 
-    // ─────────────────────────────────────────────────────────────────────────
-    // FULLSCREEN STREET VIEW  (step 2)
-    // ─────────────────────────────────────────────────────────────────────────
+    // ─────────────────────────────────────────────────────────────────
+    // FULLSCREEN STREET VIEW
+    // ─────────────────────────────────────────────────────────────────
     if (activeTab === "streetview" && step === 2 && place) {
         return (
             <motion.div
@@ -62,24 +80,25 @@ const WorldToursPage = ({ onPageChange, setIsImmersiveMode }) => {
                         className="flex items-center gap-2 bg-black/60 hover:bg-black/85 backdrop-blur-md text-white px-4 py-2.5 rounded-full border border-white/20 shadow-lg transition-all duration-200 hover:scale-105 active:scale-95"
                     >
                         <ArrowLeft className="w-4 h-4" />
-                        <span className="text-sm font-semibold tracking-wide">Back to Search</span>
+                        <span className="text-sm font-semibold tracking-wide">
+                            Back to Search
+                        </span>
                     </button>
                 </div>
 
-                {/* Street View Scene */}
                 <VRScene place={place} onBack={reset} />
             </motion.div>
         );
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
-    // MAIN PAGE  (search screen or earth tab)
-    // ─────────────────────────────────────────────────────────────────────────
+    // ─────────────────────────────────────────────────────────────────
+    // MAIN PAGE
+    // ─────────────────────────────────────────────────────────────────
     return (
         <div className="bg-[#0B0E14] text-white font-sans w-full min-h-screen">
 
-            {/* ── Tab Switcher ─────────────────────────────────────────────── */}
-            <div className="fixed top-24 inset-x-0 z-[80] flex justify-center pointer-events-none">
+            {/* ── Tab Switcher ── */}
+            <div className="fixed top-32 inset-x-0 z-[80] flex justify-center pointer-events-none">
                 <div className="pointer-events-auto inline-flex items-center bg-white/10 backdrop-blur-md rounded-full p-1.5 border border-white/20 shadow-xl gap-1">
 
                     {/* Street View */}
@@ -89,33 +108,31 @@ const WorldToursPage = ({ onPageChange, setIsImmersiveMode }) => {
                             setStep(1);
                             setPlace(null);
                         }}
-                        className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-300 ${
-                            activeTab === "streetview"
-                                ? "bg-gradient-to-tr from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25"
-                                : "text-white/60 hover:text-white hover:bg-white/5"
-                        }`}
+                        className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-300 ${activeTab === "streetview"
+                            ? "bg-gradient-to-tr from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25"
+                            : "text-white/60 hover:text-white hover:bg-white/5"
+                            }`}
                     >
                         <Navigation2 className="w-4 h-4 shrink-0" />
-                        Street View 360°
+                        SAFAR360 IMMERSIVE™
                     </button>
 
                     {/* Google Earth */}
                     <button
                         onClick={() => setActiveTab("earth")}
-                        className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-300 ${
-                            activeTab === "earth"
-                                ? "bg-gradient-to-tr from-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/25"
-                                : "text-white/60 hover:text-white hover:bg-white/5"
-                        }`}
+                        className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-300 ${activeTab === "earth"
+                            ? "bg-gradient-to-tr from-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/25"
+                            : "text-white/60 hover:text-white hover:bg-white/5"
+                            }`}
                     >
                         <Globe className="w-4 h-4 shrink-0" />
-                        Google Earth
+                        SAFAR360 ORBITAL™
                     </button>
 
                 </div>
             </div>
 
-            {/* ── Error Toast ───────────────────────────────────────────────── */}
+            {/* ── Error Toast ── */}
             <AnimatePresence>
                 {error && (
                     <motion.div
@@ -133,7 +150,7 @@ const WorldToursPage = ({ onPageChange, setIsImmersiveMode }) => {
                 )}
             </AnimatePresence>
 
-            {/* ── Tab Content ───────────────────────────────────────────────── */}
+            {/* ── Tab Content ── */}
             <AnimatePresence mode="wait">
                 {activeTab === "streetview" ? (
                     <motion.div
@@ -144,7 +161,12 @@ const WorldToursPage = ({ onPageChange, setIsImmersiveMode }) => {
                         transition={{ duration: 0.35 }}
                         className="w-full min-h-screen"
                     >
-                        <SearchBar onSearch={handleSearch} isLoading={isLoading} />
+                        <SearchBar
+                            onSearch={handleSearch}
+                            isLoading={isLoading}
+                            activeTab={activeTab}
+                            onTabChange={setActiveTab}
+                        />
                     </motion.div>
                 ) : (
                     <motion.div
@@ -155,7 +177,11 @@ const WorldToursPage = ({ onPageChange, setIsImmersiveMode }) => {
                         transition={{ duration: 0.35 }}
                         className="w-full min-h-screen"
                     >
-                        <GoogleEarthExplorer onBack={() => setActiveTab("streetview")} />
+                        <GoogleEarthExplorer
+                            activeTab={activeTab}
+                            onTabChange={setActiveTab}
+                            onBack={() => setActiveTab("streetview")}
+                        />
                     </motion.div>
                 )}
             </AnimatePresence>

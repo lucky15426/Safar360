@@ -62,13 +62,14 @@ const fetchWikimediaImages = async (query, limit = 50) => {
     .filter((img) => img.thumb);
 };
 
-const GoogleEarthExplorer = ({ onBack }) => {
+const GoogleEarthExplorer = ({ activeTab, onTabChange, onBack }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeQuery, setActiveQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [focused, setFocused] = useState(false);
   const [selectedSuggestionIdx, setSelectedSuggestionIdx] = useState(-1);
   const [isFetchingSuggestions, setIsFetchingSuggestions] = useState(false);
   const [placeImages, setPlaceImages] = useState([]);
@@ -98,7 +99,7 @@ const GoogleEarthExplorer = ({ onBack }) => {
         });
         setCardThumbs(thumbMap);
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   // Photon geocoder autocomplete
@@ -241,13 +242,39 @@ const GoogleEarthExplorer = ({ onBack }) => {
     ? `https://www.google.com/maps?q=${encodeURIComponent(activeQuery)}&t=k&z=17&ie=UTF8&iwloc=&output=embed`
     : "";
 
+  const BG_VIDEO_URL = "https://res.cloudinary.com/dnmhqosoa/video/upload/q_auto:best,f_auto/v1772895382/1851190-uhd_3840_2160_25fps_vpbivx.mp4";
+
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="relative min-h-screen bg-[#020617] text-white font-sans">
+      {/* ── Background Layer ── */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Video Background */}
+        {BG_VIDEO_URL && (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+            src={BG_VIDEO_URL}
+          />
+        )}
 
+        {/* Cinematic Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/30 via-transparent to-[#020617]/70" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.12)_0%,transparent_70%)]" />
 
+        {/* Mesh Gradient overlay */}
+        <div className="absolute inset-0 opacity-20" style={{
+          backgroundImage: `radial-gradient(at 0% 0%, hsla(199,100%,33%,1) 0, transparent 50%), 
+                             radial-gradient(at 50% 0%, hsla(187,100%,42%,1) 0, transparent 50%), 
+                             radial-gradient(at 100% 0%, hsla(242,100%,70%,1) 0, transparent 50%)`
+        }} />
+      </div>
 
       {/* ── Hero / Search ──────────────────────────────────────────────────── */}
-      <section className="relative py-20 px-6 pb-48">
+      <section className="relative min-h-screen py-20 px-6 pb-48 flex items-center justify-center">
 
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]" />
@@ -255,7 +282,7 @@ const GoogleEarthExplorer = ({ onBack }) => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-600/5 rounded-full blur-[150px]" />
         </div>
 
-        <div className="relative z-10 max-w-5xl mx-auto text-center pt-16">
+        <div className="relative z-10 max-w-5xl mx-auto text-center pt-32">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -263,7 +290,7 @@ const GoogleEarthExplorer = ({ onBack }) => {
             className="inline-flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-5 py-2 mb-8 backdrop-blur-md"
           >
             <Globe className="w-4 h-4 text-cyan-400" />
-            <span className="text-sm font-medium text-slate-200 tracking-wide uppercase">Google Earth Explorer</span>
+            <span className="text-sm font-medium text-slate-200 tracking-wide uppercase">Safar360 Orbital™</span>
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
           </motion.div>
 
@@ -271,10 +298,10 @@ const GoogleEarthExplorer = ({ onBack }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-4xl md:text-6xl font-bold mb-4"
+            className="text-4xl md:text-7xl font-heritage font-bold mb-4 drop-shadow-[0_4px_30px_rgba(0,0,0,0.8)] filter"
           >
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-teal-400">
-              Explore Earth in 3D
+              See Earth From Above
             </span>
           </motion.h2>
 
@@ -284,7 +311,7 @@ const GoogleEarthExplorer = ({ onBack }) => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-lg text-slate-400 max-w-2xl mx-auto mb-10"
           >
-            Search any place on the planet — see satellite imagery inline and launch the full Google Earth 3D experience.
+            Explore any destination from orbit — high-resolution satellite imagery, 4K place photography, and full Google Earth 3D integration.
           </motion.p>
 
           {/* Search Bar */}
@@ -294,94 +321,113 @@ const GoogleEarthExplorer = ({ onBack }) => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="max-w-2xl mx-auto mb-6"
           >
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-teal-500 rounded-2xl opacity-30 group-hover:opacity-50 blur-lg transition-opacity duration-500" />
-              <div className="relative flex items-center bg-slate-900/90 border border-white/10 rounded-2xl backdrop-blur-xl">
-                <div className="pl-5 pr-2 text-slate-500">
-                  <Search className="w-5 h-5" />
+            <div className="relative z-20">
+              {/* Shadow layer for depth */}
+              <div className={`absolute inset-0 rounded-[22px] transition-opacity duration-700 pointer-events-none 
+                    ${focused ? "opacity-10 shadow-[0_0_40px_rgba(6,182,212,0.2)]" : "opacity-0"}`} />
+
+              {/* Main search capsule */}
+              <div className={`relative flex items-center p-2 rounded-[22px] transition-all duration-500 backdrop-blur-2xl border 
+                    ${focused
+                  ? "bg-white/10 border-white/20 shadow-2xl"
+                  : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20"}`}
+              >
+                <div className="pl-4 pr-2">
+                  {isLoading ? (
+                    <Loader2 className="w-5 h-5 animate-spin text-cyan-400" />
+                  ) : (
+                    <Search className={`w-5 h-5 transition-colors duration-300 ${focused ? "text-cyan-400" : "text-white/30"}`} />
+                  )}
                 </div>
+
                 <input
                   ref={inputRef}
                   type="text"
                   value={searchQuery}
                   onChange={handleInputChange}
                   onKeyDown={handleKeyDown}
-                  onFocus={() => { if (suggestions.length > 0) setShowSuggestions(true); }}
+                  onFocus={() => { setFocused(true); if (suggestions.length > 0) setShowSuggestions(true); }}
+                  onBlur={() => setTimeout(() => setFocused(false), 200)}
                   placeholder="Search any place... (e.g. Eiffel Tower, Taj Mahal)"
-                  className="flex-1 py-4 px-3 bg-transparent text-white placeholder-slate-500 outline-none text-lg"
+                  className="flex-1 bg-transparent py-4 px-3 text-white text-lg placeholder-white/20 outline-none focus:outline-none focus:ring-0 border-none font-medium"
+                  style={{ outline: 'none', boxShadow: 'none' }}
                   autoComplete="off"
                 />
+
                 {searchQuery && (
                   <button
                     onClick={() => { setSearchQuery(""); setSuggestions([]); setShowSuggestions(false); inputRef.current?.focus(); }}
-                    className="p-2 text-slate-500 hover:text-white transition-colors"
+                    className="p-2 text-white/30 hover:text-white transition-colors"
                   >
                     <X className="w-4 h-4" />
                   </button>
                 )}
-                <button
-                  onClick={() => handleSearch()}
-                  disabled={!searchQuery.trim()}
-                  className="m-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 disabled:opacity-40 disabled:cursor-not-allowed rounded-xl font-bold text-sm tracking-wide flex items-center space-x-2 transition-all hover:scale-105 active:scale-95"
-                >
-                  {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Navigation className="w-4 h-4" />}
-                  <span>Explore</span>
-                </button>
-              </div>
 
-              {/* Autocomplete Dropdown */}
-              <AnimatePresence>
-                {showSuggestions && suggestions.length > 0 && (
-                  <motion.div
-                    ref={suggestionsRef}
-                    initial={{ opacity: 0, y: -8, scaleY: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scaleY: 1 }}
-                    exit={{ opacity: 0, y: -8, scaleY: 0.95 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute left-0 right-0 top-full mt-2 z-50 bg-slate-900/95 border border-white/10 rounded-2xl backdrop-blur-xl overflow-hidden shadow-2xl shadow-black/50"
-                    style={{ transformOrigin: "top" }}
-                  >
-                    {suggestions.map((place, idx) => (
-                      <button
-                        key={`${place.name}-${idx}`}
-                        onClick={() => selectSuggestion(place)}
-                        onMouseEnter={() => setSelectedSuggestionIdx(idx)}
-                        className={`w-full flex items-center space-x-3 px-4 py-3 text-left transition-all duration-150 ${
-                          idx === selectedSuggestionIdx ? "bg-white/10 text-white" : "text-slate-300 hover:bg-white/5 hover:text-white"
-                        } ${idx < suggestions.length - 1 ? "border-b border-white/5" : ""}`}
-                      >
-                        <div className={`w-9 h-9 rounded-lg flex-shrink-0 flex items-center justify-center border ${
-                          idx === selectedSuggestionIdx ? "bg-cyan-500/20 border-cyan-500/30" : "bg-white/5 border-white/10"
-                        }`}>
-                          <MapPin className={`w-4 h-4 ${idx === selectedSuggestionIdx ? "text-cyan-400" : "text-slate-500"}`} />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <div className="text-sm font-semibold truncate">{place.name}</div>
-                          {place.description && (
-                            <div className="text-[11px] text-slate-500 truncate">{place.description}</div>
-                          )}
-                        </div>
-                        {place.type && (
-                          <span className="text-[10px] text-slate-500 bg-white/5 px-2 py-0.5 rounded-md capitalize flex-shrink-0">{place.type}</span>
-                        )}
-                      </button>
-                    ))}
-                    {isFetchingSuggestions && (
-                      <div className="flex items-center justify-center py-3 border-t border-white/5">
-                        <Loader2 className="w-4 h-4 text-cyan-400 animate-spin" />
-                        <span className="ml-2 text-xs text-slate-500">Searching...</span>
-                      </div>
-                    )}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => handleSearch()}
+                  disabled={isLoading || !searchQuery.trim()}
+                  className="group relative overflow-hidden bg-white text-black px-8 py-3.5 rounded-[16px] font-bold text-sm tracking-wide transition-all duration-300 disabled:opacity-20 disabled:cursor-not-allowed flex items-center gap-2 shrink-0 ml-1"
+                >
+                  <span className="relative z-10 transition-colors duration-300 group-hover:text-black">
+                    {isLoading ? "Exploring..." : "Explore"}
+                  </span>
+                  <Navigation className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+              </div>
             </div>
+
+            {/* Autocomplete Dropdown */}
+            <AnimatePresence>
+              {showSuggestions && suggestions.length > 0 && (
+                <motion.div
+                  ref={suggestionsRef}
+                  initial={{ opacity: 0, y: -8, scaleY: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scaleY: 1 }}
+                  exit={{ opacity: 0, y: -8, scaleY: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute left-0 right-0 top-full mt-2 z-50 bg-slate-900/95 border border-white/10 rounded-2xl backdrop-blur-xl overflow-hidden shadow-2xl shadow-black/50"
+                  style={{ transformOrigin: "top" }}
+                >
+                  {suggestions.map((place, idx) => (
+                    <button
+                      key={`${place.name}-${idx}`}
+                      onClick={() => selectSuggestion(place)}
+                      onMouseEnter={() => setSelectedSuggestionIdx(idx)}
+                      className={`w-full text-left px-5 py-4 hover:bg-white/5 rounded-2xl flex items-center gap-4 transition-all duration-200 group/item ${idx === selectedSuggestionIdx ? "bg-white/5" : ""}`}
+                    >
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-colors ${idx === selectedSuggestionIdx ? "bg-cyan-500/10 border-cyan-500/20" : "bg-white/5 border-white/5 group-hover/item:bg-cyan-500/10 group-hover/item:border-cyan-500/20"}`}>
+                        <MapPin className={`w-4 h-4 transition-all ${idx === selectedSuggestionIdx ? "text-cyan-400 scale-110" : "text-white/40 group-hover/item:text-cyan-400 group-hover/item:scale-110"}`} />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className={`text-sm font-semibold truncate transition-colors ${idx === selectedSuggestionIdx ? "text-white" : "text-white/90 group-hover/item:text-white"}`}>
+                          {place.name}
+                        </p>
+                        <p className="text-[11px] text-white/30 truncate font-medium">
+                          {place.description || "Explore location"}
+                        </p>
+                      </div>
+                      {place.type && (
+                        <span className="text-[10px] text-white/40 bg-white/5 px-2 py-0.5 rounded-md capitalize flex-shrink-0 border border-white/5">{place.type}</span>
+                      )}
+                    </button>
+                  ))}
+                  {isFetchingSuggestions && (
+                    <div className="flex items-center justify-center py-3 border-t border-white/5">
+                      <Loader2 className="w-4 h-4 text-cyan-400 animate-spin" />
+                      <span className="ml-2 text-xs text-slate-500">Searching...</span>
+                    </div>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
-      </section>
+      </section >
 
       {/* ── Map Viewer ─────────────────────────────────────────────────────── */}
-      <AnimatePresence>
+      < AnimatePresence >
         {activeQuery && (
           <motion.section
             initial={{ opacity: 0, y: 40 }}
@@ -404,7 +450,7 @@ const GoogleEarthExplorer = ({ onBack }) => {
                       className="flex items-center gap-2 bg-white/5 hover:bg-emerald-600/80 text-white px-3 py-2 rounded-xl border border-white/10 hover:border-emerald-500/50 text-sm font-semibold transition-all duration-200 hover:scale-105 active:scale-95 mr-1"
                     >
                       <ArrowLeft className="w-4 h-4" />
-                      <span className="hidden sm:inline">Back to VR Tours</span>
+                      <span className="hidden sm:inline">Back to Immersive</span>
                     </button>
                   )}
                   <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
@@ -474,10 +520,10 @@ const GoogleEarthExplorer = ({ onBack }) => {
             </div>
           </motion.section>
         )}
-      </AnimatePresence>
+      </AnimatePresence >
 
       {/* ── Image Gallery ──────────────────────────────────────────────────── */}
-      <AnimatePresence>
+      < AnimatePresence >
         {activeQuery && (placeImages.length > 0 || isLoadingImages) && (
           <motion.section
             initial={{ opacity: 0, y: 30 }}
@@ -538,10 +584,10 @@ const GoogleEarthExplorer = ({ onBack }) => {
             </div>
           </motion.section>
         )}
-      </AnimatePresence>
+      </AnimatePresence >
 
       {/* ── Lightbox ───────────────────────────────────────────────────────── */}
-      <AnimatePresence>
+      < AnimatePresence >
         {lightboxIdx >= 0 && placeImages[lightboxIdx] && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -596,10 +642,10 @@ const GoogleEarthExplorer = ({ onBack }) => {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence >
 
       {/* ── Suggested Places Grid ──────────────────────────────────────────── */}
-      <section className="px-6 pb-20">
+      <section className="px-6 pt-16 pb-20">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -608,7 +654,7 @@ const GoogleEarthExplorer = ({ onBack }) => {
             className="flex items-center space-x-3 mb-8"
           >
             <Sparkles className="w-5 h-5 text-cyan-400" />
-            <h3 className="text-xl font-bold text-white">Popular Destinations</h3>
+            <h3 className="text-2xl font-bold text-white drop-shadow-lg">Popular Destinations</h3>
           </motion.div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
@@ -621,11 +667,10 @@ const GoogleEarthExplorer = ({ onBack }) => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.05 * index }}
                   onClick={() => handleSuggestedClick(place)}
-                  className={`group relative rounded-2xl overflow-hidden border transition-all duration-500 text-left ${
-                    activeQuery === place.query
-                      ? "border-cyan-500/50 shadow-[0_0_30px_rgba(6,182,212,0.2)]"
-                      : "border-white/5 hover:border-white/20 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)]"
-                  } hover:-translate-y-1`}
+                  className={`group relative rounded-2xl overflow-hidden border transition-all duration-500 text-left ${activeQuery === place.query
+                    ? "border-cyan-500/50 shadow-[0_0_30px_rgba(6,182,212,0.2)]"
+                    : "border-white/5 hover:border-white/20 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)]"
+                    } hover:-translate-y-1`}
                 >
                   <div className="aspect-square relative overflow-hidden bg-slate-800">
                     {thumbUrl ? (
@@ -659,9 +704,9 @@ const GoogleEarthExplorer = ({ onBack }) => {
             })}
           </div>
         </div>
-      </section>
+      </section >
 
-    </div>
+    </div >
   );
 };
 

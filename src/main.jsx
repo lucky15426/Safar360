@@ -7,6 +7,11 @@ import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import "leaflet/dist/leaflet.css";
 
+import { initWebXRPolyfill } from './utils/webxr-polyfill.js'
+
+// Initialize WebXR support
+initWebXRPolyfill();
+
 // Get Clerk Publishable Key from environment
 const clerkPublishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
