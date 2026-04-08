@@ -60,28 +60,28 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
       title: "EXTREME.",
       subtitle: "PEAKS",
       description: "Conquer the highest summits and witness the world from above.",
-      url: "https://res.cloudinary.com/safar360/video/upload/v1770650361/3135808-hd_1280_720_24fps_upe8sq.mp4",
+      url: "https://res.cloudinary.com/dnmhqosoa/video/upload/v1775633394/done_fy2tix.mp4",
     },
     {
       id: 3,
       title: "COASTAL.",
       subtitle: "ESCAPE",
       description: "Where golden sands meet azure waves—your perfect beach getaway.",
-      url: "https://res.cloudinary.com/safar360/video/upload/v1770650605/ocean_rubfhj.mp4",
+      url: "https://res.cloudinary.com/dnmhqosoa/video/upload/v1775633150/ocean_fe7jkv.mp4",
     },
     {
       id: 4,
       title: "VIBRANT.",
       subtitle: "CITIES",
       description: "Experience the pulse of modern metropolises and urban wonders.",
-      url: "https://res.cloudinary.com/safar360/video/upload/v1770650626/vibrantcities_j3ywrq.mp4",
+      url: "https://res.cloudinary.com/dnmhqosoa/video/upload/v1775633136/vibrantcities_na8xqe.mp4",
     },
     {
       id: 5,
       title: "SERENE.",
       subtitle: "FORESTS",
       description: "Get lost in the peaceful emerald canopies and nature's embrace.",
-      url: "https://res.cloudinary.com/safar360/video/upload/v1770650645/lastpage_ngccm1.mp4"
+      url: "https://res.cloudinary.com/dnmhqosoa/video/upload/v1775633434/lastpage_hv47ap.mp4"
     },
   ];
 

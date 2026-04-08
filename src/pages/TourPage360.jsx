@@ -178,7 +178,7 @@ const TourPage360 = ({ onPageChange }) => {
             playsInline
             className="absolute inset-0 w-full h-full object-cover"
           >
-            <source src="https://res.cloudinary.com/safar360/video/upload/v1770650678/homepage_pwhxss.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/dnmhqosoa/video/upload/v1775633706/homepage_fxyylp.mp4" type="video/mp4" />
           </video>
           {/* Gradient fade at bottom */}
           <div className="absolute bottom-0 w-full h-40 bg-gradient-to-t from-slate-50 via-slate-50/40 to-transparent z-20"></div>
