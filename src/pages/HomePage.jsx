@@ -818,7 +818,7 @@ const HomePage = ({ onPageChange, user, bookmarks, addBookmark }) => {
               className="w-full h-full object-cover brightness-70"
               draggable="false"
             >
-              <source src="https://res.cloudinary.com/safar360/video/upload/v1770650614/neeche_felkyx.mp4" type="video/mp4" />
+              <source src="https://res.cloudinary.com/dnmhqosoa/video/upload/v1775633171/neeche_ef76ax.mp4" type="video/mp4" />
             </video>
             <div className="absolute inset-0 bg-black/40"></div>
           </div>

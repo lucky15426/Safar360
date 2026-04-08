@@ -455,7 +455,7 @@ const TourPage360 = ({ onPageChange }) => {
             playsInline
             className="absolute inset-0 w-full h-full object-cover"
           >
-            <source src="https://res.cloudinary.com/safar360/video/upload/v1770650678/hiddengems_bg_nucnt1.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/dnmhqosoa/video/upload/v1772875114/cl_wa7x6o.mp4" type="video/mp4" />
           </video>
         </div>
 
